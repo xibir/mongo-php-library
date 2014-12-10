@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>http://bjori.github.io/phongo-crud/index.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/namespace-MongoDB.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/namespace-PHP.html</loc>
+</url>
+
+
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.Collection.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.DeleteResult.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.InsertResult.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.Manager.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.QueryResult.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.ReadPreference.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.UpdateResult.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.WriteConcern.html</loc>
+</url>
+<url>
+	<loc>http://bjori.github.io/phongo-crud/class-MongoDB.WriteResult.html</loc>
+</url>
+</urlset>
