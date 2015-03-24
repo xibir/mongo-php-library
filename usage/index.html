@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-        <title>Usage - PHongo: CRUD - The Create Read Update and Delete interface for PHongo</title>
+        <title>Usage - MongoDB PHP library</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">PHongo: CRUD - The Create Read Update and Delete interface for PHongo</a>
+            <a class="navbar-brand" href="..">MongoDB PHP library</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -76,7 +76,7 @@
                 </li>
                 
                 <li>
-                    <a href="https://github.com/bjori/phongo-crud">
+                    <a href="https://github.com/10gen-labs/mongo-php-library-prototype">
                         
                             <i class="fa fa-github"></i>
                         
@@ -95,10 +95,9 @@
     
         <li class="main active"><a href="#usage">Usage</a></li>
         
-    
-        <li class="main "><a href="#mongodbcollection">MongoDB\Collection</a></li>
+            <li><a href="#collection-class">Collection class</a></li>
         
-            <li><a href="#finding-a-specific-document">finding a specific document</a></li>
+            <li><a href="#finding-a-specific-document">Finding a specific document</a></li>
         
     
     </ul>
@@ -106,21 +105,24 @@
             <div class="col-md-9" role="main">
 
 <h1 id="usage">Usage</h1>
-<h1 id="mongodbcollection">MongoDB\Collection</h1>
-<p>MongoDB\Collection is the main object of this component.
-It has convenience methods for most of the <em>usual suspects</em> tasks, such as inserting
-documents, querying, updating, counting, and so on.</p>
-<p>Constructing a MongoDB\Collection requires a MongoDB\Manager and then namespace to operate
-on. A <a href="http://docs.mongodb.org/manual/faq/developers/#faq-dev-namespace">MongoDB namespace</a>
-is in the form of "databaseName.collectionName", for example: <code>examples.zips</code>.
-A <a href="http://docs.mongodb.org/manual/core/write-concern/">WriteConcern</a> and
-<a href="http://docs.mongodb.org/manual/core/read-preference/">ReadPreference</a> can also optionally
-be provided, if omitted the default values from the MongoDB\Manager will be used.</p>
-<h2 id="finding-a-specific-document">finding a specific document</h2>
+<h2 id="collection-class">Collection class</h2>
+<p><code>MongoDB\Collection</code> is perhaps the most useful class in this library. It
+provides methods for common operations on a collection, such as inserting
+documents, querying, updating, counting, etc.</p>
+<p>Constructing a <code>MongoDB\Collection</code> requires a <code>MongoDB\Manager</code> and a namespace
+for the collection. A <a href="http://docs.mongodb.org/manual/faq/developers/#faq-dev-namespace">MongoDB namespace</a>
+consists of a database name and collection name joined by a dot. <code>examples.zips</code>
+is on example of a namespace. A <a href="http://docs.mongodb.org/manual/core/write-concern/">write concern</a>
+and <a href="http://docs.mongodb.org/manual/core/read-preference/">read preference</a> may
+also be provided when constructing a Collection (if omitted, the Collection will
+use the Manager's values as its defaults).</p>
+<h2 id="finding-a-specific-document">Finding a specific document</h2>
 <pre><code>&lt;?php
-require __DIR__ . &quot;/../&quot;. &quot;vendor/autoload.php&quot;;
 
-$manager = new MongoDB\Manager(&quot;mongodb://localhost:27017&quot;);
+// This path should point to Composer's autoloader
+require_once __DIR__ . &quot;/vendor/autoload.php&quot;;
+
+$manager = new MongoDB\Driver\Manager(&quot;mongodb://localhost:27017&quot;);
 $collection = new MongoDB\Collection($manager, &quot;examples.zips&quot;);
 $sunnyvale = $collection-&gt;findOne(array(&quot;_id&quot; =&gt; &quot;94086&quot;));
 var_dump($sunnyvale);
@@ -128,7 +130,7 @@ var_dump($sunnyvale);
 ?&gt;
 </code></pre>
 
-<p>Outputs</p>
+<p>Executing this script should yield the following output:</p>
 <pre><code>array(5) {
   [&quot;_id&quot;]=&gt;
   string(5) &quot;94086&quot;

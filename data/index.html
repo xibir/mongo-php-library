@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-        <title>Example data - PHongo: CRUD - The Create Read Update and Delete interface for PHongo</title>
+        <title>Example data - MongoDB PHP library</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -39,7 +39,7 @@
             </button>
 
             <!-- Main title -->
-            <a class="navbar-brand" href="..">PHongo: CRUD - The Create Read Update and Delete interface for PHongo</a>
+            <a class="navbar-brand" href="..">MongoDB PHP library</a>
         </div>
 
         <!-- Expanded navigation -->
@@ -76,7 +76,7 @@
                 </li>
                 
                 <li>
-                    <a href="https://github.com/bjori/phongo-crud">
+                    <a href="https://github.com/10gen-labs/mongo-php-library-prototype">
                         
                             <i class="fa fa-github"></i>
                         
@@ -93,41 +93,47 @@
             <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#example-data">Example data</a></li>
+        <li class="main active"><a href="#example-data">Example Data</a></li>
         
     
     </ul>
 </div></div>
             <div class="col-md-9" role="main">
 
-<h1 id="example-data">Example data</h1>
-<p>For the purpose of this documentation we will be using the
-<a href="http://media.mongodb.org/zips.json">zips.json</a> in our examples.</p>
-<p>Importing the dataset into the database can be done in several ways,
-for example using the following script:</p>
+<h1 id="example-data">Example Data</h1>
+<p>Usage examples in this documentation will use
+<a href="http://media.mongodb.org/zips.json">zips.json</a>. This is a dataset comprised of
+United States postal codes, populations, and geographic locations.</p>
+<p>Importing the dataset into MongoDB can be done in several ways. The following
+examples uses the low-level <code>mongodb</code> PHP driver:</p>
 <pre><code class="php">&lt;?php
 
 $file = &quot;http://media.mongodb.org/zips.json&quot;;
-
 $zips = file($file, FILE_IGNORE_NEW_LINES);
 
+$bulk = new MongoDB\Driver\BulkWrite());
 
-$batch = new MongoDB\WriteBatch(true);
-foreach($zips as $string) {
+foreach ($zips as $string) {
     $document = json_decode($string);
-    $batch-&gt;insert($document);
+    $bulk-&gt;insert($document);
 }
 
-$manager = new MongoDB\Manager(&quot;mongodb://localhost&quot;);
+$manager = new MongoDB\Driver\Manager(&quot;mongodb://localhost&quot;);
 
-$result = $manager-&gt;executeWriteBatch(&quot;examples.zips&quot;, $batch);
+$result = $manager-&gt;executeBulkWrite(&quot;examples.zips&quot;, $bulk);
 printf(&quot;Inserted %d documents\n&quot;, $result-&gt;getInsertedCount());
 
 ?&gt;
 </code></pre>
 
-<p>Outputs</p>
+<p>Executing this script should yield the following output:</p>
 <pre><code>Inserted 29353 documents
+</code></pre>
+
+<p>You may also import the dataset using the
+<a href="http://docs.mongodb.org/manual/reference/program/mongoimport/"><code>mongoimport</code></a>
+command, which is included with MongoDB:</p>
+<pre><code>$ mongoimport --db examples --collection zips --file zips.json
 </code></pre>
 
 </div>
