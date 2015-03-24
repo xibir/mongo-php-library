@@ -1,3 +1,0 @@
-User-agent: *
-Disallow:
-Sitemap: http://10gen-labs.github.io/mongo-php-libraries-prototype/sitemap.xml
