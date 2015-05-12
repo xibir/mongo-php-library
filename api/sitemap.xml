@@ -7,23 +7,14 @@
 	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.html</loc>
 </url>
 <url>
+	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.Exception.html</loc>
+</url>
+<url>
+	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.Model.html</loc>
+</url>
+<url>
 	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-PHP.html</loc>
 </url>
 
 
-<url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/class-Exception.html</loc>
-</url>
-<url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/class-InvalidArgumentException.html</loc>
-</url>
-<url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/class-Iterator.html</loc>
-</url>
-<url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/class-LogicException.html</loc>
-</url>
-<url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/class-Traversable.html</loc>
-</url>
 </urlset>

@@ -5,53 +5,67 @@
 
 	<title>Class MongoDB\InsertOneResult | MongoDB PHP library</title>
 
-	<link rel="stylesheet" href="resources/bootstrap.min.css?08b23951ef4599ca9cbf1f902d0e8290c9653ddd">
-	<link rel="stylesheet" href="resources/style.css?062e9e59e0b8c44fbaaded5b7ffc21f907b78669">
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
 </head>
 
 <body>
-	<div id="navigation" class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a href="index.html" class="brand">MongoDB PHP library</a>
-				<div class="nav-collapse">
-					<ul class="nav">
-						<li>
-							<a href="namespace-MongoDB.html" title="Summary of MongoDB"><span>Namespace</span></a>
-						</li>
-						<li class="active">
-<span>Class</span>						</li>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MongoDB PHP library</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
-						<li class="divider-vertical"></li>
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
 
-						<li>
-							<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
-						</li>
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-MongoDB.html" title="Summary of MongoDB"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+					<li class="divider-vertical"></li>
+
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
 
 
-					</ul>
-				</div>
+
+				</ul>
 			</div>
 		</div>
-	</div>
+	</nav>
 
 	<div id="left">
 	<div id="menu">
-		<form id="search" class="form-search">
-			<input type="hidden" name="cx" value="">
-			<input type="hidden" name="ie" value="UTF-8">
-			<input type="text" name="q" class="search-query" placeholder="Search">
-		</form>
-
 
 		<div id="groups">
 				<h3>Namespaces</h3>
 			<ul>
 					<li class="active">
 						<a href="namespace-MongoDB.html">
-							MongoDB						</a>
+							MongoDB<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-MongoDB.Exception.html">
+							Exception						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Model.html">
+							Model						</a>
+							</li>
+								</ul></li>
 					<li>
 						<a href="namespace-PHP.html">
 							PHP						</a>
@@ -63,6 +77,7 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
+				<li><a href="class-MongoDB.BulkWriteResult.html">BulkWriteResult</a></li>
 				<li><a href="class-MongoDB.Client.html">Client</a></li>
 				<li><a href="class-MongoDB.Collection.html">Collection</a></li>
 				<li><a href="class-MongoDB.Database.html">Database</a></li>
@@ -106,14 +121,15 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.InsertOneResult.html#8-66" title="Go to source code">InsertOneResult.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.InsertOneResult.html#7-66" title="Go to source code">InsertOneResult.php</a>
 		<br>
 	</div>
 
 
 
-		<h2>Methods summary</h2>
-		<table class="summary table table-bordered table-striped methods" id="methods">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
 		<tr data-order="__construct" id="___construct">
 
 			<td class="attributes"><code>
@@ -125,7 +141,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#16-26" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>BSON\ObjectId <var>$insertedId</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#15-25" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>mixed <var>$insertedId</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -161,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInsertedCount">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#28-39" title="Go to source code">getInsertedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#27-38" title="Go to source code">getInsertedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were inserted.</p>
@@ -193,30 +209,31 @@
 
 			<td class="attributes"><code>
 				 public 
-				BSON\ObjectId|null
+				mixed
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInsertedId">#</a>
-			<code><a href="source-class-MongoDB.InsertOneResult.html#41-52" title="Go to source code">getInsertedId</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertOneResult.html#40-52" title="Go to source code">getInsertedId</a>( )</code>
 
 			<div class="description short">
-				<p>Return the inserted ID that was generated by the driver.</p>
+				<p>Return the inserted document's ID.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return the inserted ID that was generated by the driver.</p>
+				<p>Return the inserted document's ID.</p>
 
-<p>If the inserted document already had an ID (e.g. it was generated by the
-application), this will be null.</p>
+<p>If the document already an ID prior to insertion (i.e. the driver did not
+need to generate an ID), this will contain its "_id". Any
+driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						BSON\ObjectId|null
+						mixed
 					</div>
 
 
@@ -261,11 +278,11 @@ application), this will be null.</p>
 			</div>
 			</div></td>
 		</tr>
-		</table>
+			</table>
+		</div>
 
 
 
-		<h3>Magic methods summary</h3>
 
 
 

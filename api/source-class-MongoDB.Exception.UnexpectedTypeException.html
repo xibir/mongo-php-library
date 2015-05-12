@@ -2,8 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="robots" content="noindex">
 
-	<title>Tree | MongoDB PHP library</title>
+	<title>File Exception/UnexpectedTypeException.php | MongoDB PHP library</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -34,8 +35,9 @@
 
 					<li class="divider-vertical"></li>
 
-					<li class="active">
-<span>Tree</span>					</li>
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
 
 
 
@@ -86,13 +88,18 @@
 
 <div id="right">
 	<div id="rightInner">
-<div id="content">
-	<h1>Tree</h1>
-
-
-
-
-</div>
+<pre id="source"><code><span id="1" class="l"><a href="#1"> 1 </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a href="#2"> 2 </a>
+</span><span id="3" class="l"><a href="#3"> 3 </a><span class="php-keyword1">namespace</span> MongoDB\Exception;
+</span><span id="4" class="l"><a href="#4"> 4 </a>
+</span><span id="5" class="l"><a href="#5"> 5 </a><span class="php-keyword1">class</span> UnexpectedTypeException <span class="php-keyword1">extends</span> InvalidArgumentException
+</span><span id="6" class="l"><a href="#6"> 6 </a>{
+</span><span id="7" class="l"><a href="#7"> 7 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$value</span>, <span class="php-var">$expectedType</span>)
+</span><span id="8" class="l"><a href="#8"> 8 </a>    {
+</span><span id="9" class="l"><a href="#9"> 9 </a>        parent::__construct(<span class="php-keyword2">sprintf</span>(<span class="php-quote">'Expected argument of type &quot;%s&quot;, &quot;%s&quot; given'</span>, <span class="php-var">$expectedType</span>, <span class="php-keyword2">is_object</span>(<span class="php-var">$value</span>) ? <span class="php-keyword2">get_class</span>(<span class="php-var">$value</span>) : <span class="php-keyword2">gettype</span>(<span class="php-var">$value</span>)));
+</span><span id="10" class="l"><a href="#10">10 </a>    }
+</span><span id="11" class="l"><a href="#11">11 </a>}
+</span><span id="12" class="l"><a href="#12">12 </a></span></code></pre>
 	</div>
 
 	<div id="footer">

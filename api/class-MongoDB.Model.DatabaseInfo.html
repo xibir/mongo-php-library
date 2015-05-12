@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class MongoDB\InsertManyResult | MongoDB PHP library</title>
+	<title>Class MongoDB\Model\DatabaseInfo | MongoDB PHP library</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -28,7 +28,7 @@
 
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="namespace-MongoDB.html" title="Summary of MongoDB"><span>Namespace</span></a>
+						<a href="namespace-MongoDB.Model.html" title="Summary of MongoDB\Model"><span>Namespace</span></a>
 					</li>
 					<li class="active">
 <span>Class</span>					</li>
@@ -61,7 +61,7 @@
 						<a href="namespace-MongoDB.Exception.html">
 							Exception						</a>
 							</li>
-					<li>
+					<li class="active">
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
@@ -77,16 +77,17 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-MongoDB.BulkWriteResult.html">BulkWriteResult</a></li>
-				<li><a href="class-MongoDB.Client.html">Client</a></li>
-				<li><a href="class-MongoDB.Collection.html">Collection</a></li>
-				<li><a href="class-MongoDB.Database.html">Database</a></li>
-				<li><a href="class-MongoDB.DeleteResult.html">DeleteResult</a></li>
-				<li class="active"><a href="class-MongoDB.InsertManyResult.html">InsertManyResult</a></li>
-				<li><a href="class-MongoDB.InsertOneResult.html">InsertOneResult</a></li>
-				<li><a href="class-MongoDB.UpdateResult.html">UpdateResult</a></li>
+				<li><a href="class-MongoDB.Model.CollectionInfo.html">CollectionInfo</a></li>
+				<li class="active"><a href="class-MongoDB.Model.DatabaseInfo.html">DatabaseInfo</a></li>
+				<li><a href="class-MongoDB.Model.IndexInfo.html">IndexInfo</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-MongoDB.Model.CollectionInfoIterator.html">CollectionInfoIterator</a></li>
+				<li><a href="class-MongoDB.Model.DatabaseInfoIterator.html">DatabaseInfoIterator</a></li>
+				<li><a href="class-MongoDB.Model.IndexInfoIterator.html">IndexInfoIterator</a></li>
+			</ul>
 
 
 
@@ -100,11 +101,14 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class InsertManyResult</h1>
+	<h1>Class DatabaseInfo</h1>
 
 
 	<div class="description">
-	<p>Result class for a multi-document write operation.</p>
+	<p>Database information model class.</p>
+
+<p>This class models the database information returned by the listDatabases
+command. It provides methods to access common database properties.</p>
 	</div>
 
 
@@ -118,10 +122,16 @@
 	<div class="alert alert-info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
+		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a>\<a href="namespace-MongoDB.Model.html">Model</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.InsertManyResult.html#7-67" title="Go to source code">InsertManyResult.php</a>
+				<b>See:</b>
+				<code><a href="class-MongoDB.Client.html#_listDatabases">MongoDB\Client::listDatabases()</a></code><br>
+				<b>See:</b>
+				http://docs.mongodb.org/manual/reference/command/listDatabases/<br>
+				<b>Api</b>
+				<br>
+			<b>Located at</b> <a href="source-class-MongoDB.Model.DatabaseInfo.html#5-69" title="Go to source code">Model/DatabaseInfo.php</a>
 		<br>
 	</div>
 
@@ -141,7 +151,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#15-25" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>array <var>$insertedIds</var></span> )</code>
+			<code><a href="source-class-MongoDB.Model.DatabaseInfo.html#19-27" title="Go to source code">__construct</a>( <span>array <var>$info</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -153,10 +163,8 @@
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$writeResult</var></dt>
-						<dd></dd>
-						<dt><var>$insertedIds</var></dt>
-						<dd></dd>
+						<dt><var>$info</var></dt>
+						<dd>Database info</dd>
 					</dl></div>
 
 
@@ -166,7 +174,77 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getInsertedCount" id="_getInsertedCount">
+		<tr data-order="__debugInfo" id="___debugInfo">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___debugInfo">#</a>
+			<code><a href="source-class-MongoDB.Model.DatabaseInfo.html#29-38" title="Go to source code">__debugInfo</a>( )</code>
+
+			<div class="description short">
+				<p>Return the collection info as an array.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return the collection info as an array.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.magic#language.oop5.magic.debuginfo<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getName" id="_getName">
+
+			<td class="attributes"><code>
+				 public 
+				string
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getName">#</a>
+			<code><a href="source-class-MongoDB.Model.DatabaseInfo.html#40-48" title="Go to source code">getName</a>( )</code>
+
+			<div class="description short">
+				<p>Return the database name.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return the database name.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						string
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getSizeOnDisk" id="_getSizeOnDisk">
 
 			<td class="attributes"><code>
 				 public 
@@ -176,17 +254,15 @@
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getInsertedCount">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#27-38" title="Go to source code">getInsertedCount</a>( )</code>
+			<a class="anchor" href="#_getSizeOnDisk">#</a>
+			<code><a href="source-class-MongoDB.Model.DatabaseInfo.html#50-58" title="Go to source code">getSizeOnDisk</a>( )</code>
 
 			<div class="description short">
-				<p>Return the number of documents that were inserted.</p>
+				<p>Return the databases size on disk (in bytes).</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return the number of documents that were inserted.</p>
-
-<p>This value is undefined if the write was not acknowledged.</p>
+				<p>Return the databases size on disk (in bytes).</p>
 
 
 
@@ -196,54 +272,12 @@
 					</div>
 
 
-					<h4>See</h4>
-					<div class="list">
-							<code><a href="class-MongoDB.InsertManyResult.html#_isAcknowledged">MongoDB\InsertManyResult::isAcknowledged()</a></code><br>
-					</div>
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getInsertedIds" id="_getInsertedIds">
-
-			<td class="attributes"><code>
-				 public 
-				mixed[]
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getInsertedIds">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#40-53" title="Go to source code">getInsertedIds</a>( )</code>
-
-			<div class="description short">
-				<p>Return a map of the inserted documents' IDs.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Return a map of the inserted documents' IDs.</p>
-
-<p>The index of each ID in the map corresponds to the document's position
-in bulk operation. If the document had an ID prior to insertion (i.e. the
-driver did not generate an ID), this will contain its "_id" field value.
-Any driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						mixed[]
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="isAcknowledged" id="_isAcknowledged">
+		<tr data-order="isEmpty" id="_isEmpty">
 
 			<td class="attributes"><code>
 				 public 
@@ -253,18 +287,15 @@ Any driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_isAcknowledged">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#55-66" title="Go to source code">isAcknowledged</a>( )</code>
+			<a class="anchor" href="#_isEmpty">#</a>
+			<code><a href="source-class-MongoDB.Model.DatabaseInfo.html#60-68" title="Go to source code">isEmpty</a>( )</code>
 
 			<div class="description short">
-				<p>Return whether this insert result was acknowledged by the server.</p>
+				<p>Return whether the database is empty.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return whether this insert result was acknowledged by the server.</p>
-
-<p>If the insert was not acknowledged, other fields from the WriteResult
-(e.g. insertedCount) will be undefined.</p>
+				<p>Return whether the database is empty.</p>
 
 
 

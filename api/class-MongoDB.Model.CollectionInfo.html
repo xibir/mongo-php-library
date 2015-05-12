@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Class MongoDB\UpdateResult | MongoDB PHP library</title>
+	<title>Class MongoDB\Model\CollectionInfo | MongoDB PHP library</title>
 
 	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
 	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
@@ -28,7 +28,7 @@
 
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="namespace-MongoDB.html" title="Summary of MongoDB"><span>Namespace</span></a>
+						<a href="namespace-MongoDB.Model.html" title="Summary of MongoDB\Model"><span>Namespace</span></a>
 					</li>
 					<li class="active">
 <span>Class</span>					</li>
@@ -61,7 +61,7 @@
 						<a href="namespace-MongoDB.Exception.html">
 							Exception						</a>
 							</li>
-					<li>
+					<li class="active">
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
@@ -77,16 +77,17 @@
 		<div id="elements">
 			<h3>Classes</h3>
 			<ul>
-				<li><a href="class-MongoDB.BulkWriteResult.html">BulkWriteResult</a></li>
-				<li><a href="class-MongoDB.Client.html">Client</a></li>
-				<li><a href="class-MongoDB.Collection.html">Collection</a></li>
-				<li><a href="class-MongoDB.Database.html">Database</a></li>
-				<li><a href="class-MongoDB.DeleteResult.html">DeleteResult</a></li>
-				<li><a href="class-MongoDB.InsertManyResult.html">InsertManyResult</a></li>
-				<li><a href="class-MongoDB.InsertOneResult.html">InsertOneResult</a></li>
-				<li class="active"><a href="class-MongoDB.UpdateResult.html">UpdateResult</a></li>
+				<li class="active"><a href="class-MongoDB.Model.CollectionInfo.html">CollectionInfo</a></li>
+				<li><a href="class-MongoDB.Model.DatabaseInfo.html">DatabaseInfo</a></li>
+				<li><a href="class-MongoDB.Model.IndexInfo.html">IndexInfo</a></li>
 			</ul>
 
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-MongoDB.Model.CollectionInfoIterator.html">CollectionInfoIterator</a></li>
+				<li><a href="class-MongoDB.Model.DatabaseInfoIterator.html">DatabaseInfoIterator</a></li>
+				<li><a href="class-MongoDB.Model.IndexInfoIterator.html">IndexInfoIterator</a></li>
+			</ul>
 
 
 
@@ -100,11 +101,15 @@
 <div id="right">
 	<div id="rightInner">
 <div id="content" class="class">
-	<h1>Class UpdateResult</h1>
+	<h1>Class CollectionInfo</h1>
 
 
 	<div class="description">
-	<p>Result class for an update operation.</p>
+	<p>Collection information model class.</p>
+
+<p>This class models the collection information returned by the listCollections
+command or, for legacy servers, queries on the "system.namespaces"
+collection. It provides methods to access options for the collection.</p>
 	</div>
 
 
@@ -118,10 +123,16 @@
 	<div class="alert alert-info">
 		
 		
-		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
+		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a>\<a href="namespace-MongoDB.Model.html">Model</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.UpdateResult.html#7-90" title="Go to source code">UpdateResult.php</a>
+				<b>See:</b>
+				<code><a href="class-MongoDB.Database.html#_listCollections">MongoDB\Database::listCollections()</a></code><br>
+				<b>See:</b>
+				https://github.com/mongodb/specifications/blob/master/source/enumerate-collections.rst<br>
+				<b>Api</b>
+				<br>
+			<b>Located at</b> <a href="source-class-MongoDB.Model.CollectionInfo.html#5-90" title="Go to source code">Model/CollectionInfo.php</a>
 		<br>
 	</div>
 
@@ -141,7 +152,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#14-22" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span> )</code>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#20-28" title="Go to source code">__construct</a>( <span>array <var>$info</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -153,8 +164,8 @@
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$writeResult</var></dt>
-						<dd></dd>
+						<dt><var>$info</var></dt>
+						<dd>Collection info</dd>
 					</dl></div>
 
 
@@ -164,151 +175,134 @@
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getMatchedCount" id="_getMatchedCount">
+		<tr data-order="__debugInfo" id="___debugInfo">
 
 			<td class="attributes"><code>
 				 public 
-				integer
+				array
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getMatchedCount">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#24-35" title="Go to source code">getMatchedCount</a>( )</code>
+			<a class="anchor" href="#___debugInfo">#</a>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#30-39" title="Go to source code">__debugInfo</a>( )</code>
 
 			<div class="description short">
-				<p>Return the number of documents that were matched by the filter.</p>
+				<p>Return the collection info as an array.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return the number of documents that were matched by the filter.</p>
-
-<p>This value is undefined if the write was not acknowledged.</p>
+				<p>Return the collection info as an array.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						integer
+						array
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							<code><a href="class-MongoDB.UpdateResult.html#_isAcknowledged">MongoDB\UpdateResult::isAcknowledged()</a></code><br>
+							http://php.net/oop5.magic#language.oop5.magic.debuginfo<br>
 					</div>
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getModifiedCount" id="_getModifiedCount">
+		<tr data-order="getCappedMax" id="_getCappedMax">
 
 			<td class="attributes"><code>
 				 public 
-				integer
+				integer|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getModifiedCount">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#37-49" title="Go to source code">getModifiedCount</a>( )</code>
+			<a class="anchor" href="#_getCappedMax">#</a>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#41-49" title="Go to source code">getCappedMax</a>( )</code>
 
 			<div class="description short">
-				<p>Return the number of documents that were modified.</p>
+				<p>Return the maximum number of documents to keep in the capped collection.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return the number of documents that were modified.</p>
-
-<p>This value is undefined if the write was not acknowledged or if the write
-executed as a legacy operation instead of write command.</p>
+				<p>Return the maximum number of documents to keep in the capped collection.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						integer
+						integer|null
 					</div>
 
 
-					<h4>See</h4>
-					<div class="list">
-							<code><a href="class-MongoDB.UpdateResult.html#_isAcknowledged">MongoDB\UpdateResult::isAcknowledged()</a></code><br>
-					</div>
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getUpsertedCount" id="_getUpsertedCount">
+		<tr data-order="getCappedSize" id="_getCappedSize">
 
 			<td class="attributes"><code>
 				 public 
-				integer
+				integer|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getUpsertedCount">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#51-62" title="Go to source code">getUpsertedCount</a>( )</code>
+			<a class="anchor" href="#_getCappedSize">#</a>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#51-59" title="Go to source code">getCappedSize</a>( )</code>
 
 			<div class="description short">
-				<p>Return the number of documents that were upserted.</p>
+				<p>Return the maximum size (in bytes) of the capped collection.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return the number of documents that were upserted.</p>
-
-<p>This value is undefined if the write was not acknowledged.</p>
+				<p>Return the maximum size (in bytes) of the capped collection.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						integer
+						integer|null
 					</div>
 
 
-					<h4>See</h4>
-					<div class="list">
-							<code><a href="class-MongoDB.UpdateResult.html#_isAcknowledged">MongoDB\UpdateResult::isAcknowledged()</a></code><br>
-					</div>
 
 
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getUpsertedId" id="_getUpsertedId">
+		<tr data-order="getName" id="_getName">
 
 			<td class="attributes"><code>
 				 public 
-				mixed|null
+				string
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_getUpsertedId">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#64-76" title="Go to source code">getUpsertedId</a>( )</code>
+			<a class="anchor" href="#_getName">#</a>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#61-69" title="Go to source code">getName</a>( )</code>
 
 			<div class="description short">
-				<p>Return the ID of the document inserted by an upsert operation.</p>
+				<p>Return the collection name.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return the ID of the document inserted by an upsert operation.</p>
-
-<p>This value is undefined if an upsert did not take place.</p>
+				<p>Return the collection name.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						mixed|null
+						string
 					</div>
 
 
@@ -317,7 +311,40 @@ executed as a legacy operation instead of write command.</p>
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="isAcknowledged" id="_isAcknowledged">
+		<tr data-order="getOptions" id="_getOptions">
+
+			<td class="attributes"><code>
+				 public 
+				array
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getOptions">#</a>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#71-79" title="Go to source code">getOptions</a>( )</code>
+
+			<div class="description short">
+				<p>Return the collection options.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Return the collection options.</p>
+
+
+
+					<h4>Returns</h4>
+					<div class="list">
+						array
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="isCapped" id="_isCapped">
 
 			<td class="attributes"><code>
 				 public 
@@ -327,18 +354,15 @@ executed as a legacy operation instead of write command.</p>
 			</td>
 
 			<td class="name"><div>
-			<a class="anchor" href="#_isAcknowledged">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#78-89" title="Go to source code">isAcknowledged</a>( )</code>
+			<a class="anchor" href="#_isCapped">#</a>
+			<code><a href="source-class-MongoDB.Model.CollectionInfo.html#81-89" title="Go to source code">isCapped</a>( )</code>
 
 			<div class="description short">
-				<p>Return whether this update was acknowledged by the server.</p>
+				<p>Return whether the collection is a capped collection.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Return whether this update was acknowledged by the server.</p>
-
-<p>If the update was not acknowledged, other fields from the WriteResult
-(e.g. matchedCount) will be undefined.</p>
+				<p>Return whether the collection is a capped collection.</p>
 
 
 
