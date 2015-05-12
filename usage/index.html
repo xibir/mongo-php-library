@@ -95,9 +95,11 @@
     
         <li class="main active"><a href="#usage">Usage</a></li>
         
+            <li><a href="#client-class">Client class</a></li>
+        
             <li><a href="#collection-class">Collection class</a></li>
         
-            <li><a href="#finding-a-specific-document">Finding a specific document</a></li>
+            <li><a href="#database-class">Database class</a></li>
         
     
     </ul>
@@ -105,18 +107,28 @@
             <div class="col-md-9" role="main">
 
 <h1 id="usage">Usage</h1>
+<h2 id="client-class">Client class</h2>
+<p><code>MongoDB\Client</code> serves as an entry point for the library and driver. It is
+constructed with the same arguments as the driver's <code>MongoDB\Driver\Manager</code>
+class, which it composes. The Client class provides methods for creating a
+Database or Collection class (from the internal manager instance), as well as
+top-level operations, such as enumerating and dropping databases.</p>
 <h2 id="collection-class">Collection class</h2>
 <p><code>MongoDB\Collection</code> is perhaps the most useful class in this library. It
 provides methods for common operations on a collection, such as inserting
 documents, querying, updating, counting, etc.</p>
-<p>Constructing a <code>MongoDB\Collection</code> requires a <code>MongoDB\Manager</code> and a namespace
-for the collection. A <a href="http://docs.mongodb.org/manual/faq/developers/#faq-dev-namespace">MongoDB namespace</a>
+<p>Constructing a <code>MongoDB\Collection</code> requires a <code>MongoDB\Driver\Manager</code> and a
+namespace for the collection. A <a href="http://docs.mongodb.org/manual/faq/developers/#faq-dev-namespace">MongoDB namespace</a>
 consists of a database name and collection name joined by a dot. <code>examples.zips</code>
-is on example of a namespace. A <a href="http://docs.mongodb.org/manual/core/write-concern/">write concern</a>
+is one example of a namespace. Through normal use of the library, a Collection
+will typically be created via the <code>selectCollection()</code> method on the Manager or
+Database classes.</p>
+<p>A <a href="http://docs.mongodb.org/manual/core/write-concern/">write concern</a>
 and <a href="http://docs.mongodb.org/manual/core/read-preference/">read preference</a> may
-also be provided when constructing a Collection (if omitted, the Collection will
-use the Manager's values as its defaults).</p>
-<h2 id="finding-a-specific-document">Finding a specific document</h2>
+also be provided when constructing a Collection. If these options are omitted,
+the Collection will inherit them from the parent through which it was selected,
+or the Manager.</p>
+<h3 id="finding-a-specific-document">Finding a specific document</h3>
 <pre><code>&lt;?php
 
 // This path should point to Composer's autoloader
@@ -150,6 +162,14 @@ var_dump($sunnyvale);
 }
 </code></pre>
 
+<h2 id="database-class">Database class</h2>
+<p><code>MongoDB\Database</code> provides methods for common operations on a database, such
+as creating, enumerating, and dropping collections.</p>
+<p>A <a href="http://docs.mongodb.org/manual/core/write-concern/">write concern</a>
+and <a href="http://docs.mongodb.org/manual/core/read-preference/">read preference</a> may
+also be provided when constructing a Database. If these options are omitted,
+the Database will inherit them from the Client through which it was selected,
+or the Manager.</p>
 </div>
         </div>
 
