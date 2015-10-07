@@ -131,11 +131,13 @@ extension, see:</p>
 <li>http://www.mongodb.com/blog/post/call-feedback-new-php-and-hhvm-drivers</li>
 </ul>
 <h1 id="installation">Installation</h1>
-<p>As a high-level abstraction for the driver, this library naturally requires that
-the <a href="http://10gen-labs.github.io/mongo-php-driver-prototype/#installation"><code>mongodb</code> extension be installed</a>:</p>
-<pre><code>$ pecl install mongodb-alpha
+<p>Since this library is only a high-level abstraction for the driver, it requires
+that the <a href="http://10gen-labs.github.io/mongo-php-driver-prototype/#installation"><code>mongodb</code> extension be installed</a>:</p>
+<pre><code>$ pecl install mongodb-beta
 $ echo "extension=mongodb.so" &gt;&gt; `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 </code></pre>
+<p>Instructions for installing the <code>mongodb</code> extension on HHVM may be found in the
+<a href="https://github.com/mongodb-labs/mongo-hhvm-driver-prototype/blob/master/README.rst">HHVM driver's README</a>.</p>
 <p>The preferred method of installing this library is with
 <a href="https://getcomposer.org/">Composer</a> by running the following from your project
 root:</p>
