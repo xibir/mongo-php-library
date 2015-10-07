@@ -1,0 +1,64 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "MongoDB PHP Library\n\n\nThis library provides a high-level abstraction around the lower-level\n\nPHP driver\n (i.e. the\n\nmongodb\n extension).\n\n\nWhile the extension provides a limited API for executing commands, queries, and\nwrite operations, this library implements an API similar to that of the\n\nlegacy PHP driver\n. It contains\nabstractions for client, database, and collection objects, and provides methods\nfor CRUD operations and common commands (e.g. index and collection management).\n\n\nIf you are developing an application with MongoDB, you should consider using\nthis library, or another high-level abstraction, instead of the extension alone.\n\n\nFor further information about the architecture of this library and the \nmongodb\n\nextension, see:\n\n\n\n\nhttp://www.mongodb.com/blog/post/call-feedback-new-php-and-hhvm-drivers\n\n\n\n\nInstallation\n\n\nAs a high-level abstraction for the driver, this library naturally requires that\nthe \nmongodb\n extension be installed\n:\n\n\n$ pecl install mongodb-alpha\n$ echo \"extension=mongodb.so\" \n `php --ini | grep \"Loaded Configuration\" | sed -e \"s|.*:\\s*||\"`\n\n\n\nThe preferred method of installing this library is with\n\nComposer\n by running the following from your project\nroot:\n\n\n$ composer require \"mongodb/mongodb=^1.0.0@alpha\"\n\n\n\nGenerated API Docs\n\n\nIf you are just interested in referencing the API provided by this library, you\ncan view generated API documentation \nhere\n.\n\n\nMongoDB Tutorial\n\n\nIf you are a new MongoDB user, these links should help you become more familiar\nwith MongoDB and introduce some of the concepts and terms you will encounter in\nthis documentation:\n\n\n\n\nIntroduction to CRUD operations in MongoDB\n\n\nWhat is a MongoDB document?\n\n\nMongoDB's \ndot notation\n for accessing document properties\n\n\nObjectId: MongoDB's document identifier", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#mongodb-php-library", 
+            "text": "This library provides a high-level abstraction around the lower-level PHP driver  (i.e. the mongodb  extension).  While the extension provides a limited API for executing commands, queries, and\nwrite operations, this library implements an API similar to that of the legacy PHP driver . It contains\nabstractions for client, database, and collection objects, and provides methods\nfor CRUD operations and common commands (e.g. index and collection management).  If you are developing an application with MongoDB, you should consider using\nthis library, or another high-level abstraction, instead of the extension alone.  For further information about the architecture of this library and the  mongodb \nextension, see:   http://www.mongodb.com/blog/post/call-feedback-new-php-and-hhvm-drivers", 
+            "title": "MongoDB PHP Library"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "As a high-level abstraction for the driver, this library naturally requires that\nthe  mongodb  extension be installed :  $ pecl install mongodb-alpha\n$ echo \"extension=mongodb.so\"   `php --ini | grep \"Loaded Configuration\" | sed -e \"s|.*:\\s*||\"`  The preferred method of installing this library is with Composer  by running the following from your project\nroot:  $ composer require \"mongodb/mongodb=^1.0.0@alpha\"", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/#generated-api-docs", 
+            "text": "If you are just interested in referencing the API provided by this library, you\ncan view generated API documentation  here .", 
+            "title": "Generated API Docs"
+        }, 
+        {
+            "location": "/#mongodb-tutorial", 
+            "text": "If you are a new MongoDB user, these links should help you become more familiar\nwith MongoDB and introduce some of the concepts and terms you will encounter in\nthis documentation:   Introduction to CRUD operations in MongoDB  What is a MongoDB document?  MongoDB's  dot notation  for accessing document properties  ObjectId: MongoDB's document identifier", 
+            "title": "MongoDB Tutorial"
+        }, 
+        {
+            "location": "/usage/", 
+            "text": "Usage\n\n\nClient class\n\n\nMongoDB\\Client\n serves as an entry point for the library and driver. It is\nconstructed with the same arguments as the driver's \nMongoDB\\Driver\\Manager\n\nclass, which it composes. The Client class provides methods for creating a\nDatabase or Collection class (from the internal manager instance), as well as\ntop-level operations, such as enumerating and dropping databases.\n\n\nCollection class\n\n\nMongoDB\\Collection\n is perhaps the most useful class in this library. It\nprovides methods for common operations on a collection, such as inserting\ndocuments, querying, updating, counting, etc.\n\n\nConstructing a \nMongoDB\\Collection\n requires a \nMongoDB\\Driver\\Manager\n and a\nnamespace for the collection. A \nMongoDB namespace\n\nconsists of a database name and collection name joined by a dot. \nexamples.zips\n\nis one example of a namespace. Through normal use of the library, a Collection\nwill typically be created via the \nselectCollection()\n method on the Manager or\nDatabase classes.\n\n\nA \nwrite concern\n\nand \nread preference\n may\nalso be provided when constructing a Collection. If these options are omitted,\nthe Collection will inherit them from the parent through which it was selected,\nor the Manager.\n\n\nFinding a specific document\n\n\n?php\n\n// This path should point to Composer's autoloader\nrequire_once __DIR__ . \n/vendor/autoload.php\n;\n\n$manager = new MongoDB\\Driver\\Manager(\nmongodb://localhost:27017\n);\n$collection = new MongoDB\\Collection($manager, \nexamples.zips\n);\n$sunnyvale = $collection-\nfindOne(array(\n_id\n =\n \n94086\n));\nvar_dump($sunnyvale);\n\n?\n\n\n\n\n\nExecuting this script should yield the following output:\n\n\narray(5) {\n  [\n_id\n]=\n\n  string(5) \n94086\n\n  [\ncity\n]=\n\n  string(9) \nSUNNYVALE\n\n  [\nloc\n]=\n\n  array(2) {\n    [0]=\n\n    float(-122.023771)\n    [1]=\n\n    float(37.376407)\n  }\n  [\npop\n]=\n\n  int(56215)\n  [\nstate\n]=\n\n  string(2) \nCA\n\n}\n\n\n\n\nDatabase class\n\n\nMongoDB\\Database\n provides methods for common operations on a database, such\nas creating, enumerating, and dropping collections.\n\n\nA \nwrite concern\n\nand \nread preference\n may\nalso be provided when constructing a Database. If these options are omitted,\nthe Database will inherit them from the Client through which it was selected,\nor the Manager.", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/usage/#usage", 
+            "text": "", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/usage/#client-class", 
+            "text": "MongoDB\\Client  serves as an entry point for the library and driver. It is\nconstructed with the same arguments as the driver's  MongoDB\\Driver\\Manager \nclass, which it composes. The Client class provides methods for creating a\nDatabase or Collection class (from the internal manager instance), as well as\ntop-level operations, such as enumerating and dropping databases.", 
+            "title": "Client class"
+        }, 
+        {
+            "location": "/usage/#collection-class", 
+            "text": "MongoDB\\Collection  is perhaps the most useful class in this library. It\nprovides methods for common operations on a collection, such as inserting\ndocuments, querying, updating, counting, etc.  Constructing a  MongoDB\\Collection  requires a  MongoDB\\Driver\\Manager  and a\nnamespace for the collection. A  MongoDB namespace \nconsists of a database name and collection name joined by a dot.  examples.zips \nis one example of a namespace. Through normal use of the library, a Collection\nwill typically be created via the  selectCollection()  method on the Manager or\nDatabase classes.  A  write concern \nand  read preference  may\nalso be provided when constructing a Collection. If these options are omitted,\nthe Collection will inherit them from the parent through which it was selected,\nor the Manager.  Finding a specific document  ?php\n\n// This path should point to Composer's autoloader\nrequire_once __DIR__ .  /vendor/autoload.php ;\n\n$manager = new MongoDB\\Driver\\Manager( mongodb://localhost:27017 );\n$collection = new MongoDB\\Collection($manager,  examples.zips );\n$sunnyvale = $collection- findOne(array( _id  =   94086 ));\nvar_dump($sunnyvale);\n\n?   Executing this script should yield the following output:  array(5) {\n  [ _id ]= \n  string(5)  94086 \n  [ city ]= \n  string(9)  SUNNYVALE \n  [ loc ]= \n  array(2) {\n    [0]= \n    float(-122.023771)\n    [1]= \n    float(37.376407)\n  }\n  [ pop ]= \n  int(56215)\n  [ state ]= \n  string(2)  CA \n}", 
+            "title": "Collection class"
+        }, 
+        {
+            "location": "/usage/#database-class", 
+            "text": "MongoDB\\Database  provides methods for common operations on a database, such\nas creating, enumerating, and dropping collections.  A  write concern \nand  read preference  may\nalso be provided when constructing a Database. If these options are omitted,\nthe Database will inherit them from the Client through which it was selected,\nor the Manager.", 
+            "title": "Database class"
+        }, 
+        {
+            "location": "/data/", 
+            "text": "Example Data\n\n\nUsage examples in this documentation will use\n\nzips.json\n. This is a dataset comprised of\nUnited States postal codes, populations, and geographic locations.\n\n\nImporting the dataset into MongoDB can be done in several ways. The following\nexamples uses the low-level \nmongodb\n PHP driver:\n\n\n?php\n\n$file = \nhttp://media.mongodb.org/zips.json\n;\n$zips = file($file, FILE_IGNORE_NEW_LINES);\n\n$bulk = new MongoDB\\Driver\\BulkWrite();\n\nforeach ($zips as $string) {\n    $document = json_decode($string);\n    $bulk-\ninsert($document);\n}\n\n$manager = new MongoDB\\Driver\\Manager(\nmongodb://localhost\n);\n\n$result = $manager-\nexecuteBulkWrite(\nexamples.zips\n, $bulk);\nprintf(\nInserted %d documents\\n\n, $result-\ngetInsertedCount());\n\n?\n\n\n\n\n\nExecuting this script should yield the following output:\n\n\nInserted 29353 documents\n\n\n\n\nYou may also import the dataset using the\n\nmongoimport\n\ncommand, which is included with MongoDB:\n\n\n$ mongoimport --db examples --collection zips --file zips.json", 
+            "title": "Example data"
+        }, 
+        {
+            "location": "/data/#example-data", 
+            "text": "Usage examples in this documentation will use zips.json . This is a dataset comprised of\nUnited States postal codes, populations, and geographic locations.  Importing the dataset into MongoDB can be done in several ways. The following\nexamples uses the low-level  mongodb  PHP driver:  ?php\n\n$file =  http://media.mongodb.org/zips.json ;\n$zips = file($file, FILE_IGNORE_NEW_LINES);\n\n$bulk = new MongoDB\\Driver\\BulkWrite();\n\nforeach ($zips as $string) {\n    $document = json_decode($string);\n    $bulk- insert($document);\n}\n\n$manager = new MongoDB\\Driver\\Manager( mongodb://localhost );\n\n$result = $manager- executeBulkWrite( examples.zips , $bulk);\nprintf( Inserted %d documents\\n , $result- getInsertedCount());\n\n?   Executing this script should yield the following output:  Inserted 29353 documents  You may also import the dataset using the mongoimport \ncommand, which is included with MongoDB:  $ mongoimport --db examples --collection zips --file zips.json", 
+            "title": "Example Data"
+        }
+    ]
+}

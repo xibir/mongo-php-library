@@ -65,19 +65,16 @@
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
 
 
 		<div id="elements">
-			<h3>Classes</h3>
-			<ul>
-				<li class="active"><a href="class-MongoDB.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
-				<li><a href="class-MongoDB.Exception.RuntimeException.html">RuntimeException</a></li>
-				<li><a href="class-MongoDB.Exception.UnexpectedTypeException.html">UnexpectedTypeException</a></li>
-				<li><a href="class-MongoDB.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
-			</ul>
 
 			<h3>Interfaces</h3>
 			<ul>
@@ -88,6 +85,12 @@
 			<h3>Exceptions</h3>
 			<ul>
 				<li><a href="class-MongoDB.Exception.BadMethodCallException.html">BadMethodCallException</a></li>
+				<li class="active"><a href="class-MongoDB.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
+				<li><a href="class-MongoDB.Exception.InvalidArgumentTypeException.html">InvalidArgumentTypeException</a></li>
+				<li><a href="class-MongoDB.Exception.RuntimeException.html">RuntimeException</a></li>
+				<li><a href="class-MongoDB.Exception.UnexpectedTypeException.html">UnexpectedTypeException</a></li>
+				<li><a href="class-MongoDB.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
+				<li><a href="class-MongoDB.Exception.UnexpectedValueTypeException.html">UnexpectedValueTypeException</a></li>
 			</ul>
 
 
@@ -106,11 +109,31 @@
 
 	<dl class="tree well">
 		<dd style="padding-left:0px">
-MongoDB\Driver\Exception\InvalidArgumentException
+Exception
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+LogicException
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by">
+InvalidArgumentException
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by">
+MongoDB\Driver\Exception\InvalidArgumentException
+			 implements 
+<span>MongoDB\Driver\Exception\Exception</span>
+			
+			
+		</dd>
+		<dd style="padding-left:120px">
 			<img src="resources/inherit.png" alt="Extended by">
 <b><span>MongoDB\Exception\InvalidArgumentException</span></b>			
 			 implements 
@@ -124,6 +147,7 @@ MongoDB\Driver\Exception\InvalidArgumentException
 	<div>
 		<h3>Direct known subclasses</h3>
 		<p class="elementList">
+			<code><a href="class-MongoDB.Exception.InvalidArgumentTypeException.html">MongoDB\Exception\InvalidArgumentTypeException</a></code>, 
 			<code><a href="class-MongoDB.Exception.UnexpectedTypeException.html">MongoDB\Exception\UnexpectedTypeException</a></code>
 		</p>
 	</div>
@@ -145,6 +169,48 @@ MongoDB\Driver\Exception\InvalidArgumentException
 
 
 
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+		</div>
+
+		<div class="panel panel-default">
+	        <div class="panel-heading"><h3>Methods inherited from Exception</h3></div>
+			<p class="elementList">
+				<code>__construct()</code>, 
+				<code>__toString()</code>, 
+				<code>__wakeup()</code>, 
+				<code>getCode()</code>, 
+				<code>getFile()</code>, 
+				<code>getLine()</code>, 
+				<code>getMessage()</code>, 
+				<code>getPrevious()</code>, 
+				<code>getTrace()</code>, 
+				<code>getTraceAsString()</code>
+			</p>
+		</div>
+
+
+
+
+
+
+
+
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Properties summary</h2></div>
+		</div>
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h3>Properties inherited from Exception</h3></div>
+			<p class="elementList">
+				<code><var>$code</var></code>, 
+				<code><var>$file</var></code>, 
+				<code><var>$line</var></code>, 
+				<code><var>$message</var></code>
+			</p>
+		</div>
 
 
 

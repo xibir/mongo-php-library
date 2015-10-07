@@ -65,6 +65,10 @@
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -114,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Client.html#14-122" title="Go to source code">Client.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Client.html#14-102" title="Go to source code">Client.php</a>
 		<br>
 	</div>
 
@@ -134,7 +138,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Client.html#20-35" title="Go to source code">__construct</a>( <span>string <var>$uri</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$driverOptions</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#18-33" title="Go to source code">__construct</a>( <span>string <var>$uri</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$driverOptions</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a new Client instance.</p>
@@ -173,14 +177,14 @@ databases and collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropDatabase">#</a>
-			<code><a href="source-class-MongoDB.Client.html#37-51" title="Go to source code">dropDatabase</a>( <span>string <var>$databaseName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#35-47" title="Go to source code">dropDatabase</a>( <span>string <var>$databaseName</var></span> )</code>
 
 			<div class="description short">
 				<p>Drop a database.</p>
@@ -198,14 +202,10 @@ databases and collections.</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						object<br>Command result document
 					</div>
 
 
-					<h4>See</h4>
-					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/dropDatabase/<br>
-					</div>
 
 
 			</div>
@@ -222,7 +222,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listDatabases">#</a>
-			<code><a href="source-class-MongoDB.Client.html#53-79" title="Go to source code">listDatabases</a>( )</code>
+			<code><a href="source-class-MongoDB.Client.html#49-61" title="Go to source code">listDatabases</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				<p>List databases.</p>
@@ -238,14 +238,10 @@ databases and collections.</p>
 						<code><a href="class-MongoDB.Model.DatabaseInfoIterator.html">MongoDB\Model\DatabaseInfoIterator</a></code>
 					</div>
 
-					<h4>Throws</h4>
-					<div class="list">
-						<code><a href="class-MongoDB.Exception.UnexpectedValueException.html">MongoDB\Exception\UnexpectedValueException</a></code><br>if the command result is malformed
-					</div>
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/listDatabases/<br>
+							ListDatabases::__construct() for supported options<br>
 					</div>
 
 
@@ -263,7 +259,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectCollection">#</a>
-			<code><a href="source-class-MongoDB.Client.html#81-101" title="Go to source code">selectCollection</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#63-82" title="Go to source code">selectCollection</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Select a collection.</p>
@@ -310,7 +306,7 @@ or read preference of the Client will be applied, respectively.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectDatabase">#</a>
-			<code><a href="source-class-MongoDB.Client.html#103-121" title="Go to source code">selectDatabase</a>( <span>string <var>$databaseName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#84-101" title="Go to source code">selectDatabase</a>( <span>string <var>$databaseName</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Select a database.</p>

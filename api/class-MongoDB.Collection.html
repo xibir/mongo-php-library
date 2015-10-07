@@ -65,6 +65,10 @@
 						<a href="namespace-MongoDB.Model.html">
 							Model						</a>
 							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
 								</ul></li>
 			</ul>
 		</div>
@@ -114,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Collection.html#19-1353" title="Go to source code">Collection.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Collection.html#37-566" title="Go to source code">Collection.php</a>
 		<br>
 	</div>
 
@@ -134,7 +138,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#49-68" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$namespace</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#45-71" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$namespace</var></span>, <span>MongoDB\Driver\WriteConcern <var>$writeConcern</var> = <span class="php-keyword1">null</span></span>, <span>MongoDB\Driver\ReadPreference <var>$readPreference</var> = <span class="php-keyword1">null</span></span> )</code>
 
 			<div class="description short">
 				<p>Constructs new Collection instance.</p>
@@ -160,6 +164,10 @@ CRUD (i.e. create, read, update, and delete) and index management.</p>
 					</dl></div>
 
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code><br>if $namespace is invalid
+					</div>
 
 
 
@@ -177,7 +185,7 @@ CRUD (i.e. create, read, update, and delete) and index management.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#___toString">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#70-78" title="Go to source code">__toString</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#73-81" title="Go to source code">__toString</a>( )</code>
 
 			<div class="description short">
 				<p>Return the collection namespace.</p>
@@ -199,21 +207,21 @@ CRUD (i.e. create, read, update, and delete) and index management.</p>
 
 			<td class="attributes"><code>
 				 public 
-				Iterator
+				Traversable
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_aggregate">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#80-154" title="Go to source code">aggregate</a>( <span>array <var>$pipeline</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#83-110" title="Go to source code">aggregate</a>( <span>array <var>$pipeline</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Runs an aggregation framework pipeline</p>
+				<p>Executes an aggregation framework pipeline on the collection.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Runs an aggregation framework pipeline</p>
+				<p>Executes an aggregation framework pipeline on the collection.</p>
 
 <p>Note: this method's return value depends on the MongoDB server version
 and the "useCursor" option. If "useCursor" is true, a Cursor will be
@@ -224,20 +232,20 @@ returned; otherwise, an ArrayIterator is returned, which wraps the
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$pipeline</var></dt>
-						<dd>The pipeline to execute</dd>
+						<dd>List of pipeline operations</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						Iterator
+						Traversable
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/aggregate/<br>
+							Aggregate::__construct() for supported options<br>
 					</div>
 
 
@@ -248,48 +256,40 @@ returned; otherwise, an ArrayIterator is returned, which wraps the
 
 			<td class="attributes"><code>
 				 public 
-				WriteResult
+				<code><a href="class-MongoDB.BulkWriteResult.html">MongoDB\BulkWriteResult</a></code>
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bulkWrite">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#156-286" title="Go to source code">bulkWrite</a>( <span>array <var>$ops</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#112-130" title="Go to source code">bulkWrite</a>( <span>array <var>$operations</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Adds a full set of write operations into a bulk and executes it</p>
+				<p>Executes multiple write operations.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Adds a full set of write operations into a bulk and executes it</p>
-
-<p>The syntax of the $bulk array is: $bulk = [ [ 'METHOD' => [ $document, $extraArgument1, $extraArgument2, ], ], [ 'METHOD' => [ $document, $extraArgument1, $extraArgument2, ], ], ]</p>
-
-<p>Where METHOD is one of - 'insertOne' Supports no $extraArgument - 'updateMany' Requires $extraArgument1, same as $update for Collection::updateMany() Optional $extraArgument2, same as $options for Collection::updateMany() - 'updateOne' Requires $extraArgument1, same as $update for Collection::updateOne() Optional $extraArgument2, same as $options for Collection::updateOne() - 'replaceOne' Requires $extraArgument1, same as $update for Collection::replaceOne() Optional $extraArgument2, same as $options for Collection::replaceOne() - 'deleteOne' Supports no $extraArgument - 'deleteMany' Supports no $extraArgument</p>
+				<p>Executes multiple write operations.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
-						<dt><var>$ops</var></dt>
-						<dd>Array of operations</dd>
+						<dt><var>$operations</var></dt>
+						<dd>List of write operations</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						WriteResult
+						<code><a href="class-MongoDB.BulkWriteResult.html">MongoDB\BulkWriteResult</a></code>
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							Collection::getBulkOptions() for supported $options<br>
-					</div>
-					<h4>Example</h4>
-					<div class="list">
-							Collection-bulkWrite.php Using Collection::bulkWrite()<br>
+							BulkWrite::__construct() for supported options<br>
 					</div>
 
 
@@ -307,24 +307,22 @@ returned; otherwise, an ArrayIterator is returned, which wraps the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_count">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#288-311" title="Go to source code">count</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#132-150" title="Go to source code">count</a>( <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Counts all documents matching $filter
-If no $filter provided, returns the numbers of documents in the collection</p>
+				<p>Gets the number of documents matching the filter.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Counts all documents matching $filter
-If no $filter provided, returns the numbers of documents in the collection</p>
+				<p>Gets the number of documents matching the filter.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The find query to execute</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -335,8 +333,7 @@ If no $filter provided, returns the numbers of documents in the collection</p>
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/count/<br>
-							Collection::getCountOptions() for supported $options<br>
+							Count::__construct() for supported options<br>
 					</div>
 
 
@@ -354,7 +351,7 @@ If no $filter provided, returns the numbers of documents in the collection</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createIndex">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#313-327" title="Go to source code">createIndex</a>( <span>array|object <var>$key</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#152-164" title="Go to source code">createIndex</a>( <span>array|object <var>$key</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				<p>Create a single index for the collection.</p>
@@ -381,8 +378,6 @@ If no $filter provided, returns the numbers of documents in the collection</p>
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/createIndexes/<br>
-							http://docs.mongodb.org/manual/reference/method/db.collection.createIndex/<br>
 							<code><a href="class-MongoDB.Collection.html#_createIndexes">MongoDB\Collection::createIndexes()</a></code><br>
 					</div>
 
@@ -401,7 +396,7 @@ If no $filter provided, returns the numbers of documents in the collection</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createIndexes">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#329-376" title="Go to source code">createIndexes</a>( <span>array <var>$indexes</var></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#166-195" title="Go to source code">createIndexes</a>( <span>array <var>$indexes</var></span> )</code>
 
 			<div class="description short">
 				<p>Create one or more indexes for the collection.</p>
@@ -456,22 +451,22 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#378-392" title="Go to source code">deleteMany</a>( <span>array <var>$filter</var></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#197-216" title="Go to source code">deleteMany</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Deletes a document matching the $filter criteria.
-NOTE: Will delete ALL documents matching $filter</p>
+				<p>Deletes all documents matching the filter.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Deletes a document matching the $filter criteria.
-NOTE: Will delete ALL documents matching $filter</p>
+				<p>Deletes all documents matching the filter.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The $filter criteria to delete</dd>
+						<dd>Query by which to delete documents</dd>
+						<dt><var>$options</var></dt>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -482,6 +477,7 @@ NOTE: Will delete ALL documents matching $filter</p>
 
 					<h4>See</h4>
 					<div class="list">
+							DeleteMany::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/delete/<br>
 					</div>
 
@@ -500,22 +496,22 @@ NOTE: Will delete ALL documents matching $filter</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#394-408" title="Go to source code">deleteOne</a>( <span>array <var>$filter</var></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#218-237" title="Go to source code">deleteOne</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Deletes a document matching the $filter criteria.
-NOTE: Will delete at most ONE document matching $filter</p>
+				<p>Deletes at most one document matching the filter.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Deletes a document matching the $filter criteria.
-NOTE: Will delete at most ONE document matching $filter</p>
+				<p>Deletes at most one document matching the filter.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The $filter criteria to delete</dd>
+						<dd>Query by which to delete documents</dd>
+						<dt><var>$options</var></dt>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -526,6 +522,7 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 					<h4>See</h4>
 					<div class="list">
+							DeleteOne::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/delete/<br>
 					</div>
 
@@ -537,43 +534,42 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				integer
+				mixed[]
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_distinct">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#410-435" title="Go to source code">distinct</a>( <span>string <var>$fieldName</var></span>, <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#239-258" title="Go to source code">distinct</a>( <span>string <var>$fieldName</var></span>, <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Finds the distinct values for a specified field across the collection</p>
+				<p>Finds the distinct values for a specified field across the collection.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Finds the distinct values for a specified field across the collection</p>
+				<p>Finds the distinct values for a specified field across the collection.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$fieldName</var></dt>
-						<dd>The fieldname to use</dd>
+						<dd>Field for which to return distinct values</dd>
 						<dt><var>$filter</var></dt>
-						<dd>The find query to execute</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						integer
+						mixed[]
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/distinct/<br>
-							Collection::getDistinctOptions() for supported $options<br>
+							Distinct::__construct() for supported options<br>
 					</div>
 
 
@@ -584,14 +580,14 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_drop">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#437-449" title="Go to source code">drop</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#260-271" title="Go to source code">drop</a>( )</code>
 
 			<div class="description short">
 				<p>Drop this collection.</p>
@@ -604,14 +600,10 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						object<br>Command result document
 					</div>
 
 
-					<h4>See</h4>
-					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/drop/<br>
-					</div>
 
 
 			</div>
@@ -621,14 +613,14 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropIndex">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#451-476" title="Go to source code">dropIndex</a>( <span>string <var>$indexName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#273-292" title="Go to source code">dropIndex</a>( <span>string <var>$indexName</var></span> )</code>
 
 			<div class="description short">
 				<p>Drop a single index in the collection.</p>
@@ -641,12 +633,12 @@ NOTE: Will delete at most ONE document matching $filter</p>
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$indexName</var></dt>
-						<dd></dd>
+						<dd>Index name</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						object<br>Command result document
 					</div>
 
 					<h4>Throws</h4>
@@ -654,11 +646,6 @@ NOTE: Will delete at most ONE document matching $filter</p>
 						<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code><br>if $indexName is an empty string or "*"
 					</div>
 
-					<h4>See</h4>
-					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/dropIndexes/<br>
-							http://docs.mongodb.org/manual/reference/method/db.collection.dropIndex/<br>
-					</div>
 
 
 			</div>
@@ -668,14 +655,14 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				MongoDB\Driver\Cursor
+				object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropIndexes">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#478-491" title="Go to source code">dropIndexes</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#294-305" title="Go to source code">dropIndexes</a>( )</code>
 
 			<div class="description short">
 				<p>Drop all indexes in the collection.</p>
@@ -688,15 +675,10 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 					<h4>Returns</h4>
 					<div class="list">
-						MongoDB\Driver\Cursor
+						object<br>Command result document
 					</div>
 
 
-					<h4>See</h4>
-					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/dropIndexes/<br>
-							http://docs.mongodb.org/manual/reference/method/db.collection.dropIndexes/<br>
-					</div>
 
 
 			</div>
@@ -713,20 +695,20 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_find">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#493-512" title="Go to source code">find</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#307-326" title="Go to source code">find</a>( <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Performs a find (query) on the collection</p>
+				<p>Finds documents matching the query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Performs a find (query) on the collection</p>
+				<p>Finds documents matching the query.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The find query to execute</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$options</var></dt>
 						<dd>Additional options</dd>
 					</dl></div>
@@ -739,8 +721,8 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 					<h4>See</h4>
 					<div class="list">
+							Find::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/core/read-operations-introduction/<br>
-							Collection::getFindOptions() for supported $options<br>
 					</div>
 
 
@@ -751,41 +733,41 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				array|false
+				object|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#514-538" title="Go to source code">findOne</a>( <span>array <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#328-347" title="Go to source code">findOne</a>( <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Performs a find (query) on the collection, returning at most one result</p>
+				<p>Finds a single document matching the query.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Performs a find (query) on the collection, returning at most one result</p>
+				<p>Finds a single document matching the query.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The find query to execute</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$options</var></dt>
 						<dd>Additional options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array|false<br>The matched document, or false on failure
+						object|null
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
+							FindOne::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/core/read-operations-introduction/<br>
-							Collection::getFindOptions() for supported $options<br>
 					</div>
 
 
@@ -796,14 +778,14 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				array
+				object|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndDelete">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#540-565" title="Go to source code">findOneAndDelete</a>( <span>array <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#349-366" title="Go to source code">findOneAndDelete</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document and deletes it, returning the original.</p>
@@ -812,25 +794,27 @@ NOTE: Will delete at most ONE document matching $filter</p>
 			<div class="description detailed hidden">
 				<p>Finds a single document and deletes it, returning the original.</p>
 
+<p>The document to return may be null.</p>
+
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The $filter criteria to search for</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array<br>The original document
+						object|null
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
+							FindOneAndDelete::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/findAndModify/<br>
-							Collection::getFindOneAndDelete() for supported $options<br>
 					</div>
 
 
@@ -841,48 +825,49 @@ NOTE: Will delete at most ONE document matching $filter</p>
 
 			<td class="attributes"><code>
 				 public 
-				array
+				object|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndReplace">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#567-602" title="Go to source code">findOneAndReplace</a>( <span>array <var>$filter</var></span>, <span>array <var>$replacement</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#368-389" title="Go to source code">findOneAndReplace</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Finds a single document and replaces it, returning either the original or the replaced document
-By default, returns the original document.
-To return the new document set:
-    $options = array("returnDocument" => Collection::FIND_ONE_AND_RETURN_AFTER);</p>
+				<p>Finds a single document and replaces it, returning either the original or
+the replaced document.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Finds a single document and replaces it, returning either the original or the replaced document
-By default, returns the original document.
-To return the new document set: $options = array("returnDocument" => Collection::FIND_ONE_AND_RETURN_AFTER);</p>
+				<p>Finds a single document and replaces it, returning either the original or
+the replaced document.</p>
+
+<p>The document to return may be null. By default, the original document is
+returned. Specify FindOneAndReplace::RETURN_DOCUMENT_AFTER for the
+"returnDocument" option to return the updated document.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The $filter criteria to search for</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$replacement</var></dt>
-						<dd>The document to replace with</dd>
+						<dd>Replacement document</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array
+						object|null
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
+							FindOneAndReplace::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/findAndModify/<br>
-							Collection::getFindOneAndReplace() for supported $options<br>
 					</div>
 
 
@@ -893,82 +878,50 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="attributes"><code>
 				 public 
-				array
+				object|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndUpdate">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#604-640" title="Go to source code">findOneAndUpdate</a>( <span>array <var>$filter</var></span>, <span>array <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#391-412" title="Go to source code">findOneAndUpdate</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Finds a single document and updates it, returning either the original or the updated document
-By default, returns the original document.
-To return the new document set:
-    $options = array("returnDocument" => Collection::FIND_ONE_AND_RETURN_AFTER);</p>
+				<p>Finds a single document and updates it, returning either the original or
+the updated document.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Finds a single document and updates it, returning either the original or the updated document
-By default, returns the original document.
-To return the new document set: $options = array("returnDocument" => Collection::FIND_ONE_AND_RETURN_AFTER);</p>
+				<p>Finds a single document and updates it, returning either the original or
+the updated document.</p>
+
+<p>The document to return may be null. By default, the original document is
+returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
+"returnDocument" option to return the updated document.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The $filter criteria to search for</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$update</var></dt>
-						<dd>An array of update operators to apply to the document</dd>
+						<dd>Update to apply to the matched document</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						array
+						object|null
 					</div>
 
 
 					<h4>See</h4>
 					<div class="list">
+							FindOneAndReplace::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/findAndModify/<br>
-							Collection::getFindOneAndUpdate() for supported $options<br>
 					</div>
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getBulkOptions" id="_getBulkOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getBulkOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#642-652" title="Go to source code">getBulkOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all Bulk Write options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all Bulk Write options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of available Bulk Write options
-					</div>
-
-
 
 
 			</div>
@@ -985,7 +938,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCollectionName">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#654-662" title="Go to source code">getCollectionName</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#414-422" title="Go to source code">getCollectionName</a>( )</code>
 
 			<div class="description short">
 				<p>Return the collection name.</p>
@@ -999,39 +952,6 @@ To return the new document set: $options = array("returnDocument" => Collection:
 					<h4>Returns</h4>
 					<div class="list">
 						string
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getCountOptions" id="_getCountOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getCountOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#664-700" title="Go to source code">getCountOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all count options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all count options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of Collection::count() options
 					</div>
 
 
@@ -1051,7 +971,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDatabaseName">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#702-710" title="Go to source code">getDatabaseName</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#424-432" title="Go to source code">getDatabaseName</a>( )</code>
 
 			<div class="description short">
 				<p>Return the database name.</p>
@@ -1073,171 +993,6 @@ To return the new document set: $options = array("returnDocument" => Collection:
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getDistinctOptions" id="_getDistinctOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getDistinctOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#712-727" title="Go to source code">getDistinctOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all distinct options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all distinct options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of Collection::distinct() options
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getFindOneAndDeleteOptions" id="_getFindOneAndDeleteOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getFindOneAndDeleteOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#729-759" title="Go to source code">getFindOneAndDeleteOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all findOneDelete options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all findOneDelete options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of Collection::findOneAndDelete() options
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getFindOneAndReplaceOptions" id="_getFindOneAndReplaceOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getFindOneAndReplaceOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#761-807" title="Go to source code">getFindOneAndReplaceOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all findOneAndReplace options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all findOneAndReplace options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of Collection::findOneAndReplace() options
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getFindOneAndUpdateOptions" id="_getFindOneAndUpdateOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getFindOneAndUpdateOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#809-854" title="Go to source code">getFindOneAndUpdateOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all findOneAndUpdate options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all findOneAndUpdate options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of Collection::findOneAndUpdate() options
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
-		<tr data-order="getFindOptions" id="_getFindOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getFindOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#856-955" title="Go to source code">getFindOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all find options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all find options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of Collection::find() options
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="getNamespace" id="_getNamespace">
 
 			<td class="attributes"><code>
@@ -1249,7 +1004,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getNamespace">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#957-966" title="Go to source code">getNamespace</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#434-443" title="Go to source code">getNamespace</a>( )</code>
 
 			<div class="description short">
 				<p>Return the collection namespace.</p>
@@ -1275,39 +1030,6 @@ To return the new document set: $options = array("returnDocument" => Collection:
 			</div>
 			</div></td>
 		</tr>
-		<tr data-order="getWriteOptions" id="_getWriteOptions">
-
-			<td class="attributes"><code>
-				 public 
-				array
-				
-				</code>
-			</td>
-
-			<td class="name"><div>
-			<a class="anchor" href="#_getWriteOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#968-980" title="Go to source code">getWriteOptions</a>( )</code>
-
-			<div class="description short">
-				<p>Retrieves all Write options with their default values.</p>
-			</div>
-
-			<div class="description detailed hidden">
-				<p>Retrieves all Write options with their default values.</p>
-
-
-
-					<h4>Returns</h4>
-					<div class="list">
-						array<br>of available Write options
-					</div>
-
-
-
-
-			</div>
-			</div></td>
-		</tr>
 		<tr data-order="insertMany" id="_insertMany">
 
 			<td class="attributes"><code>
@@ -1319,20 +1041,22 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insertMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#982-1010" title="Go to source code">insertMany</a>( <span>array <var>$documents</var></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#445-464" title="Go to source code">insertMany</a>( <span>array <var>$documents</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Inserts the provided documents</p>
+				<p>Inserts multiple documents.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Inserts the provided documents</p>
+				<p>Inserts multiple documents.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$documents</var></dt>
 						<dd>The documents to insert</dd>
+						<dt><var>$options</var></dt>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -1343,6 +1067,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 					<h4>See</h4>
 					<div class="list">
+							InsertMany::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/insert/<br>
 					</div>
 
@@ -1361,20 +1086,22 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insertOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#1012-1033" title="Go to source code">insertOne</a>( <span>array|object <var>$document</var></span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#466-485" title="Go to source code">insertOne</a>( <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Inserts the provided document</p>
+				<p>Inserts one document.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Inserts the provided document</p>
+				<p>Inserts one document.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$document</var></dt>
 						<dd>The document to insert</dd>
+						<dt><var>$options</var></dt>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -1385,6 +1112,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 					<h4>See</h4>
 					<div class="list">
+							InsertOne::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/insert/<br>
 					</div>
 
@@ -1403,7 +1131,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listIndexes">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#1035-1050" title="Go to source code">listIndexes</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#487-499" title="Go to source code">listIndexes</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
 				<p>Returns information for all indexes for the collection.</p>
@@ -1422,8 +1150,7 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/reference/command/listIndexes/<br>
-							http://docs.mongodb.org/manual/reference/method/db.collection.getIndexes/<br>
+							ListIndexes::__construct() for supported options<br>
 					</div>
 
 
@@ -1441,24 +1168,24 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_replaceOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#1052-1072" title="Go to source code">replaceOne</a>( <span>array <var>$filter</var></span>, <span>array <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#501-521" title="Go to source code">replaceOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Replace one document</p>
+				<p>Replaces at most one document matching the filter.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Replace one document</p>
+				<p>Replaces at most one document matching the filter.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The document to be replaced</dd>
-						<dt><var>$update</var></dt>
-						<dd>The document to replace with</dd>
+						<dd>Query by which to filter documents</dd>
+						<dt><var>$replacement</var></dt>
+						<dd>Replacement document</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -1469,8 +1196,8 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 					<h4>See</h4>
 					<div class="list">
+							ReplaceOne::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/update/<br>
-							Collection::getWriteOptions() for supported $options<br>
 					</div>
 
 
@@ -1488,26 +1215,24 @@ To return the new document set: $options = array("returnDocument" => Collection:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#1074-1091" title="Go to source code">updateMany</a>( <span>array <var>$filter</var></span>, <span>array <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#523-543" title="Go to source code">updateMany</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Update one document
-NOTE: Will update ALL documents matching $filter</p>
+				<p>Updates all documents matching the filter.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Update one document
-NOTE: Will update ALL documents matching $filter</p>
+				<p>Updates all documents matching the filter.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The document to be replaced</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$update</var></dt>
-						<dd>An array of update operators to apply to the document</dd>
+						<dd>$replacement Update to apply to the matched documents</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -1518,8 +1243,8 @@ NOTE: Will update ALL documents matching $filter</p>
 
 					<h4>See</h4>
 					<div class="list">
+							UpdateMany::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/update/<br>
-							Collection::getWriteOptions() for supported $options<br>
 					</div>
 
 
@@ -1537,26 +1262,24 @@ NOTE: Will update ALL documents matching $filter</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#1093-1114" title="Go to source code">updateOne</a>( <span>array <var>$filter</var></span>, <span>array <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#545-565" title="Go to source code">updateOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
 
 			<div class="description short">
-				<p>Update one document
-NOTE: Will update at most ONE document matching $filter</p>
+				<p>Updates at most one document matching the filter.</p>
 			</div>
 
 			<div class="description detailed hidden">
-				<p>Update one document
-NOTE: Will update at most ONE document matching $filter</p>
+				<p>Updates at most one document matching the filter.</p>
 
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$filter</var></dt>
-						<dd>The document to be replaced</dd>
+						<dd>Query by which to filter documents</dd>
 						<dt><var>$update</var></dt>
-						<dd>An array of update operators to apply to the document</dd>
+						<dd>$replacement Update to apply to the matched document</dd>
 						<dt><var>$options</var></dt>
-						<dd>Additional options</dd>
+						<dd>Command options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
@@ -1567,8 +1290,8 @@ NOTE: Will update at most ONE document matching $filter</p>
 
 					<h4>See</h4>
 					<div class="list">
+							ReplaceOne::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/update/<br>
-							Collection::getWriteOptions() for supported $options<br>
 					</div>
 
 
@@ -1582,461 +1305,6 @@ NOTE: Will update at most ONE document matching $filter</p>
 
 
 
-
-
-
-		<div class="panel panel-default">
-            <div class="panel-heading"><h2>Constants summary</h2></div>
-			<table class="summary table table-bordered table-striped constants" id="constants">
-			<tr data-order="QUERY_FLAG_TAILABLE_CURSOR" id="QUERY_FLAG_TAILABLE_CURSOR">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#22" title="Go to source code"><b>QUERY_FLAG_TAILABLE_CURSOR</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_TAILABLE_CURSOR" class="anchor">#</a>
-						<code><span class="php-num">0x02</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="QUERY_FLAG_SLAVE_OKAY" id="QUERY_FLAG_SLAVE_OKAY">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#23" title="Go to source code"><b>QUERY_FLAG_SLAVE_OKAY</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_SLAVE_OKAY" class="anchor">#</a>
-						<code><span class="php-num">0x04</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="QUERY_FLAG_OPLOG_REPLY" id="QUERY_FLAG_OPLOG_REPLY">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#24" title="Go to source code"><b>QUERY_FLAG_OPLOG_REPLY</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_OPLOG_REPLY" class="anchor">#</a>
-						<code><span class="php-num">0x08</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="QUERY_FLAG_NO_CURSOR_TIMEOUT" id="QUERY_FLAG_NO_CURSOR_TIMEOUT">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#25" title="Go to source code"><b>QUERY_FLAG_NO_CURSOR_TIMEOUT</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_NO_CURSOR_TIMEOUT" class="anchor">#</a>
-						<code><span class="php-num">0x10</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="QUERY_FLAG_AWAIT_DATA" id="QUERY_FLAG_AWAIT_DATA">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#26" title="Go to source code"><b>QUERY_FLAG_AWAIT_DATA</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_AWAIT_DATA" class="anchor">#</a>
-						<code><span class="php-num">0x20</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="QUERY_FLAG_EXHAUST" id="QUERY_FLAG_EXHAUST">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#27" title="Go to source code"><b>QUERY_FLAG_EXHAUST</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_EXHAUST" class="anchor">#</a>
-						<code><span class="php-num">0x40</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="QUERY_FLAG_PARTIAL" id="QUERY_FLAG_PARTIAL">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#28" title="Go to source code"><b>QUERY_FLAG_PARTIAL</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#QUERY_FLAG_PARTIAL" class="anchor">#</a>
-						<code><span class="php-num">0x80</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="CURSOR_TYPE_NON_TAILABLE" id="CURSOR_TYPE_NON_TAILABLE">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#31" title="Go to source code"><b>CURSOR_TYPE_NON_TAILABLE</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#CURSOR_TYPE_NON_TAILABLE" class="anchor">#</a>
-						<code><span class="php-num">0x00</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="CURSOR_TYPE_TAILABLE" id="CURSOR_TYPE_TAILABLE">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#32" title="Go to source code"><b>CURSOR_TYPE_TAILABLE</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#CURSOR_TYPE_TAILABLE" class="anchor">#</a>
-						<code><code><a href="class-MongoDB.Collection.html#QUERY_FLAG_TAILABLE_CURSOR">MongoDB\Collection::<b>QUERY_FLAG_TAILABLE_CURSOR</b></a></code></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="CURSOR_TYPE_TAILABLE_AWAIT" id="CURSOR_TYPE_TAILABLE_AWAIT">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#34" title="Go to source code"><b>CURSOR_TYPE_TAILABLE_AWAIT</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#CURSOR_TYPE_TAILABLE_AWAIT" class="anchor">#</a>
-						<code><span class="php-num">0x22</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="FIND_ONE_AND_RETURN_BEFORE" id="FIND_ONE_AND_RETURN_BEFORE">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#36" title="Go to source code"><b>FIND_ONE_AND_RETURN_BEFORE</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#FIND_ONE_AND_RETURN_BEFORE" class="anchor">#</a>
-						<code><span class="php-num">0x01</span></code>
-					</div>
-				</td>
-			</tr>
-			<tr data-order="FIND_ONE_AND_RETURN_AFTER" id="FIND_ONE_AND_RETURN_AFTER">
-
-				<td class="attributes"><code>integer</code></td>
-				<td class="name">
-					<code>
-						<a href="source-class-MongoDB.Collection.html#37" title="Go to source code"><b>FIND_ONE_AND_RETURN_AFTER</b></a>
-					</code>
-
-					<div class="description short">
-						
-					</div>
-
-					<div class="description detailed hidden">
-						
-
-					</div>
-				</td>
-				<td class="value">
-					<div>
-						<a href="#FIND_ONE_AND_RETURN_AFTER" class="anchor">#</a>
-						<code><span class="php-num">0x02</span></code>
-					</div>
-				</td>
-			</tr>
-			</table>
-		</div>
-
-
-
-
-		<div class="panel panel-default">
-            <div class="panel-heading"><h2>Properties summary</h2></div>
-			<table class="summary table table-bordered table-striped properties" id="properties">
-		<tr data-order="manager" id="$manager">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-MongoDB.Collection.html#39" title="Go to source code"><var>$manager</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$manager" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="ns" id="$ns">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-MongoDB.Collection.html#40" title="Go to source code"><var>$ns</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$ns" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="wc" id="$wc">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-MongoDB.Collection.html#41" title="Go to source code"><var>$wc</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$wc" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="rp" id="$rp">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-MongoDB.Collection.html#42" title="Go to source code"><var>$rp</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$rp" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="dbname" id="$dbname">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-MongoDB.Collection.html#44" title="Go to source code"><var>$dbname</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$dbname" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-		<tr data-order="collname" id="$collname">
-			<td class="attributes"><code>
-				protected  
-				
-			</code></td>
-
-			<td class="name">
-					<a href="source-class-MongoDB.Collection.html#45" title="Go to source code"><var>$collname</var></a>
-
-				<div class="description short">
-					
-				</div>
-
-				<div class="description detailed hidden">
-					
-
-				</div>
-			</td>
-			<td class="value">
-				<div>
-					<a href="#$collname" class="anchor">#</a>
-					<code></code>
-				</div>
-			</td>
-		</tr>
-			</table>
-		</div>
 
 
 
