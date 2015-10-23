@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/index.html</loc>
+	<loc>http://mongodb.github.io/mongo-php-library/index.html</loc>
 </url>
 <url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.html</loc>
+	<loc>http://mongodb.github.io/mongo-php-library/namespace-MongoDB.html</loc>
 </url>
 <url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.Exception.html</loc>
+	<loc>http://mongodb.github.io/mongo-php-library/namespace-MongoDB.Exception.html</loc>
 </url>
 <url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.Model.html</loc>
+	<loc>http://mongodb.github.io/mongo-php-library/namespace-MongoDB.Model.html</loc>
 </url>
 <url>
-	<loc>http://10gen-labs.github.io/mongo-php-libraries-prototype/namespace-MongoDB.Operation.html</loc>
+	<loc>http://mongodb.github.io/mongo-php-library/namespace-MongoDB.Operation.html</loc>
 </url>
 
 
