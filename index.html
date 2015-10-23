@@ -116,8 +116,8 @@
 
 <h1 id="mongodb-php-library">MongoDB PHP Library</h1>
 <p>This library provides a high-level abstraction around the lower-level
-<a href="https://github.com/10gen-labs/mongo-php-driver-prototype">PHP driver</a> (i.e. the
-<code>mongodb</code> extension).</p>
+<a href="https://github.com/mongodb/mongo-php-driver">PHP driver</a> (i.e. the <code>mongodb</code>
+extension).</p>
 <p>While the extension provides a limited API for executing commands, queries, and
 write operations, this library implements an API similar to that of the
 <a href="http://php.net/manual/en/book.mongo.php">legacy PHP driver</a>. It contains
@@ -132,12 +132,12 @@ extension, see:</p>
 </ul>
 <h1 id="installation">Installation</h1>
 <p>Since this library is only a high-level abstraction for the driver, it requires
-that the <a href="http://10gen-labs.github.io/mongo-php-driver-prototype/#installation"><code>mongodb</code> extension be installed</a>:</p>
+that the <a href="http://mongodb.github.io/mongo-php-driver/#installation"><code>mongodb</code> extension be installed</a>:</p>
 <pre><code>$ pecl install mongodb-beta
 $ echo "extension=mongodb.so" &gt;&gt; `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 </code></pre>
 <p>Instructions for installing the <code>mongodb</code> extension on HHVM may be found in the
-<a href="https://github.com/mongodb-labs/mongo-hhvm-driver-prototype/blob/master/README.rst">HHVM driver's README</a>.</p>
+<a href="https://github.com/mongodb/mongo-hhvm-driver/blob/master/README.rst">HHVM driver's README</a>.</p>
 <p>The preferred method of installing this library is with
 <a href="https://getcomposer.org/">Composer</a> by running the following from your project
 root:</p>
