@@ -169,7 +169,7 @@
 </span></span><span id="79" class="l"><a href="#79"> 79 </a><span class="php-comment">     * @param array        $options        Command options
 </span></span><span id="80" class="l"><a href="#80"> 80 </a><span class="php-comment">     * @throws InvalidArgumentException
 </span></span><span id="81" class="l"><a href="#81"> 81 </a><span class="php-comment">     */</span>
-</span><span id="82" class="l"><a href="#82"> 82 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>())
+</span><span id="82" class="l"><a href="#82"> 82 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = [])
 </span><span id="83" class="l"><a href="#83"> 83 </a>    {
 </span><span id="84" class="l"><a href="#84"> 84 </a>        <span class="php-keyword1">if</span> ( ! <span class="php-keyword2">is_array</span>(<span class="php-var">$filter</span>) &amp;&amp; ! <span class="php-keyword2">is_object</span>(<span class="php-var">$filter</span>)) {
 </span><span id="85" class="l"><a href="#85"> 85 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> InvalidArgumentTypeException(<span class="php-quote">'$filter'</span>, <span class="php-var">$filter</span>, <span class="php-quote">'array or object'</span>);
@@ -262,7 +262,7 @@
 </span></span><span id="172" class="l"><a href="#172">172 </a><span class="php-comment">     */</span>
 </span><span id="173" class="l"><a href="#173">173 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> createQuery()
 </span><span id="174" class="l"><a href="#174">174 </a>    {
-</span><span id="175" class="l"><a href="#175">175 </a>        <span class="php-var">$options</span> = <span class="php-keyword1">array</span>();
+</span><span id="175" class="l"><a href="#175">175 </a>        <span class="php-var">$options</span> = [];
 </span><span id="176" class="l"><a href="#176">176 </a>
 </span><span id="177" class="l"><a href="#177">177 </a>        <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'allowPartialResults'</span>])) {
 </span><span id="178" class="l"><a href="#178">178 </a>            <span class="php-var">$options</span>[<span class="php-quote">'partial'</span>] = <span class="php-keyword1">true</span>;
@@ -278,13 +278,13 @@
 </span><span id="188" class="l"><a href="#188">188 </a>            }
 </span><span id="189" class="l"><a href="#189">189 </a>        }
 </span><span id="190" class="l"><a href="#190">190 </a>
-</span><span id="191" class="l"><a href="#191">191 </a>        <span class="php-keyword1">foreach</span> (<span class="php-keyword1">array</span>(<span class="php-quote">'batchSize'</span>, <span class="php-quote">'limit'</span>, <span class="php-quote">'skip'</span>, <span class="php-quote">'sort'</span>, <span class="php-quote">'noCursorTimeout'</span>, <span class="php-quote">'oplogReplay'</span>, <span class="php-quote">'projection'</span>) <span class="php-keyword1">as</span> <span class="php-var">$option</span>) {
+</span><span id="191" class="l"><a href="#191">191 </a>        <span class="php-keyword1">foreach</span> ([<span class="php-quote">'batchSize'</span>, <span class="php-quote">'limit'</span>, <span class="php-quote">'skip'</span>, <span class="php-quote">'sort'</span>, <span class="php-quote">'noCursorTimeout'</span>, <span class="php-quote">'oplogReplay'</span>, <span class="php-quote">'projection'</span>] <span class="php-keyword1">as</span> <span class="php-var">$option</span>) {
 </span><span id="192" class="l"><a href="#192">192 </a>            <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-var">$option</span>])) {
 </span><span id="193" class="l"><a href="#193">193 </a>                <span class="php-var">$options</span>[<span class="php-var">$option</span>] = <span class="php-var">$this</span>-&gt;options[<span class="php-var">$option</span>];
 </span><span id="194" class="l"><a href="#194">194 </a>            }
 </span><span id="195" class="l"><a href="#195">195 </a>        }
 </span><span id="196" class="l"><a href="#196">196 </a>
-</span><span id="197" class="l"><a href="#197">197 </a>        <span class="php-var">$modifiers</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'modifiers'</span>]) ? <span class="php-keyword1">array</span>() : (<span class="php-keyword1">array</span>) <span class="php-var">$this</span>-&gt;options[<span class="php-quote">'modifiers'</span>];
+</span><span id="197" class="l"><a href="#197">197 </a>        <span class="php-var">$modifiers</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'modifiers'</span>]) ? [] : (<span class="php-keyword1">array</span>) <span class="php-var">$this</span>-&gt;options[<span class="php-quote">'modifiers'</span>];
 </span><span id="198" class="l"><a href="#198">198 </a>
 </span><span id="199" class="l"><a href="#199">199 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$options</span>[<span class="php-quote">'comment'</span>])) {
 </span><span id="200" class="l"><a href="#200">200 </a>            <span class="php-var">$modifiers</span>[<span class="php-quote">'$comment'</span>] = <span class="php-var">$options</span>[<span class="php-quote">'comment'</span>];

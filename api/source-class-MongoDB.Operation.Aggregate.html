@@ -150,7 +150,7 @@
 </span></span><span id="60" class="l"><a href="#60"> 60 </a><span class="php-comment">     * @param array  $options        Command options
 </span></span><span id="61" class="l"><a href="#61"> 61 </a><span class="php-comment">     * @throws InvalidArgumentException
 </span></span><span id="62" class="l"><a href="#62"> 62 </a><span class="php-comment">     */</span>
-</span><span id="63" class="l"><a href="#63"> 63 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-keyword1">array</span> <span class="php-var">$pipeline</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>())
+</span><span id="63" class="l"><a href="#63"> 63 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-keyword1">array</span> <span class="php-var">$pipeline</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = [])
 </span><span id="64" class="l"><a href="#64"> 64 </a>    {
 </span><span id="65" class="l"><a href="#65"> 65 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">empty</span>(<span class="php-var">$pipeline</span>)) {
 </span><span id="66" class="l"><a href="#66"> 66 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> InvalidArgumentException(<span class="php-quote">'$pipeline is empty'</span>);
@@ -170,10 +170,10 @@
 </span><span id="80" class="l"><a href="#80"> 80 </a>            <span class="php-var">$expectedIndex</span> += <span class="php-num">1</span>;
 </span><span id="81" class="l"><a href="#81"> 81 </a>        }
 </span><span id="82" class="l"><a href="#82"> 82 </a>
-</span><span id="83" class="l"><a href="#83"> 83 </a>        <span class="php-var">$options</span> += <span class="php-keyword1">array</span>(
+</span><span id="83" class="l"><a href="#83"> 83 </a>        <span class="php-var">$options</span> += [
 </span><span id="84" class="l"><a href="#84"> 84 </a>            <span class="php-quote">'allowDiskUse'</span> =&gt; <span class="php-keyword1">false</span>,
 </span><span id="85" class="l"><a href="#85"> 85 </a>            <span class="php-quote">'useCursor'</span> =&gt; <span class="php-keyword1">true</span>,
-</span><span id="86" class="l"><a href="#86"> 86 </a>        );
+</span><span id="86" class="l"><a href="#86"> 86 </a>        ];
 </span><span id="87" class="l"><a href="#87"> 87 </a>
 </span><span id="88" class="l"><a href="#88"> 88 </a>        <span class="php-keyword1">if</span> ( ! <span class="php-keyword2">is_bool</span>(<span class="php-var">$options</span>[<span class="php-quote">'allowDiskUse'</span>])) {
 </span><span id="89" class="l"><a href="#89"> 89 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> InvalidArgumentTypeException(<span class="php-quote">'&quot;allowDiskUse&quot; option'</span>, <span class="php-var">$options</span>[<span class="php-quote">'allowDiskUse'</span>], <span class="php-quote">'boolean'</span>);
@@ -246,10 +246,10 @@
 </span></span><span id="156" class="l"><a href="#156">156 </a><span class="php-comment">     */</span>
 </span><span id="157" class="l"><a href="#157">157 </a>    <span class="php-keyword1">private</span> <span class="php-keyword1">function</span> createCommand(Server <span class="php-var">$server</span>, <span class="php-var">$isCursorSupported</span>)
 </span><span id="158" class="l"><a href="#158">158 </a>    {
-</span><span id="159" class="l"><a href="#159">159 </a>        <span class="php-var">$cmd</span> = <span class="php-keyword1">array</span>(
+</span><span id="159" class="l"><a href="#159">159 </a>        <span class="php-var">$cmd</span> = [
 </span><span id="160" class="l"><a href="#160">160 </a>            <span class="php-quote">'aggregate'</span> =&gt; <span class="php-var">$this</span>-&gt;collectionName,
 </span><span id="161" class="l"><a href="#161">161 </a>            <span class="php-quote">'pipeline'</span> =&gt; <span class="php-var">$this</span>-&gt;pipeline,
-</span><span id="162" class="l"><a href="#162">162 </a>        );
+</span><span id="162" class="l"><a href="#162">162 </a>        ];
 </span><span id="163" class="l"><a href="#163">163 </a>
 </span><span id="164" class="l"><a href="#164">164 </a>        <span class="php-comment">// Servers &lt; 2.6 do not support any command options</span>
 </span><span id="165" class="l"><a href="#165">165 </a>        <span class="php-keyword1">if</span> ( ! <span class="php-var">$isCursorSupported</span>) {
@@ -264,7 +264,7 @@
 </span><span id="174" class="l"><a href="#174">174 </a>
 </span><span id="175" class="l"><a href="#175">175 </a>        <span class="php-keyword1">if</span> (<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'useCursor'</span>]) {
 </span><span id="176" class="l"><a href="#176">176 </a>            <span class="php-var">$cmd</span>[<span class="php-quote">'cursor'</span>] = <span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">&quot;batchSize&quot;</span>])
-</span><span id="177" class="l"><a href="#177">177 </a>                ? <span class="php-keyword1">array</span>(<span class="php-quote">'batchSize'</span> =&gt; <span class="php-var">$this</span>-&gt;options[<span class="php-quote">&quot;batchSize&quot;</span>])
+</span><span id="177" class="l"><a href="#177">177 </a>                ? [<span class="php-quote">'batchSize'</span> =&gt; <span class="php-var">$this</span>-&gt;options[<span class="php-quote">&quot;batchSize&quot;</span>]]
 </span><span id="178" class="l"><a href="#178">178 </a>                : <span class="php-keyword1">new</span> stdClass;
 </span><span id="179" class="l"><a href="#179">179 </a>        }
 </span><span id="180" class="l"><a href="#180">180 </a>

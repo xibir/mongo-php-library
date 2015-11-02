@@ -133,7 +133,7 @@ extension, see:</p>
 <h1 id="installation">Installation</h1>
 <p>Since this library is only a high-level abstraction for the driver, it requires
 that the <a href="http://mongodb.github.io/mongo-php-driver/#installation"><code>mongodb</code> extension be installed</a>:</p>
-<pre><code>$ pecl install mongodb-beta
+<pre><code>$ pecl install mongodb
 $ echo "extension=mongodb.so" &gt;&gt; `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 </code></pre>
 <p>Instructions for installing the <code>mongodb</code> extension on HHVM may be found in the
@@ -141,7 +141,7 @@ $ echo "extension=mongodb.so" &gt;&gt; `php --ini | grep "Loaded Configuration" 
 <p>The preferred method of installing this library is with
 <a href="https://getcomposer.org/">Composer</a> by running the following from your project
 root:</p>
-<pre><code>$ composer require "mongodb/mongodb=^1.0.0@alpha"
+<pre><code>$ composer require "mongodb/mongodb=^1.0.0@beta"
 </code></pre>
 <h2 id="generated-api-docs">Generated API Docs</h2>
 <p>If you are just interested in referencing the API provided by this library, you

@@ -125,7 +125,7 @@
 </span></span><span id="35" class="l"><a href="#35">35 </a><span class="php-comment">     * @param array        $options        Command options
 </span></span><span id="36" class="l"><a href="#36">36 </a><span class="php-comment">     * @throws InvalidArgumentException
 </span></span><span id="37" class="l"><a href="#37">37 </a><span class="php-comment">     */</span>
-</span><span id="38" class="l"><a href="#38">38 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-var">$replacement</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>())
+</span><span id="38" class="l"><a href="#38">38 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-var">$replacement</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = [])
 </span><span id="39" class="l"><a href="#39">39 </a>    {
 </span><span id="40" class="l"><a href="#40">40 </a>        <span class="php-keyword1">if</span> ( ! <span class="php-keyword2">is_array</span>(<span class="php-var">$replacement</span>) &amp;&amp; ! <span class="php-keyword2">is_object</span>(<span class="php-var">$replacement</span>)) {
 </span><span id="41" class="l"><a href="#41">41 </a>            <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> InvalidArgumentTypeException(<span class="php-quote">'$replacement'</span>, <span class="php-var">$replacement</span>, <span class="php-quote">'array or object'</span>);
@@ -140,7 +140,7 @@
 </span><span id="50" class="l"><a href="#50">50 </a>            <span class="php-var">$collectionName</span>,
 </span><span id="51" class="l"><a href="#51">51 </a>            <span class="php-var">$filter</span>,
 </span><span id="52" class="l"><a href="#52">52 </a>            <span class="php-var">$replacement</span>,
-</span><span id="53" class="l"><a href="#53">53 </a>            <span class="php-keyword1">array</span>(<span class="php-quote">'multi'</span> =&gt; <span class="php-keyword1">false</span>) + <span class="php-var">$options</span>
+</span><span id="53" class="l"><a href="#53">53 </a>            [<span class="php-quote">'multi'</span> =&gt; <span class="php-keyword1">false</span>] + <span class="php-var">$options</span>
 </span><span id="54" class="l"><a href="#54">54 </a>        );
 </span><span id="55" class="l"><a href="#55">55 </a>    }
 </span><span id="56" class="l"><a href="#56">56 </a>

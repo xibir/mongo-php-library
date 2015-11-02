@@ -120,7 +120,7 @@
 </span></span><span id="30" class="l"><a href="#30">30 </a><span class="php-comment">     * @param array        $options        Command options
 </span></span><span id="31" class="l"><a href="#31">31 </a><span class="php-comment">     * @throws InvalidArgumentException
 </span></span><span id="32" class="l"><a href="#32">32 </a><span class="php-comment">     */</span>
-</span><span id="33" class="l"><a href="#33">33 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = <span class="php-keyword1">array</span>())
+</span><span id="33" class="l"><a href="#33">33 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> __construct(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-keyword1">array</span> <span class="php-var">$options</span> = [])
 </span><span id="34" class="l"><a href="#34">34 </a>    {
 </span><span id="35" class="l"><a href="#35">35 </a>        <span class="php-var">$this</span>-&gt;<span class="php-keyword2">delete</span> = <span class="php-keyword1">new</span> <span class="php-keyword2">Delete</span>(<span class="php-var">$databaseName</span>, <span class="php-var">$collectionName</span>, <span class="php-var">$filter</span>, <span class="php-num">1</span>, <span class="php-var">$options</span>);
 </span><span id="36" class="l"><a href="#36">36 </a>    }

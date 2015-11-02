@@ -214,7 +214,7 @@ CRUD (i.e. create, read, update, and delete) and index management.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_aggregate">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#83-110" title="Go to source code">aggregate</a>( <span>array <var>$pipeline</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#83-110" title="Go to source code">aggregate</a>( <span>array <var>$pipeline</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Executes an aggregation framework pipeline on the collection.</p>
@@ -263,7 +263,7 @@ returned; otherwise, an ArrayIterator is returned, which wraps the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bulkWrite">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#112-130" title="Go to source code">bulkWrite</a>( <span>array <var>$operations</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#112-130" title="Go to source code">bulkWrite</a>( <span>array <var>$operations</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Executes multiple write operations.</p>
@@ -307,7 +307,7 @@ returned; otherwise, an ArrayIterator is returned, which wraps the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_count">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#132-150" title="Go to source code">count</a>( <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#132-150" title="Go to source code">count</a>( <span>array|object <var>$filter</var> = []</span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Gets the number of documents matching the filter.</p>
@@ -351,7 +351,7 @@ returned; otherwise, an ArrayIterator is returned, which wraps the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createIndex">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#152-164" title="Go to source code">createIndex</a>( <span>array|object <var>$key</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#152-164" title="Go to source code">createIndex</a>( <span>array|object <var>$key</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Create a single index for the collection.</p>
@@ -451,7 +451,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#197-216" title="Go to source code">deleteMany</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#197-216" title="Go to source code">deleteMany</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Deletes all documents matching the filter.</p>
@@ -496,7 +496,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_deleteOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#218-237" title="Go to source code">deleteOne</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#218-237" title="Go to source code">deleteOne</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Deletes at most one document matching the filter.</p>
@@ -541,7 +541,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_distinct">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#239-258" title="Go to source code">distinct</a>( <span>string <var>$fieldName</var></span>, <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#239-258" title="Go to source code">distinct</a>( <span>string <var>$fieldName</var></span>, <span>array|object <var>$filter</var> = []</span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds the distinct values for a specified field across the collection.</p>
@@ -695,7 +695,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_find">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#307-326" title="Go to source code">find</a>( <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#307-326" title="Go to source code">find</a>( <span>array|object <var>$filter</var> = []</span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds documents matching the query.</p>
@@ -740,7 +740,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#328-347" title="Go to source code">findOne</a>( <span>array|object <var>$filter</var> = <span class="php-keyword1">array</span>()</span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#328-347" title="Go to source code">findOne</a>( <span>array|object <var>$filter</var> = []</span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document matching the query.</p>
@@ -785,7 +785,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndDelete">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#349-366" title="Go to source code">findOneAndDelete</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#349-366" title="Go to source code">findOneAndDelete</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document and deletes it, returning the original.</p>
@@ -832,7 +832,7 @@ For example:
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndReplace">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#368-389" title="Go to source code">findOneAndReplace</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#368-389" title="Go to source code">findOneAndReplace</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document and replaces it, returning either the original or
@@ -885,7 +885,7 @@ returned. Specify FindOneAndReplace::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndUpdate">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#391-412" title="Go to source code">findOneAndUpdate</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#391-412" title="Go to source code">findOneAndUpdate</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document and updates it, returning either the original or
@@ -1041,7 +1041,7 @@ returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insertMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#445-464" title="Go to source code">insertMany</a>( <span>array <var>$documents</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#445-464" title="Go to source code">insertMany</a>( <span>array <var>$documents</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Inserts multiple documents.</p>
@@ -1086,7 +1086,7 @@ returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insertOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#466-485" title="Go to source code">insertOne</a>( <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#466-485" title="Go to source code">insertOne</a>( <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Inserts one document.</p>
@@ -1131,7 +1131,7 @@ returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listIndexes">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#487-499" title="Go to source code">listIndexes</a>( <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#487-499" title="Go to source code">listIndexes</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Returns information for all indexes for the collection.</p>
@@ -1168,7 +1168,7 @@ returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_replaceOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#501-521" title="Go to source code">replaceOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#501-521" title="Go to source code">replaceOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Replaces at most one document matching the filter.</p>
@@ -1215,7 +1215,7 @@ returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#523-543" title="Go to source code">updateMany</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#523-543" title="Go to source code">updateMany</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Updates all documents matching the filter.</p>
@@ -1262,7 +1262,7 @@ returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#545-565" title="Go to source code">updateOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = <span class="php-keyword1">array</span>()</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#545-565" title="Go to source code">updateOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Updates at most one document matching the filter.</p>
