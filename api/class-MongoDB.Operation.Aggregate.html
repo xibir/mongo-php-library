@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -156,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/aggregate/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.Aggregate.html#16-183" title="Go to source code">Operation/Aggregate.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.Aggregate.html#16-231" title="Go to source code">Operation/Aggregate.php</a>
 		<br>
 	</div>
 
@@ -176,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.Aggregate.html#32-116" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$pipeline</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.Aggregate.html#34-153" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$pipeline</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs an aggregate command.</p>
@@ -188,8 +189,14 @@
 <p>Supported options:
  * allowDiskUse (boolean): Enables writing to temporary files. When set to true, aggregation stages can write data to the _tmp sub-directory in the dbPath directory. The default is false.
  * batchSize (integer): The number of documents to return per batch.
+ * bypassDocumentValidation (boolean): If true, allows the write to opt out of document level validation. This only applies when the $out stage is specified.
+ For servers &lt; 3.2, this option is ignored as document level validation is not available.
  * maxTimeMS (integer): The maximum amount of time to allow the query to run.
+ * readConcern (MongoDB\Driver\ReadConcern): Read concern. Note that a "majority" read concern is not compatible with the $out stage.
+ For servers &lt; 3.2, this option is ignored as read concern is not available.
  * readPreference (MongoDB\Driver\ReadPreference): Read preference.
+ * typeMap (array): Type map for BSON deserialization. This will be applied to the returned Cursor (it is not sent to the server).
+ This is not supported for inline aggregation results (i.e. useCursor option is false or the server versions &lt; 2.6).
  * useCursor (boolean): Indicates whether the command will request that the server provide results using a cursor. The default is true.
  For servers &lt; 2.6, this option is ignored as aggregation cursors are not available.
  For servers >= 2.6, this option allows users to turn off cursors if necessary to aid in mongod/mongos upgrades.</p>
@@ -229,7 +236,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.Aggregate.html#118-148" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.Aggregate.html#155-188" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

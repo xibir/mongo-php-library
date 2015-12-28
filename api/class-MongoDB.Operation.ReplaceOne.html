@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -156,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/update/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.ReplaceOne.html#10-68" title="Go to source code">Operation/ReplaceOne.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.ReplaceOne.html#10-71" title="Go to source code">Operation/ReplaceOne.php</a>
 		<br>
 	</div>
 
@@ -176,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.ReplaceOne.html#21-55" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.ReplaceOne.html#21-58" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs an update command.</p>
@@ -186,6 +187,7 @@
 				<p>Constructs an update command.</p>
 
 <p>Supported options:
+ * bypassDocumentValidation (boolean): If true, allows the write to opt out of document level validation.
  * upsert (boolean): When true, a new document is created if no document matches the query. The default is false.
  * writeConcern (MongoDB\Driver\WriteConcern): Write concern.</p>
 
@@ -226,7 +228,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.ReplaceOne.html#57-67" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.ReplaceOne.html#60-70" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

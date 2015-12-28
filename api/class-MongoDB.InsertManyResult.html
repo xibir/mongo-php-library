@@ -104,7 +104,7 @@
 
 
 	<div class="description">
-	<p>Result class for a multi-document write operation.</p>
+	<p>Result class for a multi-document insert operation.</p>
 	</div>
 
 
@@ -121,7 +121,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.InsertManyResult.html#7-67" title="Go to source code">InsertManyResult.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.InsertManyResult.html#8-76" title="Go to source code">InsertManyResult.php</a>
 		<br>
 	</div>
 
@@ -141,7 +141,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#15-25" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>array <var>$insertedIds</var></span> )</code>
+			<code><a href="source-class-MongoDB.InsertManyResult.html#17-28" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span>, <span>array <var>$insertedIds</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -177,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInsertedCount">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#27-38" title="Go to source code">getInsertedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertManyResult.html#30-46" title="Go to source code">getInsertedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were inserted.</p>
@@ -186,7 +186,7 @@
 			<div class="description detailed hidden">
 				<p>Return the number of documents that were inserted.</p>
 
-<p>This value is undefined if the write was not acknowledged.</p>
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
@@ -195,6 +195,10 @@
 						integer
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
@@ -216,7 +220,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getInsertedIds">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#40-53" title="Go to source code">getInsertedIds</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertManyResult.html#48-62" title="Go to source code">getInsertedIds</a>( )</code>
 
 			<div class="description short">
 				<p>Return a map of the inserted documents' IDs.</p>
@@ -225,10 +229,11 @@
 			<div class="description detailed hidden">
 				<p>Return a map of the inserted documents' IDs.</p>
 
-<p>The index of each ID in the map corresponds to the document's position
-in bulk operation. If the document had an ID prior to insertion (i.e. the
-driver did not generate an ID), this will contain its "_id" field value.
-Any driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
+<p>The index of each ID in the map corresponds to the document's position in
+the bulk operation. If the document had an ID prior to insertion (i.e.
+the driver did not generate an ID), this will contain its "_id" field
+value. Any driver-generated ID will be an MongoDB\Driver\ObjectID
+instance.</p>
 
 
 
@@ -254,7 +259,7 @@ Any driver-generated ID will be an MongoDB\Driver\ObjectID instance.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isAcknowledged">#</a>
-			<code><a href="source-class-MongoDB.InsertManyResult.html#55-66" title="Go to source code">isAcknowledged</a>( )</code>
+			<code><a href="source-class-MongoDB.InsertManyResult.html#64-75" title="Go to source code">isAcknowledged</a>( )</code>
 
 			<div class="description short">
 				<p>Return whether this insert result was acknowledged by the server.</p>

@@ -82,6 +82,7 @@
 				<li class="active"><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -156,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/count/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.Count.html#13-136" title="Go to source code">Operation/Count.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.Count.html#13-148" title="Go to source code">Operation/Count.php</a>
 		<br>
 	</div>
 
@@ -176,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.Count.html#27-87" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var> = []</span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.Count.html#29-98" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var> = []</span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a count command.</p>
@@ -189,6 +190,8 @@
  * hint (string|document): The index to use. If a document, it will be interpretted as an index specification and a name will be generated.
  * limit (integer): The maximum number of documents to count.
  * maxTimeMS (integer): The maximum amount of time to allow the query to run.
+ * readConcern (MongoDB\Driver\ReadConcern): Read concern.
+ For servers &lt; 3.2, this option is ignored as read concern is not available.
  * readPreference (MongoDB\Driver\ReadPreference): Read preference.
  * skip (integer): The number of documents to skip before returning the documents.</p>
 
@@ -227,7 +230,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.Count.html#89-113" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.Count.html#100-120" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li class="active"><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -156,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/create/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.CreateCollection.html#12-135" title="Go to source code">Operation/CreateCollection.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.CreateCollection.html#10-162" title="Go to source code">Operation/CreateCollection.php</a>
 		<br>
 	</div>
 
@@ -176,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.CreateCollection.html#28-93" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.CreateCollection.html#26-117" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a create command.</p>
@@ -189,10 +190,14 @@
  * autoIndexId (boolean): Specify false to disable the automatic creation of an index on the _id field. For replica sets, this option cannot be false. The default is true.
  * capped (boolean): Specify true to create a capped collection. If set, the size option must also be specified. The default is false.
  * flags (integer): Options for the MMAPv1 storage engine only. Must be a bitwise combination USE_POWER_OF_2_SIZES and NO_PADDING. The default is USE_POWER_OF_2_SIZES.
+ * indexOptionDefaults (document): Default configuration for indexes when creating the collection.
  * max (integer): The maximum number of documents allowed in the capped collection. The size option takes precedence over this limit.
  * maxTimeMS (integer): The maximum amount of time to allow the query to run.
  * size (integer): The maximum number of bytes for a capped collection.
- * storageEngine (document): Storage engine options.</p>
+ * storageEngine (document): Storage engine options.
+ * validationAction (string): Validation action.
+ * validationLevel (string): Validation level.
+ * validator (document): Validation rules or expressions.</p>
 
 
 					<h4>Parameters</h4>
@@ -214,6 +219,7 @@
 					<h4>See</h4>
 					<div class="list">
 							http://source.wiredtiger.com/2.4.1/struct_w_t___s_e_s_s_i_o_n.html#a358ca4141d59c345f401c58501276bbb<br>
+							https://docs.mongodb.org/manual/core/document-validation/<br>
 					</div>
 
 
@@ -231,7 +237,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.CreateCollection.html#95-112" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.CreateCollection.html#119-131" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>
@@ -282,7 +288,7 @@
 				<td class="attributes"><code>integer</code></td>
 				<td class="name">
 					<code>
-						<a href="source-class-MongoDB.Operation.CreateCollection.html#21" title="Go to source code"><b>USE_POWER_OF_2_SIZES</b></a>
+						<a href="source-class-MongoDB.Operation.CreateCollection.html#19" title="Go to source code"><b>USE_POWER_OF_2_SIZES</b></a>
 					</code>
 
 					<div class="description short">
@@ -306,7 +312,7 @@
 				<td class="attributes"><code>integer</code></td>
 				<td class="name">
 					<code>
-						<a href="source-class-MongoDB.Operation.CreateCollection.html#22" title="Go to source code"><b>NO_PADDING</b></a>
+						<a href="source-class-MongoDB.Operation.CreateCollection.html#20" title="Go to source code"><b>NO_PADDING</b></a>
 					</code>
 
 					<div class="description short">

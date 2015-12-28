@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -156,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/insert/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.InsertOne.html#11-76" title="Go to source code">Operation/InsertOne.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.InsertOne.html#11-91" title="Go to source code">Operation/InsertOne.php</a>
 		<br>
 	</div>
 
@@ -176,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.InsertOne.html#25-52" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.InsertOne.html#27-61" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs an insert command.</p>
@@ -186,6 +187,7 @@
 				<p>Constructs an insert command.</p>
 
 <p>Supported options:
+ * bypassDocumentValidation (boolean): If true, allows the write to opt out of document level validation.
  * writeConcern (MongoDB\Driver\WriteConcern): Write concern.</p>
 
 
@@ -223,7 +225,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.InsertOne.html#54-75" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.InsertOne.html#63-90" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

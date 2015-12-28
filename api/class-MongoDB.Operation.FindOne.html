@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -158,7 +159,7 @@
 				http://docs.mongodb.org/manual/reference/operator/query-modifier/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.FindOne.html#8-90" title="Go to source code">Operation/FindOne.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.FindOne.html#8-86" title="Go to source code">Operation/FindOne.php</a>
 		<br>
 	</div>
 
@@ -178,7 +179,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.FindOne.html#21-69" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.FindOne.html#21-70" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a find command for finding a single document.</p>
@@ -192,6 +193,8 @@
  * maxTimeMS (integer): The maximum amount of time to allow the query to run. If "$maxTimeMS" also exists in the modifiers document, this option will take precedence.
  * modifiers (document): Meta-operators modifying the output or behavior of a query.
  * projection (document): Limits the fields to return for the matching document.
+ * readConcern (MongoDB\Driver\ReadConcern): Read concern.
+ For servers &lt; 3.2, this option is ignored as read concern is not available.
  * readPreference (MongoDB\Driver\ReadPreference): Read preference.
  * skip (integer): The number of documents to skip before returning.
  * sort (document): The order in which to return matching documents. If "$orderby" also exists in the modifiers document, this option will take precedence.
@@ -232,7 +235,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.FindOne.html#71-89" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.FindOne.html#72-85" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

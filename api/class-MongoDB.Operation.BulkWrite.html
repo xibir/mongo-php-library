@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -154,7 +155,7 @@
 				<code><a href="class-MongoDB.Collection.html#_bulkWrite">MongoDB\Collection::bulkWrite()</a></code><br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.BulkWrite.html#12-245" title="Go to source code">Operation/BulkWrite.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.BulkWrite.html#12-260" title="Go to source code">Operation/BulkWrite.php</a>
 		<br>
 	</div>
 
@@ -174,7 +175,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.BulkWrite.html#32-197" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$operations</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.BulkWrite.html#34-206" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$operations</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a bulk write operation.</p>
@@ -194,6 +195,7 @@ instead of each individual operations.</p>
  * upsert (boolean): When true, a new document is created if no document matches the query. The default is false.</p>
 
 <p>Supported options for the bulk write operation:
+ * bypassDocumentValidation (boolean): If true, allows the write to opt out of document level validation.
  * ordered (boolean): If true, when an insert fails, return without performing the remaining writes. If false, when a write fails, continue with the remaining writes, if any. The default is true.
  * writeConcern (MongoDB\Driver\WriteConcern): Write concern.</p>
 
@@ -232,7 +234,7 @@ instead of each individual operations.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.BulkWrite.html#199-244" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.BulkWrite.html#208-259" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

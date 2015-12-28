@@ -121,7 +121,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.DeleteResult.html#7-49" title="Go to source code">DeleteResult.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.DeleteResult.html#8-57" title="Go to source code">DeleteResult.php</a>
 		<br>
 	</div>
 
@@ -141,7 +141,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.DeleteResult.html#14-22" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span> )</code>
+			<code><a href="source-class-MongoDB.DeleteResult.html#16-25" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -175,7 +175,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDeletedCount">#</a>
-			<code><a href="source-class-MongoDB.DeleteResult.html#24-35" title="Go to source code">getDeletedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.DeleteResult.html#27-43" title="Go to source code">getDeletedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were deleted.</p>
@@ -184,7 +184,7 @@
 			<div class="description detailed hidden">
 				<p>Return the number of documents that were deleted.</p>
 
-<p>This value is undefined if the write was not acknowledged.</p>
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
@@ -193,10 +193,14 @@
 						integer
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
-							<code><a href="class-MongoDB.UpdateResult.html#_isAcknowledged">MongoDB\UpdateResult::isAcknowledged()</a></code><br>
+							<code><a href="class-MongoDB.DeleteResult.html#_isAcknowledged">MongoDB\DeleteResult::isAcknowledged()</a></code><br>
 					</div>
 
 
@@ -214,7 +218,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isAcknowledged">#</a>
-			<code><a href="source-class-MongoDB.DeleteResult.html#37-48" title="Go to source code">isAcknowledged</a>( )</code>
+			<code><a href="source-class-MongoDB.DeleteResult.html#45-56" title="Go to source code">isAcknowledged</a>( )</code>
 
 			<div class="description short">
 				<p>Return whether this delete was acknowledged by the server.</p>

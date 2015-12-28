@@ -121,7 +121,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.UpdateResult.html#7-90" title="Go to source code">UpdateResult.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.UpdateResult.html#8-121" title="Go to source code">UpdateResult.php</a>
 		<br>
 	</div>
 
@@ -141,7 +141,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#14-22" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span> )</code>
+			<code><a href="source-class-MongoDB.UpdateResult.html#16-25" title="Go to source code">__construct</a>( <span>MongoDB\Driver\WriteResult <var>$writeResult</var></span> )</code>
 
 			<div class="description short">
 				<p>Constructor.</p>
@@ -175,7 +175,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getMatchedCount">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#24-35" title="Go to source code">getMatchedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.UpdateResult.html#27-43" title="Go to source code">getMatchedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were matched by the filter.</p>
@@ -184,7 +184,7 @@
 			<div class="description detailed hidden">
 				<p>Return the number of documents that were matched by the filter.</p>
 
-<p>This value is undefined if the write was not acknowledged.</p>
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
@@ -193,6 +193,10 @@
 						integer
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
@@ -207,14 +211,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				integer
+				integer|null
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getModifiedCount">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#37-49" title="Go to source code">getModifiedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.UpdateResult.html#45-64" title="Go to source code">getModifiedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were modified.</p>
@@ -223,16 +227,22 @@
 			<div class="description detailed hidden">
 				<p>Return the number of documents that were modified.</p>
 
-<p>This value is undefined if the write was not acknowledged or if the write
-executed as a legacy operation instead of write command.</p>
+<p>This value is undefined (i.e. null) if the write executed as a legacy
+operation instead of command.</p>
+
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
 					<h4>Returns</h4>
 					<div class="list">
-						integer
+						integer|null
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
@@ -254,7 +264,7 @@ executed as a legacy operation instead of write command.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUpsertedCount">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#51-62" title="Go to source code">getUpsertedCount</a>( )</code>
+			<code><a href="source-class-MongoDB.UpdateResult.html#66-82" title="Go to source code">getUpsertedCount</a>( )</code>
 
 			<div class="description short">
 				<p>Return the number of documents that were upserted.</p>
@@ -263,7 +273,7 @@ executed as a legacy operation instead of write command.</p>
 			<div class="description detailed hidden">
 				<p>Return the number of documents that were upserted.</p>
 
-<p>This value is undefined if the write was not acknowledged.</p>
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
@@ -272,6 +282,10 @@ executed as a legacy operation instead of write command.</p>
 						integer
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
 					<h4>See</h4>
 					<div class="list">
@@ -293,7 +307,7 @@ executed as a legacy operation instead of write command.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getUpsertedId">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#64-76" title="Go to source code">getUpsertedId</a>( )</code>
+			<code><a href="source-class-MongoDB.UpdateResult.html#84-106" title="Go to source code">getUpsertedId</a>( )</code>
 
 			<div class="description short">
 				<p>Return the ID of the document inserted by an upsert operation.</p>
@@ -302,7 +316,9 @@ executed as a legacy operation instead of write command.</p>
 			<div class="description detailed hidden">
 				<p>Return the ID of the document inserted by an upsert operation.</p>
 
-<p>This value is undefined if an upsert did not take place.</p>
+<p>This value is undefined (i.e. null) if an upsert did not take place.</p>
+
+<p>This method should only be called if the write was acknowledged.</p>
 
 
 
@@ -311,7 +327,15 @@ executed as a legacy operation instead of write command.</p>
 						mixed|null
 					</div>
 
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.BadMethodCallException.html">MongoDB\Exception\BadMethodCallException</a></code><br>is the write result is unacknowledged
+					</div>
 
+					<h4>See</h4>
+					<div class="list">
+							<code><a href="class-MongoDB.UpdateResult.html#_isAcknowledged">MongoDB\UpdateResult::isAcknowledged()</a></code><br>
+					</div>
 
 
 			</div>
@@ -328,7 +352,7 @@ executed as a legacy operation instead of write command.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_isAcknowledged">#</a>
-			<code><a href="source-class-MongoDB.UpdateResult.html#78-89" title="Go to source code">isAcknowledged</a>( )</code>
+			<code><a href="source-class-MongoDB.UpdateResult.html#108-120" title="Go to source code">isAcknowledged</a>( )</code>
 
 			<div class="description short">
 				<p>Return whether this update was acknowledged by the server.</p>
@@ -338,7 +362,8 @@ executed as a legacy operation instead of write command.</p>
 				<p>Return whether this update was acknowledged by the server.</p>
 
 <p>If the update was not acknowledged, other fields from the WriteResult
-(e.g. matchedCount) will be undefined.</p>
+(e.g. matchedCount) will be undefined and their getter methods should not
+be invoked.</p>
 
 
 

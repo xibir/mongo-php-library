@@ -82,6 +82,7 @@
 				<li><a href="class-MongoDB.Operation.Count.html">Count</a></li>
 				<li><a href="class-MongoDB.Operation.CreateCollection.html">CreateCollection</a></li>
 				<li><a href="class-MongoDB.Operation.CreateIndexes.html">CreateIndexes</a></li>
+				<li><a href="class-MongoDB.Operation.DatabaseCommand.html">DatabaseCommand</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteMany.html">DeleteMany</a></li>
 				<li><a href="class-MongoDB.Operation.DeleteOne.html">DeleteOne</a></li>
 				<li><a href="class-MongoDB.Operation.Distinct.html">Distinct</a></li>
@@ -156,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/findAndModify/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#10-110" title="Go to source code">Operation/FindOneAndUpdate.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#10-116" title="Go to source code">Operation/FindOneAndUpdate.php</a>
 		<br>
 	</div>
 
@@ -176,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#24-97" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#24-103" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a findAndModify command for updating a document.</p>
@@ -186,11 +187,13 @@
 				<p>Constructs a findAndModify command for updating a document.</p>
 
 <p>Supported options:
+ * bypassDocumentValidation (boolean): If true, allows the write to opt out of document level validation.
  * maxTimeMS (integer): The maximum amount of time to allow the query to run.
  * projection (document): Limits the fields to return for the matching document.
  * returnDocument (enum): Whether to return the document before or after the update is applied. Must be either RETURN_DOCUMENT_BEFORE or RETURN_DOCUMENT_AFTER. The default is RETURN_DOCUMENT_BEFORE.
  * sort (document): Determines which document the operation modifies if the query selects multiple documents.
- * upsert (boolean): When true, a new document is created if no document matches the query. The default is false.</p>
+ * upsert (boolean): When true, a new document is created if no document matches the query. The default is false.
+ * writeConcern (MongoDB\Driver\WriteConcern): Write concern. This option is only supported for server versions >= 3.2.</p>
 
 
 					<h4>Parameters</h4>
@@ -229,7 +232,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#99-109" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#105-115" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>
