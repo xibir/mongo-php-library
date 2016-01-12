@@ -86,11 +86,8 @@
 			<ul>
 				<li><a href="class-MongoDB.Exception.BadMethodCallException.html">BadMethodCallException</a></li>
 				<li class="active"><a href="class-MongoDB.Exception.InvalidArgumentException.html">InvalidArgumentException</a></li>
-				<li><a href="class-MongoDB.Exception.InvalidArgumentTypeException.html">InvalidArgumentTypeException</a></li>
 				<li><a href="class-MongoDB.Exception.RuntimeException.html">RuntimeException</a></li>
-				<li><a href="class-MongoDB.Exception.UnexpectedTypeException.html">UnexpectedTypeException</a></li>
 				<li><a href="class-MongoDB.Exception.UnexpectedValueException.html">UnexpectedValueException</a></li>
-				<li><a href="class-MongoDB.Exception.UnexpectedValueTypeException.html">UnexpectedValueTypeException</a></li>
 			</ul>
 
 
@@ -146,13 +143,6 @@ MongoDB\Driver\Exception\InvalidArgumentException
 	</dl>
 
 
-	<div>
-		<h3>Direct known subclasses</h3>
-		<p class="elementList">
-			<code><a href="class-MongoDB.Exception.InvalidArgumentTypeException.html">MongoDB\Exception\InvalidArgumentTypeException</a></code>, 
-			<code><a href="class-MongoDB.Exception.UnexpectedTypeException.html">MongoDB\Exception\UnexpectedTypeException</a></code>
-		</p>
-	</div>
 
 
 
@@ -165,7 +155,7 @@ MongoDB\Driver\Exception\InvalidArgumentException
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a>\<a href="namespace-MongoDB.Exception.html">Exception</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Exception.InvalidArgumentException.html#5-7" title="Go to source code">Exception/InvalidArgumentException.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Exception.InvalidArgumentException.html#5-19" title="Go to source code">Exception/InvalidArgumentException.php</a>
 		<br>
 	</div>
 
@@ -173,6 +163,50 @@ MongoDB\Driver\Exception\InvalidArgumentException
 
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="invalidType" id="_invalidType">
+
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_invalidType">#</a>
+			<code><a href="source-class-MongoDB.Exception.InvalidArgumentException.html#7-18" title="Go to source code">invalidType</a>( <span>string <var>$name</var></span>, <span>mixed <var>$value</var></span>, <span>string <var>$expectedType</var></span> )</code>
+
+			<div class="description short">
+				<p>Thrown when an argument or option has an invalid type.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Thrown when an argument or option has an invalid type.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$name</var></dt>
+						<dd>Name of the argument or option</dd>
+						<dt><var>$value</var></dt>
+						<dd>Actual value (used to derive the type)</dd>
+						<dt><var>$expectedType</var></dt>
+						<dd>Expected type</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.InvalidArgumentException.html">MongoDB\Exception\InvalidArgumentException</a></code>
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
 		</div>
 
 		<div class="panel panel-default">

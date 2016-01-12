@@ -241,22 +241,22 @@
 </span></span><span id="151" class="l"><a href="#151">151 </a><span class="php-comment">     * Not supported.
 </span></span><span id="152" class="l"><a href="#152">152 </a><span class="php-comment">     *
 </span></span><span id="153" class="l"><a href="#153">153 </a><span class="php-comment">     * @see http://php.net/arrayaccess.offsetset
-</span></span><span id="154" class="l"><a href="#154">154 </a><span class="php-comment">     * @throws BadMethodCallException IndexInfo is immutable
+</span></span><span id="154" class="l"><a href="#154">154 </a><span class="php-comment">     * @throws BadMethodCallException
 </span></span><span id="155" class="l"><a href="#155">155 </a><span class="php-comment">     */</span>
 </span><span id="156" class="l"><a href="#156">156 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> offsetSet(<span class="php-var">$key</span>, <span class="php-var">$value</span>)
 </span><span id="157" class="l"><a href="#157">157 </a>    {
-</span><span id="158" class="l"><a href="#158">158 </a>        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> BadMethodCallException(<span class="php-quote">'IndexInfo is immutable'</span>);
+</span><span id="158" class="l"><a href="#158">158 </a>        <span class="php-keyword1">throw</span> BadMethodCallException::classIsImmutable(__CLASS__);
 </span><span id="159" class="l"><a href="#159">159 </a>    }
 </span><span id="160" class="l"><a href="#160">160 </a>
 </span><span id="161" class="l"><a href="#161">161 </a>    <span class="php-comment">/**
 </span></span><span id="162" class="l"><a href="#162">162 </a><span class="php-comment">     * Not supported.
 </span></span><span id="163" class="l"><a href="#163">163 </a><span class="php-comment">     *
 </span></span><span id="164" class="l"><a href="#164">164 </a><span class="php-comment">     * @see http://php.net/arrayaccess.offsetunset
-</span></span><span id="165" class="l"><a href="#165">165 </a><span class="php-comment">     * @throws BadMethodCallException IndexInfo is immutable
+</span></span><span id="165" class="l"><a href="#165">165 </a><span class="php-comment">     * @throws BadMethodCallException
 </span></span><span id="166" class="l"><a href="#166">166 </a><span class="php-comment">     */</span>
 </span><span id="167" class="l"><a href="#167">167 </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> offsetUnset(<span class="php-var">$key</span>)
 </span><span id="168" class="l"><a href="#168">168 </a>    {
-</span><span id="169" class="l"><a href="#169">169 </a>        <span class="php-keyword1">throw</span> <span class="php-keyword1">new</span> BadMethodCallException(<span class="php-quote">'IndexInfo is immutable'</span>);
+</span><span id="169" class="l"><a href="#169">169 </a>        <span class="php-keyword1">throw</span> BadMethodCallException::classIsImmutable(__CLASS__);
 </span><span id="170" class="l"><a href="#170">170 </a>    }
 </span><span id="171" class="l"><a href="#171">171 </a>}
 </span><span id="172" class="l"><a href="#172">172 </a></span></code></pre>
@@ -267,6 +267,6 @@
 	</div>
 </div>
 <script src="resources/combined.js?8ba30714058958397a410a3e9b7b958aa84f7267"></script>
-<script src="elementlist.js?e53f9278f26cb08a248288fbfbfdb50f965fb5a4"></script>
+<script src="elementlist.js?e54f349e3b90b1699464391f5472b6e1e25638fc"></script>
 </body>
 </html>
