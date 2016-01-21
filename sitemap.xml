@@ -4,23 +4,53 @@
     
     <url>
      <loc>None/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <lastmod>2016-01-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/usage/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <loc>None/getting-started/</loc>
+     <lastmod>2016-01-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
 
     
     <url>
-     <loc>None/data/</loc>
-     <lastmod>2016-01-12</lastmod>
+     <loc>None/example-data/</loc>
+     <lastmod>2016-01-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+        
+    <url>
+     <loc>None/classes/client/</loc>
+     <lastmod>2016-01-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/classes/database/</loc>
+     <lastmod>2016-01-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>None/classes/collection/</loc>
+     <lastmod>2016-01-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+    <url>
+     <loc>None/api/</loc>
+     <lastmod>2016-01-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

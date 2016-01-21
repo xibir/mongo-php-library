@@ -156,7 +156,7 @@ ArrayObject
 
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Model.BSONDocument.html#9-40" title="Go to source code">Model/BSONDocument.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Model.BSONDocument.html#9-69" title="Go to source code">Model/BSONDocument.php</a>
 		<br>
 	</div>
 
@@ -165,6 +165,87 @@ ArrayObject
 		<div class="panel panel-default">
 			<div class="panel-heading"><h2>Methods summary</h2></div>
 			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#19-30" title="Go to source code">__construct</a>( <span> <var>$input</var> = []</span>, <span> <var>$flags</var> = MongoDB\Model\ArrayObject::ARRAY_AS_PROPS</span>, <span> <var>$iterator_class</var> = <span class="php-quote">'ArrayIterator'</span></span> )</code>
+
+			<div class="description short">
+				<p>Constructor.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Constructor.</p>
+
+<p>This overrides the parent constructor to allow property access of entries
+by default.</p>
+
+
+
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/arrayobject.construct<br>
+					</div>
+
+					<h4>Overrides</h4>
+					<div class="list"><code>ArrayObject::__construct</code></div>
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="__set_state" id="___set_state">
+
+			<td class="attributes"><code>
+				 public static
+				<code><a href="class-MongoDB.Model.BSONDocument.html">MongoDB\Model\BSONDocument</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___set_state">#</a>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#32-46" title="Go to source code">__set_state</a>( <span>array <var>$properties</var></span> )</code>
+
+			<div class="description short">
+				<p>Factory method for var_export().</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Factory method for var_export().</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$properties</var></dt>
+						<dd></dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Model.BSONDocument.html">MongoDB\Model\BSONDocument</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.magic#object.set-state<br>
+							http://php.net/var-export<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="bsonSerialize" id="_bsonSerialize">
 
 			<td class="attributes"><code>
@@ -176,7 +257,7 @@ ArrayObject
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bsonSerialize">#</a>
-			<code><a href="source-class-MongoDB.Model.BSONDocument.html#19-28" title="Go to source code">bsonSerialize</a>( )</code>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#48-57" title="Go to source code">bsonSerialize</a>( )</code>
 
 			<div class="description short">
 				<p>Serialize the document to BSON.</p>
@@ -215,7 +296,7 @@ ArrayObject
 
 			<td class="name"><div>
 			<a class="anchor" href="#_bsonUnserialize">#</a>
-			<code><a href="source-class-MongoDB.Model.BSONDocument.html#30-39" title="Go to source code">bsonUnserialize</a>( <span>array <var>$data</var></span> )</code>
+			<code><a href="source-class-MongoDB.Model.BSONDocument.html#59-68" title="Go to source code">bsonUnserialize</a>( <span>array <var>$data</var></span> )</code>
 
 			<div class="description short">
 				<p>Unserialize the document to BSON.</p>
@@ -250,7 +331,6 @@ ArrayObject
 		<div class="panel panel-default">
 	        <div class="panel-heading"><h3>Methods inherited from ArrayObject</h3></div>
 			<p class="elementList">
-				<code>__construct()</code>, 
 				<code>append()</code>, 
 				<code>asort()</code>, 
 				<code>count()</code>, 

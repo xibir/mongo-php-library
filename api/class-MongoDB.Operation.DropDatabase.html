@@ -155,7 +155,7 @@
 				http://docs.mongodb.org/manual/reference/command/dropDatabase/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.DropDatabase.html#8-43" title="Go to source code">Operation/DropDatabase.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.DropDatabase.html#9-55" title="Go to source code">Operation/DropDatabase.php</a>
 		<br>
 	</div>
 
@@ -175,7 +175,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.DropDatabase.html#20-28" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.DropDatabase.html#22-36" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a dropDatabase command.</p>
@@ -189,6 +189,8 @@
 					<div class="list"><dl>
 						<dt><var>$databaseName</var></dt>
 						<dd>Database name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Command options</dd>
 					</dl></div>
 
 
@@ -202,14 +204,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				object
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.DropDatabase.html#30-42" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.DropDatabase.html#38-54" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>
@@ -227,7 +229,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						object<br>Command result document
+						array|object<br>Command result document
 					</div>
 
 

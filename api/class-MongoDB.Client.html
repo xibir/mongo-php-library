@@ -118,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Client.html#15-144" title="Go to source code">Client.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Client.html#15-167" title="Go to source code">Client.php</a>
 		<br>
 	</div>
 
@@ -138,7 +138,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Client.html#21-59" title="Go to source code">__construct</a>( <span>string <var>$uri</var> = <span class="php-quote">'mongodb://localhost:27017'</span></span>, <span>array <var>$uriOptions</var> = []</span>, <span>array <var>$driverOptions</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#27-59" title="Go to source code">__construct</a>( <span>string <var>$uri</var> = <span class="php-quote">'mongodb://localhost:27017'</span></span>, <span>array <var>$uriOptions</var> = []</span>, <span>array <var>$driverOptions</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a new Client instance.</p>
@@ -217,6 +217,53 @@ databases and collections.</p>
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="__get" id="___get">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-MongoDB.Database.html">MongoDB\Database</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___get">#</a>
+			<code><a href="source-class-MongoDB.Client.html#76-91" title="Go to source code">__get</a>( <span>string <var>$databaseName</var></span> )</code>
+
+			<div class="description short">
+				<p>Select a database.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Select a database.</p>
+
+<p>Note: collections whose names contain special characters (e.g. "-") may
+be selected with complex syntax (e.g. $client->{"that-database"}) or
+<code><a href="class-MongoDB.Client.html#_selectDatabase">MongoDB\Client::selectDatabase()</a></code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$databaseName</var></dt>
+						<dd>Name of the database to select</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Database.html">MongoDB\Database</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.overloading#object.get<br>
+							http://php.net/types.string#language.types.string.parsing.complex<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="__toString" id="___toString">
 
 			<td class="attributes"><code>
@@ -228,7 +275,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#___toString">#</a>
-			<code><a href="source-class-MongoDB.Client.html#76-84" title="Go to source code">__toString</a>( )</code>
+			<code><a href="source-class-MongoDB.Client.html#93-101" title="Go to source code">__toString</a>( )</code>
 
 			<div class="description short">
 				<p>Return the connection string (i.e. URI).</p>
@@ -250,14 +297,14 @@ databases and collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				object
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropDatabase">#</a>
-			<code><a href="source-class-MongoDB.Client.html#86-98" title="Go to source code">dropDatabase</a>( <span>string <var>$databaseName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#103-121" title="Go to source code">dropDatabase</a>( <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Drop a database.</p>
@@ -270,15 +317,21 @@ databases and collections.</p>
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$databaseName</var></dt>
-						<dd></dd>
+						<dd>Database name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						object<br>Command result document
+						array|object<br>Command result document
 					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							DropDatabase::__construct() for supported options<br>
+					</div>
 
 
 			</div>
@@ -295,7 +348,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listDatabases">#</a>
-			<code><a href="source-class-MongoDB.Client.html#100-112" title="Go to source code">listDatabases</a>( <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#123-135" title="Go to source code">listDatabases</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>List databases.</p>
@@ -332,7 +385,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectCollection">#</a>
-			<code><a href="source-class-MongoDB.Client.html#114-128" title="Go to source code">selectCollection</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#137-151" title="Go to source code">selectCollection</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Select a collection.</p>
@@ -378,7 +431,7 @@ databases and collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectDatabase">#</a>
-			<code><a href="source-class-MongoDB.Client.html#130-143" title="Go to source code">selectDatabase</a>( <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Client.html#153-166" title="Go to source code">selectDatabase</a>( <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Select a database.</p>

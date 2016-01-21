@@ -155,7 +155,7 @@
 				http://docs.mongodb.org/manual/reference/command/drop/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.DropCollection.html#9-60" title="Go to source code">Operation/DropCollection.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.DropCollection.html#10-78" title="Go to source code">Operation/DropCollection.php</a>
 		<br>
 	</div>
 
@@ -175,7 +175,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.DropCollection.html#23-33" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.DropCollection.html#26-47" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a drop command.</p>
@@ -184,6 +184,9 @@
 			<div class="description detailed hidden">
 				<p>Constructs a drop command.</p>
 
+<p>Supported options:
+ * typeMap (array): Type map for BSON deserialization. This will be used for the returned command result document.</p>
+
 
 					<h4>Parameters</h4>
 					<div class="list"><dl>
@@ -191,6 +194,8 @@
 						<dd>Database name</dd>
 						<dt><var>$collectionName</var></dt>
 						<dd>Collection name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Command options</dd>
 					</dl></div>
 
 
@@ -204,14 +209,14 @@
 
 			<td class="attributes"><code>
 				 public 
-				object
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.DropCollection.html#35-59" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.DropCollection.html#49-77" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>
@@ -229,7 +234,7 @@
 
 					<h4>Returns</h4>
 					<div class="list">
-						object<br>Command result document
+						array|object<br>Command result document
 					</div>
 
 

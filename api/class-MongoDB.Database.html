@@ -118,7 +118,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Database.html#21-242" title="Go to source code">Database.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Database.html#21-281" title="Go to source code">Database.php</a>
 		<br>
 	</div>
 
@@ -138,7 +138,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Database.html#30-85" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#36-91" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs new Database instance.</p>
@@ -189,7 +189,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#___debugInfo">#</a>
-			<code><a href="source-class-MongoDB.Database.html#87-103" title="Go to source code">__debugInfo</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#93-109" title="Go to source code">__debugInfo</a>( )</code>
 
 			<div class="description short">
 				<p>Return internal properties for debugging purposes.</p>
@@ -211,6 +211,53 @@ as a gateway for accessing collections.</p>
 			</div>
 			</div></td>
 		</tr>
+		<tr data-order="__get" id="___get">
+
+			<td class="attributes"><code>
+				 public 
+				<code><a href="class-MongoDB.Collection.html">MongoDB\Collection</a></code>
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___get">#</a>
+			<code><a href="source-class-MongoDB.Database.html#111-126" title="Go to source code">__get</a>( <span>string <var>$collectionName</var></span> )</code>
+
+			<div class="description short">
+				<p>Select a collection within this database.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Select a collection within this database.</p>
+
+<p>Note: collections whose names contain special characters (e.g. ".") may
+be selected with complex syntax (e.g. $database->{"system.profile"}) or
+<code><a href="class-MongoDB.Database.html#_selectCollection">MongoDB\Database::selectCollection()</a></code>.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$collectionName</var></dt>
+						<dd>Name of the collection to select</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Collection.html">MongoDB\Collection</a></code>
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							http://php.net/oop5.overloading#object.get<br>
+							http://php.net/types.string#language.types.string.parsing.complex<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
 		<tr data-order="__toString" id="___toString">
 
 			<td class="attributes"><code>
@@ -222,7 +269,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#___toString">#</a>
-			<code><a href="source-class-MongoDB.Database.html#105-113" title="Go to source code">__toString</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#128-136" title="Go to source code">__toString</a>( )</code>
 
 			<div class="description short">
 				<p>Return the database name.</p>
@@ -251,7 +298,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_command">#</a>
-			<code><a href="source-class-MongoDB.Database.html#115-134" title="Go to source code">command</a>( <span>array|object <var>$command</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#138-161" title="Go to source code">command</a>( <span>array|object <var>$command</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Execute a command on this database.</p>
@@ -299,7 +346,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_createCollection">#</a>
-			<code><a href="source-class-MongoDB.Database.html#136-150" title="Go to source code">createCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#163-177" title="Go to source code">createCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Create a new collection explicitly.</p>
@@ -336,14 +383,14 @@ as a gateway for accessing collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				object
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_drop">#</a>
-			<code><a href="source-class-MongoDB.Database.html#152-163" title="Go to source code">drop</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#179-196" title="Go to source code">drop</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Drop this database.</p>
@@ -353,13 +400,22 @@ as a gateway for accessing collections.</p>
 				<p>Drop this database.</p>
 
 
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
+					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						object<br>Command result document
+						array|object<br>Command result document
 					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							DropDatabase::__construct() for supported options<br>
+					</div>
 
 
 			</div>
@@ -369,14 +425,14 @@ as a gateway for accessing collections.</p>
 
 			<td class="attributes"><code>
 				 public 
-				object
+				array|object
 				
 				</code>
 			</td>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_dropCollection">#</a>
-			<code><a href="source-class-MongoDB.Database.html#165-177" title="Go to source code">dropCollection</a>( <span>string <var>$collectionName</var></span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#198-216" title="Go to source code">dropCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Drop a collection within this database.</p>
@@ -389,15 +445,21 @@ as a gateway for accessing collections.</p>
 					<h4>Parameters</h4>
 					<div class="list"><dl>
 						<dt><var>$collectionName</var></dt>
-						<dd></dd>
+						<dd>Collection name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
 					</dl></div>
 
 					<h4>Returns</h4>
 					<div class="list">
-						object<br>Command result document
+						array|object<br>Command result document
 					</div>
 
 
+					<h4>See</h4>
+					<div class="list">
+							DropCollection::__construct() for supported options<br>
+					</div>
 
 
 			</div>
@@ -414,7 +476,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDatabaseName">#</a>
-			<code><a href="source-class-MongoDB.Database.html#179-187" title="Go to source code">getDatabaseName</a>( )</code>
+			<code><a href="source-class-MongoDB.Database.html#218-226" title="Go to source code">getDatabaseName</a>( )</code>
 
 			<div class="description short">
 				<p>Returns the database name.</p>
@@ -447,7 +509,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listCollections">#</a>
-			<code><a href="source-class-MongoDB.Database.html#189-202" title="Go to source code">listCollections</a>( <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#228-241" title="Go to source code">listCollections</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Returns information for all collections in this database.</p>
@@ -489,7 +551,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_selectCollection">#</a>
-			<code><a href="source-class-MongoDB.Database.html#204-222" title="Go to source code">selectCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#243-261" title="Go to source code">selectCollection</a>( <span>string <var>$collectionName</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Select a collection within this database.</p>
@@ -533,7 +595,7 @@ as a gateway for accessing collections.</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_withOptions">#</a>
-			<code><a href="source-class-MongoDB.Database.html#224-241" title="Go to source code">withOptions</a>( <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Database.html#263-280" title="Go to source code">withOptions</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Get a clone of this database with different options.</p>
