@@ -102,13 +102,13 @@
         }, 
         {
             "location": "/api/", 
-            "text": "API", 
+            "text": "API Documentation", 
             "title": "API Documentation"
         }, 
         {
-            "location": "/api/#api", 
+            "location": "/api/#api-documentation", 
             "text": "", 
-            "title": "API"
+            "title": "API Documentation"
         }
     ]
 }
