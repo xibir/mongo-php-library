@@ -1,377 +1,117 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>API Documentation - MongoDB PHP library</title>
-  
+	<meta charset="utf-8">
 
-  <link rel="shortcut icon" href="../img/favicon.ico">
+	<title>MongoDB PHP library</title>
 
-  
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
 
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
-
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "API Documentation";
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
-  <script src="../pretty.js"></script>
-
-  
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MongoDB PHP library</a>
+			</div>
+			<div class="collapse navbar-collapse">
 
-  <div class="wy-grid-for-nav">
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search" autofocus>
+					</div>
+				</form>
 
-    
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> MongoDB PHP library</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
-</div>
-      </div>
+				<ul class="nav navbar-nav">
+					<li>
+<span>Namespace</span>					</li>
+					<li>
+<span>Class</span>					</li>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        <ul class="current">
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="..">Home</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../getting-started/">Getting Started</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../example-data/">Example Data</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <ul class="subnav">
-    <li><span>Classes</span></li>
+					<li class="divider-vertical"></li>
 
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../classes/client/">Client</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../classes/database/">Database</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../classes/collection/">Collection</a>
-        
-    </li>
-
-        
-    </ul>
-<li>
-          
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">API Documentation</a>
-        
-            <ul>
-            
-            </ul>
-        
-    </li>
-<li>
-          
-        </ul>
-      </div>
-      &nbsp;
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">MongoDB PHP library</a>
-      </nav>
-
-      
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>API Documentation</li>
-    <li class="wy-breadcrumbs-aside">
-      
-        
-          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github"> Edit on GitHub</a>
-        
-      
-    </li>
-  </ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section">
-              
-                <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<p><title>API Documentation - MongoDB PHP library</title></p>
-<p><link rel="shortcut icon" href="../img/favicon.ico"></p>
-<p><link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'></p>
-<p><link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css"></p>
-<p><script>
-    // Current page data
-    var mkdocs_page_name = &ldquo;API Documentation&rdquo;;
-  </script></p>
-<p><script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script> 
-  <script src="../pretty.js"></script></p>
-<p></head></p>
-<p><body class="wy-body-for-nav" role="document"></p>
-<div class="wy-grid-for-nav">
-
-<pre><code>&lt;nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav"&gt;
-  &lt;div class="wy-side-nav-search"&gt;
-    &lt;a href=".." class="icon icon-home"&gt; MongoDB PHP library&lt;/a&gt;
-    &lt;div role="search"&gt;
-</code></pre>
-<p><form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
-  </form>
-</div>
-      </div></p>
-<pre><code>  &lt;div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation"&gt;
-    &lt;ul class="current"&gt;
-
-        &lt;li&gt;
-&lt;li class="toctree-l1 "&gt;
-    &lt;a class="" href=".."&gt;Home&lt;/a&gt;
-
-&lt;/li&gt;
-</code></pre>
-<li>
-
-<pre><code>        &lt;li&gt;
-&lt;li class="toctree-l1 "&gt;
-    &lt;a class="" href="../getting-started/"&gt;Getting Started&lt;/a&gt;
-
-&lt;/li&gt;
-</code></pre>
-<li>
-
-<pre><code>        &lt;li&gt;
-&lt;li class="toctree-l1 "&gt;
-    &lt;a class="" href="../example-data/"&gt;Example Data&lt;/a&gt;
-
-&lt;/li&gt;
-</code></pre>
-<li>
-
-<pre><code>        &lt;li&gt;
-&lt;ul class="subnav"&gt;
-&lt;li&gt;&lt;span&gt;Classes&lt;/span&gt;&lt;/li&gt;
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
 
 
 
-&lt;li class="toctree-l1 "&gt;
-    &lt;a class="" href="../classes/client/"&gt;Client&lt;/a&gt;
+				</ul>
+			</div>
+		</div>
+	</nav>
 
-&lt;/li&gt;
+	<div id="left">
+	<div id="menu">
 
-
-
-&lt;li class="toctree-l1 "&gt;
-    &lt;a class="" href="../classes/database/"&gt;Database&lt;/a&gt;
-
-&lt;/li&gt;
-
-
-
-&lt;li class="toctree-l1 "&gt;
-    &lt;a class="" href="../classes/collection/"&gt;Collection&lt;/a&gt;
-
-&lt;/li&gt;
-
-
-&lt;/ul&gt;
-</code></pre>
-<li>
-
-<pre><code>        &lt;li&gt;
-&lt;li class="toctree-l1 current"&gt;
-    &lt;a class="current" href="./"&gt;API Documentation&lt;/a&gt;
-
-        &lt;ul&gt;
-
-            &lt;li class="toctree-l3"&gt;&lt;a href="#api-documentation"&gt;API Documentation&lt;/a&gt;&lt;/li&gt;
-
-
-        &lt;/ul&gt;
-
-&lt;/li&gt;
-</code></pre>
-<li>
-
-<pre><code>    &lt;/ul&gt;
-  &lt;/div&gt;
-  &amp;nbsp;
-&lt;/nav&gt;
-
-&lt;section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"&gt;
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li>
+						<a href="namespace-MongoDB.html">
+							MongoDB<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-MongoDB.Exception.html">
+							Exception						</a>
+							</li>
+					<li>
+						<a href="namespace-MongoDB.Model.html">
+							Model						</a>
+							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
+								</ul></li>
+			</ul>
+		</div>
 
 
-  &lt;nav class="wy-nav-top" role="navigation" aria-label="top navigation"&gt;
-    &lt;i data-toggle="wy-nav-top" class="fa fa-bars"&gt;&lt;/i&gt;
-    &lt;a href=".."&gt;MongoDB PHP library&lt;/a&gt;
-  &lt;/nav&gt;
+		<div id="elements">
 
 
-  &lt;div class="wy-nav-content"&gt;
-    &lt;div class="rst-content"&gt;
-      &lt;div role="navigation" aria-label="breadcrumbs navigation"&gt;
-</code></pre>
-<p><ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li></p>
-<pre><code>&lt;li&gt;API Documentation&lt;/li&gt;
-&lt;li class="wy-breadcrumbs-aside"&gt;
 
 
-      &lt;a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github"&gt; Edit on GitHub&lt;/a&gt;
 
-
-&lt;/li&gt;
-</code></pre>
-<p></ul>
-  <hr/>
-</div>
-          <div role="main">
-            <div class="section"></p>
-<pre><code>            &lt;h1 id="api-documentation"&gt;API Documentation&lt;a class="headerlink" href="#api-documentation" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h1&gt;
-
-        &lt;/div&gt;
-      &lt;/div&gt;
-      &lt;footer&gt;
-
-&lt;div class="rst-footer-buttons" role="navigation" aria-label="footer navigation"&gt;
-
-
-    &lt;a href="../classes/collection/" class="btn btn-neutral" title="Collection"&gt;&lt;span class="icon icon-circle-arrow-left"&gt;&lt;/span&gt; Previous&lt;/a&gt;
-
-&lt;/div&gt;
-</code></pre>
-<hr/>
-
-<p><div role="contentinfo">
-    <!-- Copyright etc --></p>
+		</div>
+	</div>
 </div>
 
-<p>Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer></p>
-<pre><code>    &lt;/div&gt;
-  &lt;/div&gt;
+<div id="splitter"></div>
 
-&lt;/section&gt;
-</code></pre>
+<div id="right">
+	<div id="rightInner">
+<div id="content">
+	<h1>MongoDB PHP library</h1>
+
+
+		<div class="panel panel-default">
+            <div class="panel-heading"><h2>Namespaces summary</h2></div>
+			<table class="summary table table-bordered table-striped" id="namespaces">
+			</table>
+		</div>
+
+
+
+
+
+
+
+
 </div>
+	</div>
 
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-
-          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-
-
-        <span><a href="../classes/collection/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-
-
-    </span>
+	<div id="footer">
+		MongoDB PHP library API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
 </div>
-
-<p></body>
-</html></p>
-              
-            </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="../classes/collection/" class="btn btn-neutral" title="Collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
-  </div>
-
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
-</footer>
-	  
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-<div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../classes/collection/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-    </span>
-</div>
-
+<script src="resources/combined.js?8ba30714058958397a410a3e9b7b958aa84f7267"></script>
+<script src="elementlist.js?e54f349e3b90b1699464391f5472b6e1e25638fc"></script>
 </body>
 </html>
