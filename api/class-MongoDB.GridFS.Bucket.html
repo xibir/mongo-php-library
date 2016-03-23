@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>Class MongoDB\GridFS\Bucket | MongoDB PHP library</title>
+
+	<link rel="stylesheet" href="resources/bootstrap.min.css?973e37a8502921d56bc02bb55321f45b072b6f71">
+	<link rel="stylesheet" href="resources/style.css?49f43d3208c5d7e33fa16d36107a345bf11cc00d">
+
+</head>
+
+<body>
+	<nav id="navigation" class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">MongoDB PHP library</a>
+			</div>
+			<div class="collapse navbar-collapse">
+
+                <form id="search" class="navbar-form navbar-left" role="search">
+                    <input type="hidden" name="cx" value="">
+                    <input type="hidden" name="ie" value="UTF-8">
+                    <div class="form-group">
+                        <input type="text" name="q" class="search-query form-control" placeholder="Search">
+					</div>
+				</form>
+
+				<ul class="nav navbar-nav">
+					<li>
+						<a href="namespace-MongoDB.GridFS.html" title="Summary of MongoDB\GridFS"><span>Namespace</span></a>
+					</li>
+					<li class="active">
+<span>Class</span>					</li>
+
+					<li class="divider-vertical"></li>
+
+					<li>
+						<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+					</li>
+
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div id="left">
+	<div id="menu">
+
+		<div id="groups">
+				<h3>Namespaces</h3>
+			<ul>
+					<li class="active">
+						<a href="namespace-MongoDB.html">
+							MongoDB<span></span>
+						</a>
+							<ul>
+					<li>
+						<a href="namespace-MongoDB.Exception.html">
+							Exception						</a>
+							</li>
+					<li class="active">
+						<a href="namespace-MongoDB.GridFS.html">
+							GridFS						</a>
+							</li>
+					<li>
+						<a href="namespace-MongoDB.Model.html">
+							Model						</a>
+							</li>
+					<li>
+						<a href="namespace-MongoDB.Operation.html">
+							Operation						</a>
+							</li>
+								</ul></li>
+			</ul>
+		</div>
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-MongoDB.GridFS.Bucket.html">Bucket</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+	<div id="rightInner">
+<div id="content" class="class">
+	<h1>Class Bucket</h1>
+
+
+	<div class="description">
+	<p>Bucket provides a public API for interacting with the GridFS files and chunks
+collections.</p>
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="alert alert-info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a>\<a href="namespace-MongoDB.GridFS.html">GridFS</a><br>
+		
+
+				<b>Api</b>
+				<br>
+			<b>Located at</b> <a href="source-class-MongoDB.GridFS.Bucket.html#12-367" title="Go to source code">GridFS/Bucket.php</a>
+		<br>
+	</div>
+
+
+
+		<div class="panel panel-default">
+			<div class="panel-heading"><h2>Methods summary</h2></div>
+			<table class="summary table table-bordered table-striped methods" id="methods">
+		<tr data-order="__construct" id="___construct">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#___construct">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#26-76" title="Go to source code">__construct</a>( <span>MongoDB\Driver\Manager <var>$manager</var></span>, <span>string <var>$databaseName</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Constructs a GridFS bucket.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Constructs a GridFS bucket.</p>
+
+<p>Supported options:
+ * bucketName (string): The bucket name, which will be used as a prefix for the files and chunks collections. Defaults to "fs".
+ * chunkSizeBytes (integer): The chunk size in bytes. Defaults to 261120 (i.e. 255 KiB).
+ * readPreference (MongoDB\Driver\ReadPreference): Read preference.
+ * writeConcern (MongoDB\Driver\WriteConcern): Write concern.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$manager</var></dt>
+						<dd>Manager instance from the driver</dd>
+						<dt><var>$databaseName</var></dt>
+						<dd>Database name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Bucket options</dd>
+					</dl></div>
+
+
+					<h4>Throws</h4>
+					<div class="list">
+						InvalidArgumentException
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="delete" id="_delete">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_delete">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#78-97" title="Go to source code">delete</a>( <span>MongoDB\BSON\ObjectId <var>$id</var></span> )</code>
+
+			<div class="description short">
+				<p>Delete a file from the GridFS bucket.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Delete a file from the GridFS bucket.</p>
+
+<p>If the files collection document is not found, this method will still
+attempt to delete orphaned chunks.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>ObjectId of the file</dd>
+					</dl></div>
+
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.GridFSFileNotFoundException.html">MongoDB\Exception\GridFSFileNotFoundException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="downloadToStream" id="_downloadToStream">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_downloadToStream">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#99-119" title="Go to source code">downloadToStream</a>( <span>MongoDB\BSON\ObjectId <var>$id</var></span>, <span>resource <var>$destination</var></span> )</code>
+
+			<div class="description short">
+				<p>Writes the contents of a GridFS file to a writable stream.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Writes the contents of a GridFS file to a writable stream.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>ObjectId of the file</dd>
+						<dt><var>$destination</var></dt>
+						<dd>Writable Stream</dd>
+					</dl></div>
+
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.GridFSFileNotFoundException.html">MongoDB\Exception\GridFSFileNotFoundException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="downloadToStreamByName" id="_downloadToStreamByName">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_downloadToStreamByName">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#121-151" title="Go to source code">downloadToStreamByName</a>( <span>string <var>$filename</var></span>, <span>resource <var>$destination</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Writes the contents of a GridFS file, which is selected by name and
+revision, to a writable stream.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Writes the contents of a GridFS file, which is selected by name and
+revision, to a writable stream.</p>
+
+<p>Supported options:
+ * revision (integer): Which revision (i.e. documents with the same filename and different uploadDate) of the file to retrieve. Defaults to -1 (i.e. the most recent revision).</p>
+
+<p>Revision numbers are defined as follows:
+ * 0 = the original stored file * 1 = the first revision * 2 = the second revision * etc… * -2 = the second most recent revision * -1 = the most recent revision</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd>File name</dd>
+						<dt><var>$destination</var></dt>
+						<dd>Writable Stream</dd>
+						<dt><var>$options</var></dt>
+						<dd>Download options</dd>
+					</dl></div>
+
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.GridFSFileNotFoundException.html">MongoDB\Exception\GridFSFileNotFoundException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="drop" id="_drop">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_drop">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#154-161" title="Go to source code">drop</a>( )</code>
+
+			<div class="description short">
+				<p>Drops the files and chunks collection associated with GridFS this bucket</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Drops the files and chunks collection associated with GridFS this bucket</p>
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="find" id="_find">
+
+			<td class="attributes"><code>
+				 public 
+				MongoDB\Driver\Cursor
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_find">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#163-174" title="Go to source code">find</a>( <span>array|object <var>$filter</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Find files from the GridFS bucket's files collection.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Find files from the GridFS bucket's files collection.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filter</var></dt>
+						<dd>Query by which to filter documents</dd>
+						<dt><var>$options</var></dt>
+						<dd>Additional options</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						MongoDB\Driver\Cursor
+					</div>
+
+
+					<h4>See</h4>
+					<div class="list">
+							Find::__construct() for supported options<br>
+					</div>
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getCollectionsWrapper" id="_getCollectionsWrapper">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getCollectionsWrapper">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#176-179" title="Go to source code">getCollectionsWrapper</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getDatabaseName" id="_getDatabaseName">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getDatabaseName">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#181-184" title="Go to source code">getDatabaseName</a>( )</code>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+
+
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="getIdFromStream" id="_getIdFromStream">
+
+			<td class="attributes"><code>
+				 public 
+				mixed
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_getIdFromStream">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#186-201" title="Go to source code">getIdFromStream</a>( <span>resource <var>$stream</var></span> )</code>
+
+			<div class="description short">
+				<p>Gets the ID of the GridFS file associated with a stream.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Gets the ID of the GridFS file associated with a stream.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$stream</var></dt>
+						<dd>GridFS stream</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						mixed
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="openDownloadStream" id="_openDownloadStream">
+
+			<td class="attributes"><code>
+				 public 
+				resource
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_openDownloadStream">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#203-222" title="Go to source code">openDownloadStream</a>( <span>MongoDB\BSON\ObjectId <var>$id</var></span> )</code>
+
+			<div class="description short">
+				<p>Opens a readable stream for reading a GridFS file.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Opens a readable stream for reading a GridFS file.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>ObjectId of the file</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						resource
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.GridFSFileNotFoundException.html">MongoDB\Exception\GridFSFileNotFoundException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="openDownloadStreamByName" id="_openDownloadStreamByName">
+
+			<td class="attributes"><code>
+				 public 
+				resource
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_openDownloadStreamByName">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#224-254" title="Go to source code">openDownloadStreamByName</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Opens a readable stream stream to read a GridFS file, which is selected
+by name and revision.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Opens a readable stream stream to read a GridFS file, which is selected
+by name and revision.</p>
+
+<p>Supported options:
+ * revision (integer): Which revision (i.e. documents with the same filename and different uploadDate) of the file to retrieve. Defaults to -1 (i.e. the most recent revision).</p>
+
+<p>Revision numbers are defined as follows:
+ * 0 = the original stored file * 1 = the first revision * 2 = the second revision * etc… * -2 = the second most recent revision * -1 = the most recent revision</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd>File name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Download options</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						resource
+					</div>
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.GridFSFileNotFoundException.html">MongoDB\Exception\GridFSFileNotFoundException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="openUploadStream" id="_openUploadStream">
+
+			<td class="attributes"><code>
+				 public 
+				resource
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_openUploadStream">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#256-280" title="Go to source code">openUploadStream</a>( <span>string <var>$filename</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Opens a writable stream for writing a GridFS file.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Opens a writable stream for writing a GridFS file.</p>
+
+<p>Supported options:
+ * chunkSizeBytes (integer): The chunk size in bytes. Defaults to the bucket's chunk size.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd>File name</dd>
+						<dt><var>$options</var></dt>
+						<dd>Stream options</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						resource
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="rename" id="_rename">
+
+			<td class="attributes"><code>
+				 public 
+				
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_rename">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#282-296" title="Go to source code">rename</a>( <span>MongoDB\BSON\ObjectId <var>$id</var></span>, <span>string <var>$newFilename</var></span> )</code>
+
+			<div class="description short">
+				<p>Renames the GridFS file with the specified ID.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Renames the GridFS file with the specified ID.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$id</var></dt>
+						<dd>ID of the file to rename</dd>
+						<dt><var>$newFilename</var></dt>
+						<dd>New file name</dd>
+					</dl></div>
+
+
+					<h4>Throws</h4>
+					<div class="list">
+						<code><a href="class-MongoDB.Exception.GridFSFileNotFoundException.html">MongoDB\Exception\GridFSFileNotFoundException</a></code>
+					</div>
+
+
+
+			</div>
+			</div></td>
+		</tr>
+		<tr data-order="uploadFromStream" id="_uploadFromStream">
+
+			<td class="attributes"><code>
+				 public 
+				MongoDB\BSON\ObjectId
+				
+				</code>
+			</td>
+
+			<td class="name"><div>
+			<a class="anchor" href="#_uploadFromStream">#</a>
+			<code><a href="source-class-MongoDB.GridFS.Bucket.html#298-317" title="Go to source code">uploadFromStream</a>( <span>string <var>$filename</var></span>, <span>resource <var>$source</var></span>, <span>array <var>$options</var> = []</span> )</code>
+
+			<div class="description short">
+				<p>Writes the contents of a readable stream to a GridFS file.</p>
+			</div>
+
+			<div class="description detailed hidden">
+				<p>Writes the contents of a readable stream to a GridFS file.</p>
+
+<p>Supported options:
+ * chunkSizeBytes (integer): The chunk size in bytes. Defaults to the bucket's chunk size.</p>
+
+
+					<h4>Parameters</h4>
+					<div class="list"><dl>
+						<dt><var>$filename</var></dt>
+						<dd>File name</dd>
+						<dt><var>$source</var></dt>
+						<dd>Readable stream</dd>
+						<dt><var>$options</var></dt>
+						<dd>Stream options</dd>
+					</dl></div>
+
+					<h4>Returns</h4>
+					<div class="list">
+						MongoDB\BSON\ObjectId
+					</div>
+
+
+
+
+			</div>
+			</div></td>
+		</tr>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+	</div>
+
+	<div id="footer">
+		MongoDB PHP library API documentation generated by <a href="http://apigen.org">ApiGen</a>
+	</div>
+</div>
+<script src="resources/combined.js"></script>
+<script src="elementlist.js"></script>
+</body>
+</html>
