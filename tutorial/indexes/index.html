@@ -188,7 +188,7 @@ indexes work in MongoDB may be found in the <a href="https://docs.mongodb.org/ma
 <p>Indexes may be created via the
 <a href="../../classes/collection/#createindex">createIndex()</a> and
 <a href="../../classes/collection/#createindexes">createIndexes()</a> methods. The following
-example creates a single-field on the &ldquo;state&rdquo; field:</p>
+example creates a single-field index on the &ldquo;state&rdquo; field:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -204,7 +204,54 @@ something similar to:</p>
 <pre><code>string(7) &quot;state_1&quot;
 </code></pre>
 
+<h3 id="enumerating-indexes">Enumerating Indexes<a class="headerlink" href="#enumerating-indexes" title="Permanent link">&para;</a></h3>
+<p>Information about indexes in a collection may be obtained via the
+<a href="../../classes/collection/#listindexes">listIndexes()</a> method, which returns an
+iterator of MongoDB\Model\IndexInfo objects. The following examples queries a
+collection for its indexes:</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+
+foreach ($collection-&gt;listIndexes() as $indexInfo) {
+    var_dump($indexInfo);
+}
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\IndexInfo)#10 (4) {
+  [&quot;v&quot;]=&gt;
+  int(1)
+  [&quot;key&quot;]=&gt;
+  array(1) {
+    [&quot;_id&quot;]=&gt;
+    int(1)
+  }
+  [&quot;name&quot;]=&gt;
+  string(4) &quot;_id_&quot;
+  [&quot;ns&quot;]=&gt;
+  string(9) &quot;demo.zips&quot;
+}
+object(MongoDB\Model\IndexInfo)#13 (4) {
+  [&quot;v&quot;]=&gt;
+  int(1)
+  [&quot;key&quot;]=&gt;
+  array(1) {
+    [&quot;state&quot;]=&gt;
+    int(1)
+  }
+  [&quot;name&quot;]=&gt;
+  string(7) &quot;state_1&quot;
+  [&quot;ns&quot;]=&gt;
+  string(9) &quot;demo.zips&quot;
+}
+</code></pre>
+
 <h3 id="dropping-indexes">Dropping Indexes<a class="headerlink" href="#dropping-indexes" title="Permanent link">&para;</a></h3>
+<p>Indexes may be dropped via the
+<a href="../../classes/collection/#dropindex">dropIndex()</a> and
+<a href="../../classes/collection/#dropindexes">dropIndexes()</a> methods. The following
+example drops a single index by its name:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -223,31 +270,6 @@ var_dump($result);
     [&quot;ok&quot;]=&gt;
     float(1)
   }
-}
-</code></pre>
-
-<h3 id="enumerating-indexes">Enumerating Indexes<a class="headerlink" href="#enumerating-indexes" title="Permanent link">&para;</a></h3>
-<pre><code>/* listIndexes() returns an iterator of MongoDB\Model\IndexInfo objects */
-$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
-
-foreach ($collection-&gt;listIndexes() as $indexInfo) {
-    var_dump($indexInfo);
-}
-</code></pre>
-
-<p>The above example would output something similar to:</p>
-<pre><code>object(MongoDB\Model\IndexInfo)#4 (4) {
-  [&quot;v&quot;]=&gt;
-  int(1)
-  [&quot;key&quot;]=&gt;
-  array(1) {
-    [&quot;_id&quot;]=&gt;
-    int(1)
-  }
-  [&quot;name&quot;]=&gt;
-  string(4) &quot;_id_&quot;
-  [&quot;ns&quot;]=&gt;
-  string(9) &quot;demo.zips&quot;
 }
 </code></pre>
               
