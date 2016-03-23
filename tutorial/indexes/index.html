@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>CRUD - MongoDB PHP library</title>
+  <title>Indexes - MongoDB PHP library</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "CRUD";
+    var mkdocs_page_name = "Indexes";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -77,24 +77,24 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">CRUD</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#crud-operations">CRUD Operations</a></li>
-                
-                    <li><a class="toctree-l4" href="#querying">Querying</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../crud/">CRUD</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../indexes/">Indexes</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Indexes</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#indexes">Indexes</a></li>
+                
+                    <li><a class="toctree-l4" href="#creating-indexes">Creating Indexes</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -164,7 +164,7 @@
         
       
     
-    <li>CRUD</li>
+    <li>Indexes</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -178,112 +178,77 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="crud-operations">CRUD Operations<a class="headerlink" href="#crud-operations" title="Permanent link">&para;</a></h1>
-<p>CRUD is an acronym for Create, Read, Update, and Delete. These operations may be
-performed via the <a href="../../classes/collection/">MongoDB\Collection</a> class, which implements
-MongoDB&rsquo;s cross-driver <a href="https://github.com/mongodb/specifications/blob/master/source/crud/crud.rst">CRUD specification</a>. This page will
-demonstrate how to insert, query, update, and delete documents using the
-library. A general introduction to CRUD operations in MongoDB may be found in
-the <a href="https://docs.mongodb.org/manual/crud/">MongoDB Manual</a>.</p>
-<h2 id="querying">Querying<a class="headerlink" href="#querying" title="Permanent link">&para;</a></h2>
-<h3 id="finding-one-document">Finding One Document<a class="headerlink" href="#finding-one-document" title="Permanent link">&para;</a></h3>
-<p>The <a href="../../classes/collection/#findone">findOne()</a> method returns the first matched
-document, or null if no document was matched. By default, the library returns
-BSON documents and arrays as MongoDB\Model\BSONDocument and
-MongoDB\Model\BSONArray objects, respectively. Both of those classes extend
-PHP&rsquo;s <a href="http://php.net/arrayobject">ArrayObject</a> class.</p>
+                <h1 id="indexes">Indexes<a class="headerlink" href="#indexes" title="Permanent link">&para;</a></h1>
+<p>Indexes may be managed via the <a href="../../classes/collection/">MongoDB\Collection</a> class, which
+implements MongoDB&rsquo;s cross-driver <a href="https://github.com/mongodb/specifications/blob/master/source/index-management.rst">Index Management</a> and
+<a href="https://github.com/mongodb/specifications/blob/master/source/enumerate-indexes.rst">Enumerating Indexes</a> specifications. This page will demonstrate how
+to create, list, and drop indexes using the library. General information on how
+indexes work in MongoDB may be found in the <a href="https://docs.mongodb.org/manual/indexes/">MongoDB manual</a>.</p>
+<h2 id="creating-indexes">Creating Indexes<a class="headerlink" href="#creating-indexes" title="Permanent link">&para;</a></h2>
+<p>Indexes may be created via the
+<a href="../../classes/collection/#createindex">createIndex()</a> and
+<a href="../../classes/collection/#createindexes">createIndexes()</a> methods. The following
+example creates a single-field on the &ldquo;state&rdquo; field:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
 
-$document = $collection-&gt;findOne(['_id' =&gt; '94301']);
+$result = $collection-&gt;createIndex(['state' =&gt; 1]);
 
-var_dump($document);
+var_dump($result);
+</code></pre>
+
+<p>Creating an index will return its name, which is automatically generated from
+its specification (i.e. fields and orderings). The above example would output
+something similar to:</p>
+<pre><code>string(7) &quot;state_1&quot;
+</code></pre>
+
+<h3 id="dropping-indexes">Dropping Indexes<a class="headerlink" href="#dropping-indexes" title="Permanent link">&para;</a></h3>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+
+$result = $collection-&gt;dropIndex('state_1');
+
+var_dump($result);
 </code></pre>
 
 <p>The above example would output something similar to:</p>
-<pre><code>object(MongoDB\Model\BSONDocument)#13 (1) {
+<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
   [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
-  array(5) {
-    [&quot;_id&quot;]=&gt;
-    string(5) &quot;94301&quot;
-    [&quot;city&quot;]=&gt;
-    string(9) &quot;PALO ALTO&quot;
-    [&quot;loc&quot;]=&gt;
-    object(MongoDB\Model\BSONArray)#12 (1) {
-      [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
-      array(2) {
-        [0]=&gt;
-        float(-122.149685)
-        [1]=&gt;
-        float(37.444324)
-      }
-    }
-    [&quot;pop&quot;]=&gt;
-    int(15965)
-    [&quot;state&quot;]=&gt;
-    string(2) &quot;CA&quot;
-  }
-}
-</code></pre>
-
-<p>Most methods that read data from MongoDB support a &ldquo;typeMap&rdquo; option, which
-allows control over how BSON is converted to PHP. If desired, this option can be
-used to return everything as a PHP array, as was done in the legacy driver:</p>
-<pre><code>&lt;?php
-
-$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
-
-$document = $collection-&gt;findOne(
-    ['_id' =&gt; '94301'],
-    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array']]
-);
-
-var_dump($document);
-</code></pre>
-
-<p>The above example would output something similar to:</p>
-<pre><code>array(5) {
-  [&quot;_id&quot;]=&gt;
-  string(5) &quot;94301&quot;
-  [&quot;city&quot;]=&gt;
-  string(9) &quot;PALO ALTO&quot;
-  [&quot;loc&quot;]=&gt;
   array(2) {
-    [0]=&gt;
-    float(-122.149685)
-    [1]=&gt;
-    float(37.444324)
+    [&quot;nIndexesWas&quot;]=&gt;
+    int(2)
+    [&quot;ok&quot;]=&gt;
+    float(1)
   }
-  [&quot;pop&quot;]=&gt;
-  int(15965)
-  [&quot;state&quot;]=&gt;
-  string(2) &quot;CA&quot;
 }
 </code></pre>
 
-<h3 id="finding-many-documents">Finding Many Documents<a class="headerlink" href="#finding-many-documents" title="Permanent link">&para;</a></h3>
-<p>The <a href="../../classes/collection/#find">find()</a> method returns a
-<a href="http://php.net/mongodb-driver-cursor">MongoDB\Driver\Cursor</a> object, which may be iterated upon to access all
-matched documents.</p>
-<pre><code>&lt;?php
-
+<h3 id="enumerating-indexes">Enumerating Indexes<a class="headerlink" href="#enumerating-indexes" title="Permanent link">&para;</a></h3>
+<pre><code>/* listIndexes() returns an iterator of MongoDB\Model\IndexInfo objects */
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
 
-$cursor = $collection-&gt;find(['city' =&gt; 'JERSEY CITY', 'state' =&gt; 'NJ']);
-
-foreach ($cursor as $document) {
-    echo $document['_id'], &quot;\n&quot;;
+foreach ($collection-&gt;listIndexes() as $indexInfo) {
+    var_dump($indexInfo);
 }
 </code></pre>
 
 <p>The above example would output something similar to:</p>
-<pre><code>07302
-07304
-07305
-07306
-07307
-07310
+<pre><code>object(MongoDB\Model\IndexInfo)#4 (4) {
+  [&quot;v&quot;]=&gt;
+  int(1)
+  [&quot;key&quot;]=&gt;
+  array(1) {
+    [&quot;_id&quot;]=&gt;
+    int(1)
+  }
+  [&quot;name&quot;]=&gt;
+  string(4) &quot;_id_&quot;
+  [&quot;ns&quot;]=&gt;
+  string(9) &quot;demo.zips&quot;
+}
 </code></pre>
               
             </div>
@@ -292,10 +257,10 @@ foreach ($cursor as $document) {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../indexes/" class="btn btn-neutral float-right" title="Indexes"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../example-data/" class="btn btn-neutral float-right" title="Example Data"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../upgrade-guide/" class="btn btn-neutral" title="Upgrade Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../crud/" class="btn btn-neutral" title="CRUD"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -323,10 +288,10 @@ foreach ($cursor as $document) {
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../upgrade-guide/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../crud/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../indexes/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../example-data/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -126,7 +126,7 @@
 		<b>Namespace:</b> <a href="namespace-MongoDB.html">MongoDB</a><br>
 		
 
-			<b>Located at</b> <a href="source-class-MongoDB.Collection.html#37-731" title="Go to source code">Collection.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Collection.html#37-733" title="Go to source code">Collection.php</a>
 		<br>
 	</div>
 
@@ -812,7 +812,7 @@ For example:
 
 			<td class="attributes"><code>
 				 public 
-				object|null
+				array|object|null
 				
 				</code>
 			</td>
@@ -839,7 +839,7 @@ For example:
 
 					<h4>Returns</h4>
 					<div class="list">
-						object|null
+						array|object|null
 					</div>
 
 
@@ -873,7 +873,7 @@ For example:
 			<div class="description detailed hidden">
 				<p>Finds a single document and deletes it, returning the original.</p>
 
-<p>The document to return may be null.</p>
+<p>The document to return may be null if no document matched the filter.</p>
 
 <p>Note: BSON deserialization of the returned document does not yet support
 a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
@@ -914,7 +914,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndReplace">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#498-527" title="Go to source code">findOneAndReplace</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#498-528" title="Go to source code">findOneAndReplace</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document and replaces it, returning either the original or
@@ -925,9 +925,10 @@ the replaced document.</p>
 				<p>Finds a single document and replaces it, returning either the original or
 the replaced document.</p>
 
-<p>The document to return may be null. By default, the original document is
-returned. Specify FindOneAndReplace::RETURN_DOCUMENT_AFTER for the
-"returnDocument" option to return the updated document.</p>
+<p>The document to return may be null if no document matched the filter. By
+default, the original document is returned. Specify
+FindOneAndReplace::RETURN_DOCUMENT_AFTER for the "returnDocument" option
+to return the updated document.</p>
 
 <p>Note: BSON deserialization of the returned document does not yet support
 a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
@@ -970,7 +971,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_findOneAndUpdate">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#529-558" title="Go to source code">findOneAndUpdate</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#530-560" title="Go to source code">findOneAndUpdate</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Finds a single document and updates it, returning either the original or
@@ -981,9 +982,10 @@ the updated document.</p>
 				<p>Finds a single document and updates it, returning either the original or
 the updated document.</p>
 
-<p>The document to return may be null. By default, the original document is
-returned. Specify FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the
-"returnDocument" option to return the updated document.</p>
+<p>The document to return may be null if no document matched the filter. By
+default, the original document is returned. Specify
+FindOneAndUpdate::RETURN_DOCUMENT_AFTER for the "returnDocument" option
+to return the updated document.</p>
 
 <p>Note: BSON deserialization of the returned document does not yet support
 a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
@@ -1026,7 +1028,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getCollectionName">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#560-568" title="Go to source code">getCollectionName</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#562-570" title="Go to source code">getCollectionName</a>( )</code>
 
 			<div class="description short">
 				<p>Return the collection name.</p>
@@ -1059,7 +1061,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getDatabaseName">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#570-578" title="Go to source code">getDatabaseName</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#572-580" title="Go to source code">getDatabaseName</a>( )</code>
 
 			<div class="description short">
 				<p>Return the database name.</p>
@@ -1092,7 +1094,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_getNamespace">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#580-589" title="Go to source code">getNamespace</a>( )</code>
+			<code><a href="source-class-MongoDB.Collection.html#582-591" title="Go to source code">getNamespace</a>( )</code>
 
 			<div class="description short">
 				<p>Return the collection namespace.</p>
@@ -1111,7 +1113,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 					<h4>See</h4>
 					<div class="list">
-							http://docs.mongodb.org/manual/faq/developers/#faq-dev-namespace<br>
+							https://docs.mongodb.org/manual/reference/glossary/#term-namespace<br>
 					</div>
 
 
@@ -1129,7 +1131,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insertMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#591-610" title="Go to source code">insertMany</a>( <span>array <var>$documents</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#593-612" title="Go to source code">insertMany</a>( <span>array <var>$documents</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Inserts multiple documents.</p>
@@ -1174,7 +1176,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_insertOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#612-631" title="Go to source code">insertOne</a>( <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#614-633" title="Go to source code">insertOne</a>( <span>array|object <var>$document</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Inserts one document.</p>
@@ -1219,7 +1221,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_listIndexes">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#633-645" title="Go to source code">listIndexes</a>( <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#635-647" title="Go to source code">listIndexes</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Returns information for all indexes for the collection.</p>
@@ -1256,7 +1258,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_replaceOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#647-667" title="Go to source code">replaceOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#649-669" title="Go to source code">replaceOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$replacement</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Replaces at most one document matching the filter.</p>
@@ -1303,7 +1305,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateMany">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#669-689" title="Go to source code">updateMany</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#671-691" title="Go to source code">updateMany</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Updates all documents matching the filter.</p>
@@ -1350,7 +1352,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_updateOne">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#691-711" title="Go to source code">updateOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#693-713" title="Go to source code">updateOne</a>( <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Updates at most one document matching the filter.</p>
@@ -1378,7 +1380,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 					<h4>See</h4>
 					<div class="list">
-							ReplaceOne::__construct() for supported options<br>
+							UpdateOne::__construct() for supported options<br>
 							http://docs.mongodb.org/manual/reference/command/update/<br>
 					</div>
 
@@ -1397,7 +1399,7 @@ a custom type map (depends on: https://jira.mongodb.org/browse/PHPC-314).</p>
 
 			<td class="name"><div>
 			<a class="anchor" href="#_withOptions">#</a>
-			<code><a href="source-class-MongoDB.Collection.html#713-730" title="Go to source code">withOptions</a>( <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Collection.html#715-732" title="Go to source code">withOptions</a>( <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Get a clone of this collection with different options.</p>

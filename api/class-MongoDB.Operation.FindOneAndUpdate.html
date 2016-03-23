@@ -157,7 +157,7 @@
 				http://docs.mongodb.org/manual/reference/command/findAndModify/<br>
 				<b>Api</b>
 				<br>
-			<b>Located at</b> <a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#9-115" title="Go to source code">Operation/FindOneAndUpdate.php</a>
+			<b>Located at</b> <a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#9-117" title="Go to source code">Operation/FindOneAndUpdate.php</a>
 		<br>
 	</div>
 
@@ -177,7 +177,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#___construct">#</a>
-			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#23-102" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
+			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#23-104" title="Go to source code">__construct</a>( <span>string <var>$databaseName</var></span>, <span>string <var>$collectionName</var></span>, <span>array|object <var>$filter</var></span>, <span>array|object <var>$update</var></span>, <span>array <var>$options</var> = []</span> )</code>
 
 			<div class="description short">
 				<p>Constructs a findAndModify command for updating a document.</p>
@@ -190,7 +190,7 @@
  * bypassDocumentValidation (boolean): If true, allows the write to opt out of document level validation.
  * maxTimeMS (integer): The maximum amount of time to allow the query to run.
  * projection (document): Limits the fields to return for the matching document.
- * returnDocument (enum): Whether to return the document before or after the update is applied. Must be either RETURN_DOCUMENT_BEFORE or RETURN_DOCUMENT_AFTER. The default is RETURN_DOCUMENT_BEFORE.
+ * returnDocument (enum): Whether to return the document before or after the update is applied. Must be either FindOneAndUpdate::RETURN_DOCUMENT_BEFORE or FindOneAndUpdate::RETURN_DOCUMENT_AFTER. The default is FindOneAndUpdate::RETURN_DOCUMENT_BEFORE.
  * sort (document): Determines which document the operation modifies if the query selects multiple documents.
  * upsert (boolean): When true, a new document is created if no document matches the query. The default is false.
  * writeConcern (MongoDB\Driver\WriteConcern): Write concern. This option is only supported for server versions >= 3.2.</p>
@@ -232,7 +232,7 @@
 
 			<td class="name"><div>
 			<a class="anchor" href="#_execute">#</a>
-			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#104-114" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
+			<code><a href="source-class-MongoDB.Operation.FindOneAndUpdate.html#106-116" title="Go to source code">execute</a>( <span>MongoDB\Driver\Server <var>$server</var></span> )</code>
 
 			<div class="description short">
 				<p>Execute the operation.</p>

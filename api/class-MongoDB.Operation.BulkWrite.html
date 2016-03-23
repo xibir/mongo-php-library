@@ -185,11 +185,11 @@
 				<p>Constructs a bulk write operation.</p>
 
 <p>Example array structure for all supported operation types:
- [ [ 'deleteOne'  => [ $filter ] ], [ 'deleteMany' => [ $filter ] ], [ 'insertOne'  => [ $document ] ], [ 'replaceOne' => [ $filter, $replacement, $options ] ], [ 'updateMany' => [ $filter, $update, $options ] ], [ 'updateOne'  => [ $filter, $update, $options ] ], ]</p>
+ [ [ 'deleteMany' => [ $filter ] ], [ 'deleteOne'  => [ $filter ] ], [ 'insertOne'  => [ $document ] ], [ 'replaceOne' => [ $filter, $replacement, $options ] ], [ 'updateMany' => [ $filter, $update, $options ] ], [ 'updateOne'  => [ $filter, $update, $options ] ], ]</p>
 
 <p>Arguments correspond to the respective Operation classes; however, the
 writeConcern option is specified for the top-level bulk write operation
-instead of each individual operations.</p>
+instead of each individual operation.</p>
 
 <p>Supported options for replaceOne, updateMany, and updateOne operations:
  * upsert (boolean): When true, a new document is created if no document matches the query. The default is false.</p>

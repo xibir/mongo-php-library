@@ -19,10 +19,32 @@
 
     
     <url>
-     <loc>http://mongodb.github.io/mongo-php-library/example-data/</loc>
+     <loc>http://mongodb.github.io/mongo-php-library/upgrade-guide/</loc>
      <lastmod>2016-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>
+    
+
+    
+        
+    <url>
+     <loc>http://mongodb.github.io/mongo-php-library/tutorial/crud/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://mongodb.github.io/mongo-php-library/tutorial/indexes/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>http://mongodb.github.io/mongo-php-library/tutorial/example-data/</loc>
+     <lastmod>2016-03-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
     
 
     
@@ -41,22 +63,6 @@
         
     <url>
      <loc>http://mongodb.github.io/mongo-php-library/classes/collection/</loc>
-     <lastmod>2016-03-23</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    
-
-    
-        
-    <url>
-     <loc>http://mongodb.github.io/mongo-php-library/tutorial/crud/</loc>
-     <lastmod>2016-03-23</lastmod>
-     <changefreq>daily</changefreq>
-    </url>
-        
-    <url>
-     <loc>http://mongodb.github.io/mongo-php-library/tutorial/index-management/</loc>
      <lastmod>2016-03-23</lastmod>
      <changefreq>daily</changefreq>
     </url>

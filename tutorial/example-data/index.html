@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index Management - MongoDB PHP library</title>
+  <title>Example Data - MongoDB PHP library</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -20,7 +20,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Index Management";
+    var mkdocs_page_name = "Example Data";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -66,9 +66,45 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../example-data/">Example Data</a>
+        <a class="" href="../../upgrade-guide/">Upgrade Guide</a>
         
     </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../crud/">CRUD</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../indexes/">Indexes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Example Data</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#example-data">Example Data</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
 <li>
           
             <li>
@@ -93,41 +129,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../classes/collection/">Collection</a>
-        
-    </li>
-
-        
-    </ul>
-<li>
-          
-            <li>
-    <ul class="subnav">
-    <li><span>Tutorial</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../crud/">CRUD</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Index Management</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#index-management">Index Management</a></li>
-                
-                    <li><a class="toctree-l4" href="#creating-indexes">Creating Indexes</a></li>
-                
-                    <li><a class="toctree-l4" href="#dropping-indexes">Dropping Indexes</a></li>
-                
-                    <li><a class="toctree-l4" href="#enumerating-indexes">Enumerating Indexes</a></li>
-                
-            
-            </ul>
         
     </li>
 
@@ -161,7 +162,7 @@
         
       
     
-    <li>Index Management</li>
+    <li>Example Data</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -175,64 +176,38 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="index-management">Index Management<a class="headerlink" href="#index-management" title="Permanent link">&para;</a></h1>
-<p>The Collection class implements MongoDB&rsquo;s cross-driver <a href="https://github.com/mongodb/specifications/blob/master/source/index-management.rst">Index Management</a>
-and
-<a href="https://github.com/mongodb/specifications/blob/master/source/enumerate-indexes.rst">Enumerating Indexes</a>
-specifications, which defines a common API for index-related methods.</p>
-<h3 id="creating-indexes">Creating Indexes<a class="headerlink" href="#creating-indexes" title="Permanent link">&para;</a></h3>
-<pre><code>$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+                <h1 id="example-data">Example Data<a class="headerlink" href="#example-data" title="Permanent link">&para;</a></h1>
+<p>Some examples in this documentation use example data fixtures from
+<a href="http://media.mongodb.org/zips.json">zips.json</a>. This is a dataset comprised of
+United States postal codes, populations, and geographic locations.</p>
+<p>Importing the dataset into MongoDB can be done in several ways. The following
+example uses <a href="http://php.net/mongodb">mongodb extension</a>:</p>
+<pre><code>&lt;?php
 
-$result = $collection-&gt;createIndex(['state' =&gt; 1]);
-var_dump($result);
-</code></pre>
+$file = 'http://media.mongodb.org/zips.json';
+$zips = file($file, FILE_IGNORE_NEW_LINES);
 
-<p>The above example would output something similar to:</p>
-<pre><code>string(7) &quot;state_1&quot;
-</code></pre>
+$bulk = new MongoDB\Driver\BulkWrite;
 
-<h3 id="dropping-indexes">Dropping Indexes<a class="headerlink" href="#dropping-indexes" title="Permanent link">&para;</a></h3>
-<pre><code>$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
-
-$result = $collection-&gt;dropIndex('state_1');
-var_dump($result);
-</code></pre>
-
-<p>The above example would output something similar to:</p>
-<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
-  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
-  array(2) {
-    [&quot;nIndexesWas&quot;]=&gt;
-    int(2)
-    [&quot;ok&quot;]=&gt;
-    float(1)
-  }
+foreach ($zips as $string) {
+    $document = json_decode($string);
+    $bulk-&gt;insert($document);
 }
+
+$manager = new MongoDB\Driver\Manager('mongodb://localhost');
+
+$result = $manager-&gt;executeBulkWrite('demo.zips', $bulk);
+printf(&quot;Inserted %d documents\n&quot;, $result-&gt;getInsertedCount());
 </code></pre>
 
-<h3 id="enumerating-indexes">Enumerating Indexes<a class="headerlink" href="#enumerating-indexes" title="Permanent link">&para;</a></h3>
-<pre><code>/* listIndexes() returns an iterator of MongoDB\Model\IndexInfo objects */
-$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
-
-foreach ($collection-&gt;listIndexes() as $indexInfo) {
-    var_dump($indexInfo);
-}
+<p>Executing this script should yield the following output:</p>
+<pre><code>Inserted 29353 documents
 </code></pre>
 
-<p>The above example would output something similar to:</p>
-<pre><code>object(MongoDB\Model\IndexInfo)#4 (4) {
-  [&quot;v&quot;]=&gt;
-  int(1)
-  [&quot;key&quot;]=&gt;
-  array(1) {
-    [&quot;_id&quot;]=&gt;
-    int(1)
-  }
-  [&quot;name&quot;]=&gt;
-  string(4) &quot;_id_&quot;
-  [&quot;ns&quot;]=&gt;
-  string(9) &quot;demo.zips&quot;
-}
+<p>You may also import the dataset using the
+<a href="http://docs.mongodb.org/manual/reference/program/mongoimport/"><code>mongoimport</code></a>
+command, which is included with MongoDB:</p>
+<pre><code class="bash">$ mongoimport --db demo --collection zips --file zips.json --drop
 </code></pre>
               
             </div>
@@ -241,8 +216,10 @@ foreach ($collection-&gt;listIndexes() as $indexInfo) {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../../classes/client/" class="btn btn-neutral float-right" title="Client"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../crud/" class="btn btn-neutral" title="CRUD"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../indexes/" class="btn btn-neutral" title="Indexes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -270,8 +247,10 @@ foreach ($collection-&gt;listIndexes() as $indexInfo) {
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../crud/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../indexes/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../../classes/client/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

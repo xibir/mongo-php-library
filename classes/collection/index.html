@@ -66,9 +66,38 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../../example-data/">Example Data</a>
+        <a class="" href="../../upgrade-guide/">Upgrade Guide</a>
         
     </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorial/crud/">CRUD</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorial/indexes/">Indexes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorial/example-data/">Example Data</a>
+        
+    </li>
+
+        
+    </ul>
 <li>
           
             <li>
@@ -97,6 +126,8 @@
             <ul>
             
                 <li class="toctree-l3"><a href="#mongodbcollection">MongoDB\Collection</a></li>
+                
+                    <li><a class="toctree-l4" href="#__construct">__construct()</a></li>
                 
                     <li><a class="toctree-l4" href="#aggregate">aggregate()</a></li>
                 
@@ -146,32 +177,12 @@
                 
                     <li><a class="toctree-l4" href="#updatemany">updateMany()</a></li>
                 
-                    <li><a class="toctree-l4" href="#updatemany_1">updateMany()</a></li>
+                    <li><a class="toctree-l4" href="#updateone">updateOne()</a></li>
+                
+                    <li><a class="toctree-l4" href="#withoptions">withOptions()</a></li>
                 
             
             </ul>
-        
-    </li>
-
-        
-    </ul>
-<li>
-          
-            <li>
-    <ul class="subnav">
-    <li><span>Tutorial</span></li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../tutorial/crud/">CRUD</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../tutorial/index-management/">Index Management</a>
         
     </li>
 
@@ -220,25 +231,53 @@
             <div class="section">
               
                 <h1 id="mongodbcollection">MongoDB\Collection<a class="headerlink" href="#mongodbcollection" title="Permanent link">&para;</a></h1>
-<p><code>MongoDB\Collection</code> is perhaps the most useful class in this library. It
-provides methods for common operations on a collection, such as inserting
-documents, querying, updating, counting, etc.</p>
-<p>A Collection may be constructed directly (using the extension&rsquo;s Manager class)
-or selected from the library&rsquo;s Client class. It supports the following options:</p>
+<p>The MongoDB\Collection class provides methods for common operations on a
+collection and its documents. This includes, but is not limited to, CRUD
+operations (e.g. inserting, querying, counting) and managing indexes.</p>
+<p>A Collection may be constructed directly (using the extension&rsquo;s Manager class),
+selected from the library&rsquo;s <a href="../client/">Client</a> or <a href="../database/">Database</a>
+classes, or cloned from an existing Collection via
+<a href="#withoptions">withOptions()</a>. It supports the following options:</p>
 <ul>
 <li><a href="http://php.net/mongodb-driver-readconcern">readConcern</a></li>
 <li><a href="http://php.net/mongodb-driver-readpreference">readPreference</a></li>
 <li><a href="http://php.net/manual/en/mongodb.persistence.php#mongodb.persistence.typemaps">typeMap</a></li>
 <li><a href="http://php.net/mongodb-driver-writeconcern">writeConcern</a></li>
 </ul>
-<p>If any options are omitted, they will be inherited from the Manager constructor
-argument or object from which the Collection was selected.</p>
-<p>Operations within the Collection class (e.g. <code>find()</code>, <code>insertOne()</code>) will
-generally inherit the Collection&rsquo;s options. One notable exception to this rule
-is that <code>aggregate()</code> (when not using a cursor) and the <code>findAndModify</code> variants
-do not yet support a type map option due to a driver limitation. This means that
-they will return BSON documents and arrays as <code>stdClass</code> objects and PHP arrays,
-respectively.</p>
+<p>Operations within the Collection class (e.g. <a href="#find">find()</a>,
+<a href="#insertone">insertOne()</a>) will generally inherit the Collection&rsquo;s options. One
+notable exception to this rule is that <a href="#aggregate">aggregate()</a> (when not using
+a cursor), <a href="#distinct">distinct()</a>, and the <a href="http://docs.mongodb.org/manual/reference/command/findAndModify/">findAndModify</a>
+helpers do not yet support a &ldquo;typeMap&rdquo; option due to a driver limitation. This
+means that they will always return BSON documents and arrays as stdClass objects
+and arrays, respectively.</p>
+<hr />
+<h2 id="__construct">__construct()<a class="headerlink" href="#__construct" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function __construct(MongoDB\Driver\Manager $manager, $databaseName, $collectionName, array $options = [])
+</code></pre>
+
+<p>If the Collection is constructed explicitly, any omitted options will be
+inherited from the Manager object. If the Collection is selected from a
+[Client][client.md] or [Database][database.md]) object, options will be
+inherited from the selecting class.</p>
+<h3 id="supported-options">Supported Options<a class="headerlink" href="#supported-options" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>readConcern (MongoDB\Driver\ReadConcern)</dt>
+<dd>The default read concern to use for collection operations. Defaults to the
+Manager&rsquo;s read concern.</dd>
+<dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
+<dd>The default read preference to use for collection operations. Defaults to
+the Manager&rsquo;s read preference.</dd>
+<dt>typeMap (array)</dt>
+<dd>Default type map for cursors and BSON documents.</dd>
+<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
+<dd>The default write concern to use for collection operations. Defaults to the
+Manager&rsquo;s write concern.</dd>
+</dl>
+<h3 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#withoptions">MongoDB\Collection::withOptions()</a></li>
+</ul>
 <hr />
 <h2 id="aggregate">aggregate()<a class="headerlink" href="#aggregate" title="Permanent link">&para;</a></h2>
 <pre><code class="php">function aggregate(array $pipeline, array $options = []): Traversable
@@ -252,7 +291,7 @@ array from the command response document.</p>
 <p><strong>Note:</strong> BSON deserialization of inline aggregation results (i.e. not using a
 command cursor) does not yet support a custom type map. Support is pending new
 functionality in the driver.</p>
-<h3 id="supported-options">Supported Options<a class="headerlink" href="#supported-options" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_1">Supported Options<a class="headerlink" href="#supported-options_1" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>allowDiskUse (boolean)</dt>
 <dd>Enables writing to temporary files. When set to true, aggregation stages can
@@ -291,7 +330,7 @@ available.
 For servers &gt;= 2.6, this option allows users to turn off cursors if
 necessary to aid in mongod/mongos upgrades.</dd>
 </dl>
-<h3 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_1">See Also<a class="headerlink" href="#see-also_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="http://docs.mongodb.org/manual/reference/command/aggregate/">MongoDB Manual: aggregate command</a></li>
 </ul>
@@ -316,7 +355,7 @@ necessary to aid in mongod/mongos upgrades.</dd>
 <p>Arguments correspond to the respective operation methods; however, the
 &ldquo;writeConcern&rdquo; option is specified for the top-level bulk write operation
 instead of each individual operation.</p>
-<h3 id="supported-options_1">Supported Options<a class="headerlink" href="#supported-options_1" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_2">Supported Options<a class="headerlink" href="#supported-options_2" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
 <dd>If true, allows the write to opt out of document level validation.</dd>
@@ -327,7 +366,7 @@ any. The default is true.</dd>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern.</dd>
 </dl>
-<h3 id="see-also_1">See Also<a class="headerlink" href="#see-also_1" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_2">See Also<a class="headerlink" href="#see-also_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#deletemany">MongoDB\Collection::deleteMany()</a></li>
 <li><a href="#deleteone">MongoDB\Collection::deleteOne()</a></li>
@@ -343,7 +382,7 @@ any. The default is true.</dd>
 
 <p>Gets the number of documents matching the filter. Returns the number of matched
 documents as an integer.</p>
-<h3 id="supported-options_2">Supported Options<a class="headerlink" href="#supported-options_2" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_3">Supported Options<a class="headerlink" href="#supported-options_3" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>hint (string|document)</dt>
 <dd>The index to use. If a document, it will be interpretted as an index
@@ -361,7 +400,7 @@ For servers &lt; 3.2, this option is ignored as read concern is not available.</
 <dt>skip (integer)</dt>
 <dd>The number of documents to skip before returning the documents.</dd>
 </dl>
-<h3 id="see-also_2">See Also<a class="headerlink" href="#see-also_2" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_3">See Also<a class="headerlink" href="#see-also_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="http://docs.mongodb.org/manual/reference/command/count/">MongoDB Manual: count command</a></li>
 </ul>
@@ -382,14 +421,15 @@ $key = [ 'username' =&gt; 1 ];
 $key = [ 'loc' =&gt; '2dsphere', 'created_at' =&gt; 1 ];
 </code></pre>
 
-<h3 id="supported-options_3">Supported Options<a class="headerlink" href="#supported-options_3" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_4">Supported Options<a class="headerlink" href="#supported-options_4" title="Permanent link">&para;</a></h3>
 <p>Index options are documented in the <a href="https://docs.mongodb.org/manual/reference/command/createIndexes/">MongoDB manual</a>.</p>
-<h3 id="see-also_3">See Also<a class="headerlink" href="#see-also_3" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_4">See Also<a class="headerlink" href="#see-also_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
 <li><a href="#dropindex">MongoDB\Collection::dropIndex()</a></li>
 <li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/createIndexes/">MongoDB Manual: createIndexes command</a></li>
+<li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
 <hr />
 <h2 id="createindexes">createIndexes()<a class="headerlink" href="#createindexes" title="Permanent link">&para;</a></h2>
@@ -412,12 +452,13 @@ fields mapped to an order or type. Other options may follow. For example:</p>
 <p>If the &ldquo;name&rdquo; option is unspecified, a name will be generated from the &ldquo;key&rdquo;
 document.</p>
 <p>Index options are documented in the <a href="https://docs.mongodb.org/manual/reference/command/createIndexes/">MongoDB manual</a>.</p>
-<h3 id="see-also_4">See Also<a class="headerlink" href="#see-also_4" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_5">See Also<a class="headerlink" href="#see-also_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
 <li><a href="#dropindex">MongoDB\Collection::dropIndex()</a></li>
 <li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/createIndexes/">MongoDB Manual: createIndexes command</a></li>
+<li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
 <hr />
 <h2 id="deletemany">deleteMany()<a class="headerlink" href="#deletemany" title="Permanent link">&para;</a></h2>
@@ -425,12 +466,12 @@ document.</p>
 </code></pre>
 
 <p>Deletes all documents matching the filter.</p>
-<h3 id="supported-options_4">Supported Options<a class="headerlink" href="#supported-options_4" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_5">Supported Options<a class="headerlink" href="#supported-options_5" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern.</dd>
 </dl>
-<h3 id="see-also_5">See Also<a class="headerlink" href="#see-also_5" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_6">See Also<a class="headerlink" href="#see-also_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#deleteone">MongoDB\Collection::deleteOne()</a></li>
@@ -442,12 +483,12 @@ document.</p>
 </code></pre>
 
 <p>Deletes at most one document matching the filter.</p>
-<h3 id="supported-options_5">Supported Options<a class="headerlink" href="#supported-options_5" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_6">Supported Options<a class="headerlink" href="#supported-options_6" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern.</dd>
 </dl>
-<h3 id="see-also_6">See Also<a class="headerlink" href="#see-also_6" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_7">See Also<a class="headerlink" href="#see-also_7" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#deletemany">MongoDB\Collection::deleteMany()</a></li>
@@ -460,7 +501,7 @@ document.</p>
 
 <p>Finds the distinct values for a specified field across the collection. Returns
 an array of the distinct values.</p>
-<h3 id="supported-options_6">Supported Options<a class="headerlink" href="#supported-options_6" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_7">Supported Options<a class="headerlink" href="#supported-options_7" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>maxTimeMS (integer)</dt>
 <dd>The maximum amount of time to allow the query to run.</dd>
@@ -471,7 +512,7 @@ For servers &lt; 3.2, this option is ignored as read concern is not available.</
 <dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
 <dd>Read preference.</dd>
 </dl>
-<h3 id="see-also_7">See Also<a class="headerlink" href="#see-also_7" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_8">See Also<a class="headerlink" href="#see-also_8" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://docs.mongodb.org/manual/reference/command/distinct/">MongoDB Manual: distinct command</a></li>
 </ul>
@@ -481,14 +522,16 @@ For servers &lt; 3.2, this option is ignored as read concern is not available.</
 </code></pre>
 
 <p>Drop this collection. Returns the command result document.</p>
-<h3 id="supported-options_7">Supported Options<a class="headerlink" href="#supported-options_7" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_8">Supported Options<a class="headerlink" href="#supported-options_8" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>typeMap (array)</dt>
 <dd>Type map for BSON deserialization. This will be used for the returned
 command result document.</dd>
 </dl>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<pre><code>$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
 
 $result = $collection-&gt;drop();
 var_dump($result);
@@ -508,7 +551,7 @@ var_dump($result);
 }
 </code></pre>
 
-<h3 id="see-also_8">See Also<a class="headerlink" href="#see-also_8" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_9">See Also<a class="headerlink" href="#see-also_9" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://docs.mongodb.org/manual/reference/command/drop/">MongoDB Manual: drop command</a></li>
 </ul>
@@ -518,25 +561,6 @@ var_dump($result);
 </code></pre>
 
 <p>Drop a single index in the collection. Returns the command result document.</p>
-<h3 id="supported-options_8">Supported Options<a class="headerlink" href="#supported-options_8" title="Permanent link">&para;</a></h3>
-<dl>
-<dt>typeMap (array)</dt>
-<dd>Type map for BSON deserialization. This will be used for the returned
-command result document.</dd>
-</dl>
-<h3 id="see-also_9">See Also<a class="headerlink" href="#see-also_9" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
-<li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
-<li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
-<li><a href="http://docs.mongodb.org/manual/reference/command/dropIndexes/">MongoDB Manual: dropIndexes command</a></li>
-</ul>
-<hr />
-<h2 id="dropindexes">dropIndexes()<a class="headerlink" href="#dropindexes" title="Permanent link">&para;</a></h2>
-<pre><code class="php">function dropIndexes(array $options = []): array|object
-</code></pre>
-
-<p>Drop all indexes in the collection. Returns the command result document.</p>
 <h3 id="supported-options_9">Supported Options<a class="headerlink" href="#supported-options_9" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>typeMap (array)</dt>
@@ -547,8 +571,29 @@ command result document.</dd>
 <ul>
 <li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
 <li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
+<li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/command/dropIndexes/">MongoDB Manual: dropIndexes command</a></li>
+<li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
+</ul>
+<hr />
+<h2 id="dropindexes">dropIndexes()<a class="headerlink" href="#dropindexes" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function dropIndexes(array $options = []): array|object
+</code></pre>
+
+<p>Drop all indexes in the collection. Returns the command result document.</p>
+<h3 id="supported-options_10">Supported Options<a class="headerlink" href="#supported-options_10" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>typeMap (array)</dt>
+<dd>Type map for BSON deserialization. This will be used for the returned
+command result document.</dd>
+</dl>
+<h3 id="see-also_11">See Also<a class="headerlink" href="#see-also_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
+<li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
 <li><a href="#dropindex">MongoDB\Collection::dropIndex()</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/dropIndexes/">MongoDB Manual: dropIndexes command</a></li>
+<li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
 <hr />
 <h2 id="find">find()<a class="headerlink" href="#find" title="Permanent link">&para;</a></h2>
@@ -556,7 +601,7 @@ command result document.</dd>
 </code></pre>
 
 <p>Finds documents matching the query. Returns a MongoDB\Driver\Cursor.</p>
-<h3 id="supported-options_10">Supported Options<a class="headerlink" href="#supported-options_10" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_11">Supported Options<a class="headerlink" href="#supported-options_11" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>allowPartialResults (boolean)</dt>
 <dd>Get partial results from a mongos if some shards are inaccessible (instead
@@ -599,7 +644,7 @@ in the modifiers document, this option will take precedence.</dd>
 <dd>Type map for BSON deserialization. This will be applied to the returned
 Cursor (it is not sent to the server).</dd>
 </dl>
-<h3 id="see-also_11">See Also<a class="headerlink" href="#see-also_11" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_12">See Also<a class="headerlink" href="#see-also_12" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#findOne">MongoDB\Collection::findOne()</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/find/">MongoDB Manual: find command</a></li>
@@ -611,7 +656,7 @@ Cursor (it is not sent to the server).</dd>
 
 <p>Finds a single document matching the query. Returns the matching document or
 null.</p>
-<h3 id="supported-options_11">Supported Options<a class="headerlink" href="#supported-options_11" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_12">Supported Options<a class="headerlink" href="#supported-options_12" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>comment (string)</dt>
 <dd>Attaches a comment to the query. If &ldquo;$comment&rdquo; also exists in the modifiers
@@ -637,7 +682,7 @@ in the modifiers document, this option will take precedence.</dd>
 <dt>typeMap (array)</dt>
 <dd>Type map for BSON deserialization.</dd>
 </dl>
-<h3 id="see-also_12">See Also<a class="headerlink" href="#see-also_12" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_13">See Also<a class="headerlink" href="#see-also_13" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#find">MongoDB\Collection::find()</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/find/">MongoDB Manual: find command</a></li>
@@ -651,7 +696,7 @@ in the modifiers document, this option will take precedence.</dd>
 return may be null if no document matched the filter.</p>
 <p><strong>Note:</strong> BSON deserialization of the returned document does not yet support a
 custom type map. Support is pending new functionality in the driver.</p>
-<h3 id="supported-options_12">Supported Options<a class="headerlink" href="#supported-options_12" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_13">Supported Options<a class="headerlink" href="#supported-options_13" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>maxTimeMS (integer)</dt>
 <dd>The maximum amount of time to allow the query to run.</dd>
@@ -663,7 +708,7 @@ multiple documents.</dd>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern. This option is only supported for server versions &gt;= 3.2.</dd>
 </dl>
-<h3 id="see-also_13">See Also<a class="headerlink" href="#see-also_13" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_14">See Also<a class="headerlink" href="#see-also_14" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#findoneandreplace">MongoDB\Collection::findOneAndReplace()</a></li>
 <li><a href="#findoneandupdate">MongoDB\Collection::findOneAndUpdate()</a></li>
@@ -682,7 +727,7 @@ default, the original document is returned. Specify
 &ldquo;returnDocument&rdquo; option to return the updated document.</p>
 <p><strong>Note:</strong> BSON deserialization of the returned document does not yet support a
 custom type map. Support is pending new functionality in the driver.</p>
-<h3 id="supported-options_13">Supported Options<a class="headerlink" href="#supported-options_13" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_14">Supported Options<a class="headerlink" href="#supported-options_14" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
 <dd>If true, allows the write to opt out of document level validation.</dd>
@@ -704,7 +749,7 @@ default is false.</dd>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern. This option is only supported for server versions &gt;= 3.2.</dd>
 </dl>
-<h3 id="see-also_14">See Also<a class="headerlink" href="#see-also_14" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_15">See Also<a class="headerlink" href="#see-also_15" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#findoneanddelete">MongoDB\Collection::findOneAndDelete()</a></li>
 <li><a href="#findoneandupdate">MongoDB\Collection::findOneAndUpdate()</a></li>
@@ -723,7 +768,7 @@ default, the original document is returned. Specify
 &ldquo;returnDocument&rdquo; option to return the updated document.</p>
 <p><strong>Note:</strong> BSON deserialization of the returned document does not yet support a
 custom type map. Support is pending new functionality in the driver.</p>
-<h3 id="supported-options_14">Supported Options<a class="headerlink" href="#supported-options_14" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_15">Supported Options<a class="headerlink" href="#supported-options_15" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
 <dd>If true, allows the write to opt out of document level validation.</dd>
@@ -745,7 +790,7 @@ default is false.</dd>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern. This option is only supported for server versions &gt;= 3.2.</dd>
 </dl>
-<h3 id="see-also_15">See Also<a class="headerlink" href="#see-also_15" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_16">See Also<a class="headerlink" href="#see-also_16" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#findoneanddelete">MongoDB\Collection::findOneAndDelete()</a></li>
 <li><a href="#findoneandreplace">MongoDB\Collection::findOneAndReplace()</a></li>
@@ -769,7 +814,7 @@ default is false.</dd>
 </code></pre>
 
 <p>Return the collection namespace.</p>
-<h3 id="see-also_16">See Also<a class="headerlink" href="#see-also_16" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_17">See Also<a class="headerlink" href="#see-also_17" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://docs.mongodb.org/manual/reference/glossary/#term-namespace">MongoDB Manual: namespace</a></li>
 </ul>
@@ -779,7 +824,7 @@ default is false.</dd>
 </code></pre>
 
 <p>Inserts multiple documents.</p>
-<h3 id="supported-options_15">Supported Options<a class="headerlink" href="#supported-options_15" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_16">Supported Options<a class="headerlink" href="#supported-options_16" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
 <dd>If true, allows the write to opt out of document level validation.</dd>
@@ -790,7 +835,7 @@ any. The default is true.</dd>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern.</dd>
 </dl>
-<h3 id="see-also_17">See Also<a class="headerlink" href="#see-also_17" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_18">See Also<a class="headerlink" href="#see-also_18" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#insertone">MongoDB\Collection::insertOne()</a></li>
@@ -802,14 +847,14 @@ any. The default is true.</dd>
 </code></pre>
 
 <p>Inserts one document.</p>
-<h3 id="supported-options_16">Supported Options<a class="headerlink" href="#supported-options_16" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_17">Supported Options<a class="headerlink" href="#supported-options_17" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
 <dd>If true, allows the write to opt out of document level validation.</dd>
 <dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
 <dd>Write concern.</dd>
 </dl>
-<h3 id="see-also_18">See Also<a class="headerlink" href="#see-also_18" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_19">See Also<a class="headerlink" href="#see-also_19" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#insertmany">MongoDB\Collection::insertMany()</a></li>
@@ -821,14 +866,15 @@ any. The default is true.</dd>
 </code></pre>
 
 <p>Returns information for all indexes for the collection.</p>
-<h3 id="supported-options_17">Supported Options<a class="headerlink" href="#supported-options_17" title="Permanent link">&para;</a></h3>
+<h3 id="supported-options_18">Supported Options<a class="headerlink" href="#supported-options_18" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>maxTimeMS (integer)</dt>
 <dd>The maximum amount of time to allow the query to run.</dd>
 </dl>
-<h3 id="see-also_19">See Also<a class="headerlink" href="#see-also_19" title="Permanent link">&para;</a></h3>
+<h3 id="see-also_20">See Also<a class="headerlink" href="#see-also_20" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="http://docs.mongodb.org/manual/reference/command/listIndexes/">MongoDB Manual: listIndexes command</a></li>
+<li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
 <hr />
 <h2 id="replaceone">replaceOne()<a class="headerlink" href="#replaceone" title="Permanent link">&para;</a></h2>
@@ -836,29 +882,6 @@ any. The default is true.</dd>
 </code></pre>
 
 <p>Replaces at most one document matching the filter.</p>
-<h3 id="supported-options_18">Supported Options<a class="headerlink" href="#supported-options_18" title="Permanent link">&para;</a></h3>
-<dl>
-<dt>bypassDocumentValidation (boolean)</dt>
-<dd>If true, allows the write to opt out of document level validation.</dd>
-<dt>upsert (boolean)</dt>
-<dd>When true, a new document is created if no document matches the query. The
-default is false.</dd>
-<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
-<dd>Write concern.</dd>
-</dl>
-<h3 id="see-also_20">See Also<a class="headerlink" href="#see-also_20" title="Permanent link">&para;</a></h3>
-<ul>
-<li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
-<li><a href="#updatemany">MongoDB\Collection::updateMany()</a></li>
-<li><a href="#updateone">MongoDB\Collection::updateOne()</a></li>
-<li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
-</ul>
-<hr />
-<h2 id="updatemany">updateMany()<a class="headerlink" href="#updatemany" title="Permanent link">&para;</a></h2>
-<pre><code class="php">function updateMany($filter, $update, array $options = []): MongoDB\UpdateResult
-</code></pre>
-
-<p>Updates all documents matching the filter.</p>
 <h3 id="supported-options_19">Supported Options<a class="headerlink" href="#supported-options_19" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
@@ -872,16 +895,16 @@ default is false.</dd>
 <h3 id="see-also_21">See Also<a class="headerlink" href="#see-also_21" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
-<li><a href="#replaceone">MongoDB\Collection::replaceOne()</a></li>
+<li><a href="#updatemany">MongoDB\Collection::updateMany()</a></li>
 <li><a href="#updateone">MongoDB\Collection::updateOne()</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
 </ul>
 <hr />
-<h2 id="updatemany_1">updateMany()<a class="headerlink" href="#updatemany_1" title="Permanent link">&para;</a></h2>
-<pre><code class="php">function updateOne($filter, $update, array $options = []): MongoDB\UpdateResult
+<h2 id="updatemany">updateMany()<a class="headerlink" href="#updatemany" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function updateMany($filter, $update, array $options = []): MongoDB\UpdateResult
 </code></pre>
 
-<p>Updates at most one document matching the filter.</p>
+<p>Updates all documents matching the filter.</p>
 <h3 id="supported-options_20">Supported Options<a class="headerlink" href="#supported-options_20" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>bypassDocumentValidation (boolean)</dt>
@@ -896,8 +919,55 @@ default is false.</dd>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#replaceone">MongoDB\Collection::replaceOne()</a></li>
+<li><a href="#updateone">MongoDB\Collection::updateOne()</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
+</ul>
+<hr />
+<h2 id="updateone">updateOne()<a class="headerlink" href="#updateone" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function updateOne($filter, $update, array $options = []): MongoDB\UpdateResult
+</code></pre>
+
+<p>Updates at most one document matching the filter.</p>
+<h3 id="supported-options_21">Supported Options<a class="headerlink" href="#supported-options_21" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>bypassDocumentValidation (boolean)</dt>
+<dd>If true, allows the write to opt out of document level validation.</dd>
+<dt>upsert (boolean)</dt>
+<dd>When true, a new document is created if no document matches the query. The
+default is false.</dd>
+<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
+<dd>Write concern.</dd>
+</dl>
+<h3 id="see-also_23">See Also<a class="headerlink" href="#see-also_23" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
+<li><a href="#replaceone">MongoDB\Collection::replaceOne()</a></li>
 <li><a href="#updatemany">MongoDB\Collection::updateMany()</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
+</ul>
+<hr />
+<h2 id="withoptions">withOptions()<a class="headerlink" href="#withoptions" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function withOptions(array $options = []): MongoDB\Collection
+</code></pre>
+
+<p>Returns a clone of this Collection with different options.</p>
+<h3 id="supported-options_22">Supported Options<a class="headerlink" href="#supported-options_22" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>readConcern (MongoDB\Driver\ReadConcern)</dt>
+<dd>The default read concern to use for collection operations. Defaults to the
+Manager&rsquo;s read concern.</dd>
+<dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
+<dd>The default read preference to use for collection operations. Defaults to
+the Manager&rsquo;s read preference.</dd>
+<dt>typeMap (array)</dt>
+<dd>Default type map for cursors and BSON documents.</dd>
+<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
+<dd>The default write concern to use for collection operations. Defaults to the
+Manager&rsquo;s write concern.</dd>
+</dl>
+<h3 id="see-also_24">See Also<a class="headerlink" href="#see-also_24" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#__construct">MongoDB\Collection::__construct()</a></li>
 </ul>
               
             </div>
@@ -905,8 +975,6 @@ default is false.</dd>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../../tutorial/crud/" class="btn btn-neutral float-right" title="CRUD"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../database/" class="btn btn-neutral" title="Database"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -939,8 +1007,6 @@ default is false.</dd>
       
         <span><a href="../database/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../../tutorial/crud/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
