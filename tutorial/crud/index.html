@@ -198,7 +198,8 @@ the <a href="https://docs.mongodb.org/manual/crud/">MongoDB Manual</a>.</p>
 no document was matched. By default, the library returns BSON documents and
 arrays as MongoDB\Model\BSONDocument and MongoDB\Model\BSONArray objects,
 respectively. Both of those classes extend PHP&rsquo;s <a href="http://php.net/arrayobject">ArrayObject</a>
-class.</p>
+class and implement the driver&rsquo;s <a href="http://php.net/mongodb-bson-serializable">MongoDB\BSON\Serializable</a> and
+<a href="http://php.net/mongodb-bson-unserializable">MongoDB\BSON\Unserializable</a> interfaces.</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -236,14 +237,14 @@ var_dump($document);
 
 <p>Most methods that read data from MongoDB support a &ldquo;typeMap&rdquo; option, which
 allows control over how BSON is converted to PHP. If desired, this option can be
-used to return everything as a PHP array, as was done in the legacy driver:</p>
+used to return everything as a PHP array, as was done in the legacy<a href="http://php.net/mongo">mongo extension</a>:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
 
 $document = $collection-&gt;findOne(
     ['_id' =&gt; '94301'],
-    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array']]
+    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array', 'array' =&gt; 'array']]
 );
 
 var_dump($document);

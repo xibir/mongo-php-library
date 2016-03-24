@@ -223,9 +223,9 @@ maps may be found in the driver&rsquo;s <a href="http://php.net/manual/en/mongod
 <dd>Default type map for cursors and BSON documents.</dd>
 </dl>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
-<p>By default, the driver connects to a standalone server on
-&ldquo;mongodb://localhost:27017&rdquo;. The following demonstrates how one might connect to
-a replica set with a custom read preference:</p>
+<p>By default, the driver connects to a standalone server on localhost via port
+27017. The following example demonstrates how to connect to a replica set.
+Additionally, it demonstrates a replica set with a custom read preference:</p>
 <pre><code>&lt;?php
 
 $client = new MongoDB\Client(
@@ -237,20 +237,16 @@ $client = new MongoDB\Client(
 </code></pre>
 
 <p>By default, the library will unserialize BSON documents and arrays as
-MongoDB\Model\BSONDocument and MongoDB\Model\BSONArray objects,  respectively.
-Each of these model classes extends PHP&rsquo;s <a href="http://php.net/arrayobject"><code>ArrayObject</code></a> class and implements the driver&rsquo;s<a href="http://php.net/mongodb-bson-serializable"><code>MongoDB\BSON\Serializable</code></a> and
-<a href="http://php.net/mongodb-bson-unserializable"><code>MongoDB\BSON\Unserializable</code></a>
-interfaces.</p>
-<p>The following examples instructs the library to unserialize root and embedded
-BSON documents as PHP arrays, like the legacy driver (i.e. ext-mongo):</p>
+MongoDB\Model\BSONDocument and MongoDB\Model\BSONArray objects, respectively.
+The following example demonstrates how to have the library unserialize
+everything as a PHP array, as was done in the legacy
+<a href="http://php.net/mongo">mongo extension</a>:</p>
 <pre><code>&lt;?php
 
 $client = new MongoDB\Client(
     null,
     [],
-    [
-        'typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array'],
-    ]
+    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array', 'array' =&gt; 'array']]
 );
 </code></pre>
 
