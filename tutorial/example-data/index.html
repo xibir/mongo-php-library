@@ -78,7 +78,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../crud/">CRUD</a>
+        <a class="" href="../crud/">CRUD Operations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../commands/">Database Commands</a>
         
     </li>
 
@@ -178,8 +185,8 @@
               
                 <h1 id="example-data">Example Data<a class="headerlink" href="#example-data" title="Permanent link">&para;</a></h1>
 <p>Some examples in this documentation use example data fixtures from
-<a href="http://media.mongodb.org/zips.json">zips.json</a>. This is a dataset comprised of
-United States postal codes, populations, and geographic locations.</p>
+<a href="http://media.mongodb.org/zips.json">zips.json</a>. This is a dataset comprised of United States postal codes,
+populations, and geographic locations.</p>
 <p>Importing the dataset into MongoDB can be done in several ways. The following
 example uses <a href="http://php.net/mongodb">mongodb extension</a>:</p>
 <pre><code>&lt;?php
@@ -204,9 +211,8 @@ printf(&quot;Inserted %d documents\n&quot;, $result-&gt;getInsertedCount());
 <pre><code>Inserted 29353 documents
 </code></pre>
 
-<p>You may also import the dataset using the
-<a href="http://docs.mongodb.org/manual/reference/program/mongoimport/"><code>mongoimport</code></a>
-command, which is included with MongoDB:</p>
+<p>You may also import the dataset using the <a href="http://docs.mongodb.org/manual/reference/program/mongoimport/">mongoimport</a> command,
+which is included with MongoDB:</p>
 <pre><code class="bash">$ mongoimport --db demo --collection zips --file zips.json --drop
 </code></pre>
               

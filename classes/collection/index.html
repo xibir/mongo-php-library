@@ -78,7 +78,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorial/crud/">CRUD</a>
+        <a class="" href="../../tutorial/crud/">CRUD Operations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorial/commands/">Database Commands</a>
         
     </li>
 
@@ -258,8 +265,8 @@ and arrays, respectively.</p>
 
 <p>If the Collection is constructed explicitly, any omitted options will be
 inherited from the Manager object. If the Collection is selected from a
-[Client][client.md] or [Database][database.md]) object, options will be
-inherited from the selecting class.</p>
+<a href="../client/">Client</a> or <a href="../database/">Database</a> object, options will be
+inherited from that object.</p>
 <h3 id="supported-options">Supported Options<a class="headerlink" href="#supported-options" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>readConcern (MongoDB\Driver\ReadConcern)</dt>
@@ -277,6 +284,7 @@ Manager&rsquo;s write concern.</dd>
 <h3 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#withoptions">MongoDB\Collection::withOptions()</a></li>
+<li><a href="../database/#selectcollection">MongoDB\Database::selectCollection()</a></li>
 </ul>
 <hr />
 <h2 id="aggregate">aggregate()<a class="headerlink" href="#aggregate" title="Permanent link">&para;</a></h2>
@@ -374,6 +382,7 @@ any. The default is true.</dd>
 <li><a href="#replaceone">MongoDB\Collection::replaceOne()</a></li>
 <li><a href="#updatemany">MongoDB\Collection::updateMany()</a></li>
 <li><a href="#updateone">MongoDB\Collection::updateOne()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 </ul>
 <hr />
 <h2 id="count">count()<a class="headerlink" href="#count" title="Permanent link">&para;</a></h2>
@@ -426,8 +435,7 @@ $key = [ 'loc' =&gt; '2dsphere', 'created_at' =&gt; 1 ];
 <h3 id="see-also_4">See Also<a class="headerlink" href="#see-also_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
-<li><a href="#dropindex">MongoDB\Collection::dropIndex()</a></li>
-<li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
+<li><a href="../../tutorial/indexes/">Tutorial: Indexes</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/createIndexes/">MongoDB Manual: createIndexes command</a></li>
 <li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
@@ -455,8 +463,7 @@ document.</p>
 <h3 id="see-also_5">See Also<a class="headerlink" href="#see-also_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
-<li><a href="#dropindex">MongoDB\Collection::dropIndex()</a></li>
-<li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
+<li><a href="../../tutorial/indexes/">Tutorial: Indexes</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/createIndexes/">MongoDB Manual: createIndexes command</a></li>
 <li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
@@ -475,6 +482,7 @@ document.</p>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#deleteone">MongoDB\Collection::deleteOne()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/delete/">MongoDB Manual: delete command</a></li>
 </ul>
 <hr />
@@ -492,6 +500,7 @@ document.</p>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#deletemany">MongoDB\Collection::deleteMany()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/delete/">MongoDB Manual: delete command</a></li>
 </ul>
 <hr />
@@ -529,11 +538,13 @@ For servers &lt; 3.2, this option is ignored as read concern is not available.</
 command result document.</dd>
 </dl>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>The following example drops the &ldquo;demo.zips&rdquo; collection:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
 
 $result = $collection-&gt;drop();
+
 var_dump($result);
 </code></pre>
 
@@ -553,6 +564,7 @@ var_dump($result);
 
 <h3 id="see-also_9">See Also<a class="headerlink" href="#see-also_9" title="Permanent link">&para;</a></h3>
 <ul>
+<li><a href="../database/#dropcollection">MongoDB\Database::dropCollection()</a></li>
 <li><a href="https://docs.mongodb.org/manual/reference/command/drop/">MongoDB Manual: drop command</a></li>
 </ul>
 <hr />
@@ -569,9 +581,8 @@ command result document.</dd>
 </dl>
 <h3 id="see-also_10">See Also<a class="headerlink" href="#see-also_10" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
-<li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
 <li><a href="#dropindexes">MongoDB\Collection::dropIndexes()</a></li>
+<li><a href="../../tutorial/indexes/">Tutorial: Indexes</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/dropIndexes/">MongoDB Manual: dropIndexes command</a></li>
 <li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
@@ -589,9 +600,8 @@ command result document.</dd>
 </dl>
 <h3 id="see-also_11">See Also<a class="headerlink" href="#see-also_11" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="#createindex">MongoDB\Collection::createIndex()</a></li>
-<li><a href="#createindexes">MongoDB\Collection::createIndexes()</a></li>
 <li><a href="#dropindex">MongoDB\Collection::dropIndex()</a></li>
+<li><a href="../../tutorial/indexes/">Tutorial: Indexes</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/dropIndexes/">MongoDB Manual: dropIndexes command</a></li>
 <li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
 </ul>
@@ -839,6 +849,7 @@ any. The default is true.</dd>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#insertone">MongoDB\Collection::insertOne()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/insert/">MongoDB Manual: insert command</a></li>
 </ul>
 <hr />
@@ -858,6 +869,7 @@ any. The default is true.</dd>
 <ul>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#insertmany">MongoDB\Collection::insertMany()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/insert/">MongoDB Manual: insert command</a></li>
 </ul>
 <hr />
@@ -865,7 +877,8 @@ any. The default is true.</dd>
 <pre><code class="php">function listIndexes(array $options = []): MongoDB\Model\IndexInfoIterator
 </code></pre>
 
-<p>Returns information for all indexes for the collection.</p>
+<p>Returns information for all indexes for the collection. Elements in the returned
+iterator will be MongoDB\Model\IndexInfo objects.</p>
 <h3 id="supported-options_18">Supported Options<a class="headerlink" href="#supported-options_18" title="Permanent link">&para;</a></h3>
 <dl>
 <dt>maxTimeMS (integer)</dt>
@@ -873,8 +886,10 @@ any. The default is true.</dd>
 </dl>
 <h3 id="see-also_20">See Also<a class="headerlink" href="#see-also_20" title="Permanent link">&para;</a></h3>
 <ul>
+<li><a href="../../tutorial/indexes/">Tutorial: Indexes</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/listIndexes/">MongoDB Manual: listIndexes command</a></li>
 <li><a href="https://docs.mongodb.org/manual/indexes/">MongoDB Manual: Indexes</a></li>
+<li><a href="https://github.com/mongodb/specifications/blob/master/source/enumerate-indexes.rst">MongoDB Specification: Enumerating Collections</a></li>
 </ul>
 <hr />
 <h2 id="replaceone">replaceOne()<a class="headerlink" href="#replaceone" title="Permanent link">&para;</a></h2>
@@ -897,6 +912,7 @@ default is false.</dd>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#updatemany">MongoDB\Collection::updateMany()</a></li>
 <li><a href="#updateone">MongoDB\Collection::updateOne()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
 </ul>
 <hr />
@@ -920,6 +936,7 @@ default is false.</dd>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#replaceone">MongoDB\Collection::replaceOne()</a></li>
 <li><a href="#updateone">MongoDB\Collection::updateOne()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
 </ul>
 <hr />
@@ -943,6 +960,7 @@ default is false.</dd>
 <li><a href="#bulkwrite">MongoDB\Collection::bulkWrite()</a></li>
 <li><a href="#replaceone">MongoDB\Collection::replaceOne()</a></li>
 <li><a href="#updatemany">MongoDB\Collection::updateMany()</a></li>
+<li><a href="../../tutorial/crud/">Tutorial: CRUD Operations</a></li>
 <li><a href="http://docs.mongodb.org/manual/reference/command/update/">MongoDB Manual: update command</a></li>
 </ul>
 <hr />

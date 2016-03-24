@@ -78,7 +78,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorial/crud/">CRUD</a>
+        <a class="" href="../../tutorial/crud/">CRUD Operations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorial/commands/">Database Commands</a>
         
     </li>
 
@@ -120,11 +127,25 @@
             
                 <li class="toctree-l3"><a href="#mongodbdatabase">MongoDB\Database</a></li>
                 
-                    <li><a class="toctree-l4" href="#selecting-collections">Selecting Collections</a></li>
+                    <li><a class="toctree-l4" href="#__construct">__construct()</a></li>
                 
-                    <li><a class="toctree-l4" href="#database-level-operations">Database-level Operations</a></li>
+                    <li><a class="toctree-l4" href="#__get">__get()</a></li>
                 
-                    <li><a class="toctree-l4" href="#collection-management">Collection Management</a></li>
+                    <li><a class="toctree-l4" href="#command">command()</a></li>
+                
+                    <li><a class="toctree-l4" href="#createcollection">createCollection</a></li>
+                
+                    <li><a class="toctree-l4" href="#drop">drop</a></li>
+                
+                    <li><a class="toctree-l4" href="#dropcollection">dropCollection</a></li>
+                
+                    <li><a class="toctree-l4" href="#getdatabasename">getDatabaseName()</a></li>
+                
+                    <li><a class="toctree-l4" href="#listcollections">listCollections()</a></li>
+                
+                    <li><a class="toctree-l4" href="#selectcollection">selectCollection()</a></li>
+                
+                    <li><a class="toctree-l4" href="#withoptions">withOptions()</a></li>
                 
             
             </ul>
@@ -183,10 +204,11 @@
             <div class="section">
               
                 <h1 id="mongodbdatabase">MongoDB\Database<a class="headerlink" href="#mongodbdatabase" title="Permanent link">&para;</a></h1>
-<p><code>MongoDB\Database</code> provides methods for common operations on a database, such
-as creating, enumerating, and dropping collections.</p>
+<p>The MongoDB\Database class provides methods for common operations on a database,
+such as executing commands and managing collections.</p>
 <p>A Database may be constructed directly (using the extension&rsquo;s Manager class) or
-selected from the library&rsquo;s Client class. It supports the following options:</p>
+selected from the library&rsquo;s <a href="../client/">Client</a> class. It supports the following
+options:</p>
 <ul>
 <li><a href="http://php.net/mongodb-driver-readconcern">readConcern</a></li>
 <li><a href="http://php.net/mongodb-driver-readpreference">readPreference</a></li>
@@ -195,38 +217,176 @@ selected from the library&rsquo;s Client class. It supports the following option
 </ul>
 <p>If any options are omitted, they will be inherited from the Manager constructor
 argument or object from which the Database was selected.</p>
-<p>Operations within the Database class (e.g. <code>command()</code>) will generally inherit
-the Database&rsquo;s options.</p>
-<h3 id="selecting-collections">Selecting Collections<a class="headerlink" href="#selecting-collections" title="Permanent link">&para;</a></h3>
-<p>The Database class provides methods for creating Collection instances (using its
-internal Manager instance). When selecting a Collection, the child will inherit
-options (e.g. read preference, type map) from the Database. New options may also
-be provided to the <code>selectCollection()</code> method.</p>
-<pre><code>$db = (new MongoDB\Client)-&gt;demo;
-
-/* Select the &quot;users&quot; collection */
-$collection = $db-&gt;selectCollection('users');
-
-/* selectCollection() also takes an options array, which can override any
- * options inherited from the Database. */
-$collection = $client-&gt;selectCollection('users', [
-    'readPreference' =&gt; new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_SECONDARY),
-]);
-
-/* The property accessor may also be used to select a collection without
- * specifying additional options. PHP's complex syntax may be used for selecting
- * collection whose names contain special characters (e.g. &quot;.&quot;). */
-$collection = $db-&gt;users;
-$collection = $db-&gt;{'system.profile'};
+<p>Operations within the Database class (e.g. <a href="#command">command()</a>) will generally
+inherit the Database&rsquo;s options.</p>
+<hr />
+<h2 id="__construct">__construct()<a class="headerlink" href="#__construct" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function __construct(MongoDB\Driver\Manager $manager, $databaseName, array $options = [])
 </code></pre>
 
-<h2 id="database-level-operations">Database-level Operations<a class="headerlink" href="#database-level-operations" title="Permanent link">&para;</a></h2>
-<p>The Database class has methods for database-level operations, such as dropping
-the database, executing a command, or managing the database&rsquo;s collections.</p>
-<h3 id="dropping-the-database">Dropping the Database<a class="headerlink" href="#dropping-the-database" title="Permanent link">&para;</a></h3>
+<p>If the Database is constructed explicitly, any omitted options will be inherited
+from the Manager object. If the Database is selected from a <a href="../client/">Client</a>
+object, options will be inherited from that object.</p>
+<h3 id="supported-options">Supported Options<a class="headerlink" href="#supported-options" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>readConcern (MongoDB\Driver\ReadConcern)</dt>
+<dd>The default read concern to use for database operations and selected
+collections. Defaults to the Manager&rsquo;s read concern.</dd>
+<dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
+<dd>The default read preference to use for database operations and selected
+collections. Defaults to the Manager&rsquo;s read preference.</dd>
+<dt>typeMap (array)</dt>
+<dd>Default type map for cursors and BSON documents.</dd>
+<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
+<dd>The default write concern to use for database operations and selected
+collections. Defaults to the Manager&rsquo;s write concern.</dd>
+</dl>
+<h3 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#withoptions">MongoDB\Database::withOptions()</a></li>
+</ul>
+<hr />
+<h2 id="__get">__get()<a class="headerlink" href="#__get" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function __get($collectionName): MongoDB\Collection
+</code></pre>
+
+<p>Select a collection within this database.</p>
+<p>The Collection will inherit options (e.g. read preference, type map) from the
+Database object. Use <a href="#selectcollection">selectCollection()</a> to override any
+options.</p>
+<p><strong>Note:</strong> collections whose names contain special characters (e.g. &ldquo;.&rdquo;) may be
+selected with complex syntax (e.g. <code>$database-&gt;{"system.profile"}</code>) or
+<a href="#selectcollection">selectCollection()</a>.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>The following example selects the &ldquo;demo.users&rdquo; and &ldquo;demo.system.profile&rdquo;
+collections:</p>
+<pre><code>&lt;?php
+
+$db = (new MongoDB\Client)-&gt;demo;
+
+$users = $db-&gt;users;
+$systemProfile = $db-&gt;{'system.profile'};
+</code></pre>
+
+<h3 id="see-also_1">See Also<a class="headerlink" href="#see-also_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#selectcollection">MongoDB\Database::selectCollection()</a></li>
+<li><a href="http://php.net/oop5.overloading#object.get">PHP Manual: Property Overloading</a></li>
+</ul>
+<hr />
+<h2 id="command">command()<a class="headerlink" href="#command" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function function command($command, array $options = []): MongoDB\Driver\Cursor
+</code></pre>
+
+<p>Execute a command on this database.</p>
+<h3 id="supported-options_1">Supported Options<a class="headerlink" href="#supported-options_1" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
+<dd>The read preference to use when executing the command. This may be used when
+issuing the command to a replica set or mongos node to ensure that the
+driver sets the wire protocol accordingly or adds the read preference to the
+command document, respectively.</dd>
+<dt>typeMap (array)</dt>
+<dd>Type map for BSON deserialization. This will be applied to the returned
+Cursor (it is not sent to the server).</dd>
+</dl>
+<h3 id="see-also_2">See Also<a class="headerlink" href="#see-also_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../../tutorial/commands/">Tutorial: Database Commands</a></li>
+<li><a href="https://docs.mongodb.org/manual/reference/command/">MongoDB Manual: Database Commands</a></li>
+</ul>
+<h2 id="createcollection">createCollection<a class="headerlink" href="#createcollection" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function createCollection($collectionName, array $options = []): array|object
+</code></pre>
+
+<p>Create a new collection explicitly. Returns the command result document.</p>
+<p>MongoDB already creates collections implicitly when they are first referenced in
+commands (e.g. inserting a document into a new collection); however, collections
+may also be explicitly created with specific options. This is useful for
+creating <a href="https://docs.mongodb.org/manual/core/capped-collections/">capped collections</a>, enabling
+<a href="https://docs.mongodb.org/manual/core/document-validation/">document validation</a>, or supplying storage engine options.</p>
+<h3 id="supported-options_2">Supported Options<a class="headerlink" href="#supported-options_2" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>autoIndexId (boolean)</dt>
+<dd>Specify false to disable the automatic creation of an index on the _id
+field. For replica sets, this option cannot be false. The default is true.</dd>
+<dt>capped (boolean)</dt>
+<dd>Specify true to create a capped collection. If set, the size option must
+also be specified. The default is false.</dd>
+<dt>flags (integer)</dt>
+<dd>Options for the MMAPv1 storage engine only. Must be a bitwise combination
+<code>MongoDB\Operation\CreateCollection::USE_POWER_OF_2_SIZES</code> and
+<code>MongoDB\Operation\CreateCollection::NO_PADDING</code>. The default is
+<code>MongoDB\Operation\CreateCollection::USE_POWER_OF_2_SIZES</code>.</dd>
+<dt>indexOptionDefaults (document)</dt>
+<dd>Default configuration for indexes when creating the collection.</dd>
+<dt>max (integer)</dt>
+<dd>The maximum number of documents allowed in the capped collection. The size
+option takes precedence over this limit.</dd>
+<dt>maxTimeMS (integer)</dt>
+<dd>The maximum amount of time to allow the query to run.</dd>
+<dt>size (integer)</dt>
+<dd>The maximum number of bytes for a capped collection.</dd>
+<dt>storageEngine (document)</dt>
+<dd>Storage engine options.</dd>
+<dt>typeMap (array)</dt>
+<dd>Type map for BSON deserialization. This will only be used for the returned
+command result document.</dd>
+<dt>validationAction (string)</dt>
+<dd>Validation action.</dd>
+<dt>validationLevel (string)</dt>
+<dd>Validation level.</dd>
+<dt>validator (document)</dt>
+<dd>Validation rules or expressions.</dd>
+</dl>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<p>The following example creates the &ldquo;demo.users&rdquo; collection with a custom<a href="https://docs.mongodb.org/manual/core/document-validation/">document validator</a> (available in MongoDB 3.2+):</p>
+<pre><code>&lt;?php
+
+$db = (new MongoDB\Client)-&gt;demo;
+
+$result = $db-&gt;createCollection('users', [
+    'validator' =&gt; [
+        'username' =&gt; ['$type' =&gt; 'string'],
+        'email' =&gt; ['$regex' =&gt; '@mongodb\.com$'],
+    ],
+]);
+
+var_dump($result);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(1) {
+    [&quot;ok&quot;]=&gt;
+    float(1)
+  }
+}
+</code></pre>
+
+<h3 id="see-also_3">See Also<a class="headerlink" href="#see-also_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://docs.mongodb.org/manual/reference/command/create/">MongoDB Manual: create command</a></li>
+</ul>
+<hr />
+<h2 id="drop">drop<a class="headerlink" href="#drop" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function drop(array $options = []): array|object
+</code></pre>
+
+<p>Drop this database. Returns the command result document.</p>
+<h3 id="supported-options_3">Supported Options<a class="headerlink" href="#supported-options_3" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>typeMap (array)</dt>
+<dd>Type map for BSON deserialization. This will only be used for the returned
+command result document.</dd>
+</dl>
+<h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
+<p>The following example drops the &ldquo;demo&rdquo; database:</p>
 <pre><code>$db = (new MongoDB\Client)-&gt;demo;
 
 $result = $db-&gt;drop();
+
 var_dump($result);
 </code></pre>
 
@@ -242,79 +402,31 @@ var_dump($result);
 }
 </code></pre>
 
-<h3 id="executing-a-command">Executing a Command<a class="headerlink" href="#executing-a-command" title="Permanent link">&para;</a></h3>
-<p>While the library provides helpers for some common database commands, it is far
-from an <a href="https://docs.mongodb.org/manual/reference/command/">exhaustive list</a>.
-The following example demonstrates how the
-<a href="https://docs.mongodb.org/manual/reference/command/createUser/">createUser</a>
-command might be invoked:</p>
-<pre><code>$db = (new MongoDB\Client)-&gt;demo;
-
-/* Define a command document for creating a new database user */
-$createUserCmd = [
-    'createUser' =&gt; 'username',
-    'pwd' =&gt; 'password',
-    'roles' =&gt; [ 'readWrite' ],
-];
-
-/* It doesn't hurt to specify an explicit read preference for the command, in
- * case the Database was created with a different read preference. This isn't
- * required for other command helpers, as the library knows which commands might
- * require a primary; however, the Database::command() method is generic. */
-$cursor = $db-&gt;command($createUserCmd, [
-    'readPreference' =&gt; new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_PRIMARY),
-]);
-
-/* The command result will be the first and only document in the cursor */
-var_dump($cursor-&gt;toArray()[0]);
+<h3 id="see-also_4">See Also<a class="headerlink" href="#see-also_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../client/#dropdatabase">MongoDB\Client::dropDatabase()</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/command/dropDatabase/">MongoDB Manual: dropDatabase command</a></li>
+</ul>
+<hr />
+<h2 id="dropcollection">dropCollection<a class="headerlink" href="#dropcollection" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function dropCollection($collectionName, array $options = []): array|object
 </code></pre>
 
-<p>The above example would output something similar to:</p>
-<pre><code>object(MongoDB\Model\BSONDocument)#8 (1) {
-  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
-  array(1) {
-    [&quot;ok&quot;]=&gt;
-    float(1)
-  }
-}
-</code></pre>
+<p>Drop a collection within this database. Returns the command result document.</p>
+<h3 id="supported-options_4">Supported Options<a class="headerlink" href="#supported-options_4" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>typeMap (array)</dt>
+<dd>Type map for BSON deserialization. This will only be used for the returned
+command result document.</dd>
+</dl>
+<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
+<p>The following example drops the &ldquo;demo.users&rdquo; collection:</p>
+<pre><code>&lt;?php
 
-<h2 id="collection-management">Collection Management<a class="headerlink" href="#collection-management" title="Permanent link">&para;</a></h2>
-<p>The Database class has several methods for managing collections.</p>
-<h3 id="creating-collections">Creating Collections<a class="headerlink" href="#creating-collections" title="Permanent link">&para;</a></h3>
-<p>MongoDB already creates collections implicitly when they are first referenced in
-commands (e.g. inserting a document into a new collection); however, collections
-may also be explicitly created with specific options. This is useful for
-creating
-<a href="https://docs.mongodb.org/manual/core/capped-collections/">capped collections</a>,
-enabling
-<a href="https://docs.mongodb.org/manual/core/document-validation/">document validation</a>,
-or supplying storage engine options.</p>
-<pre><code>$db = (new MongoDB\Client)-&gt;demo;
-
-$result = $db-&gt;createCollection('users', [
-    'validator' =&gt; [
-        'username' =&gt; ['$type' =&gt; 'string'],
-        'email' =&gt; ['$regex' =&gt; '@mongodb\.com$'],
-    ],
-]);
-var_dump($result);
-</code></pre>
-
-<p>The above example would output something similar to:</p>
-<pre><code>object(MongoDB\Model\BSONDocument)#11 (1) {
-  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
-  array(1) {
-    [&quot;ok&quot;]=&gt;
-    float(1)
-  }
-}
-</code></pre>
-
-<h3 id="dropping-collections">Dropping Collections<a class="headerlink" href="#dropping-collections" title="Permanent link">&para;</a></h3>
-<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+$db = (new MongoDB\Client)-&gt;demo;
 
 $result = $db-&gt;dropCollection('users');
+
 var_dump($result);
 </code></pre>
 
@@ -332,11 +444,37 @@ var_dump($result);
 }
 </code></pre>
 
-<h3 id="enumerating-collections">Enumerating Collections<a class="headerlink" href="#enumerating-collections" title="Permanent link">&para;</a></h3>
-<p>The Database class implements MongoDB&rsquo;s<a href="https://github.com/mongodb/specifications/blob/master/source/enumerate-collections.rst">Enumerating Collections specification</a>.</p>
-<pre><code>$db = (new MongoDB\Client)-&gt;demo;
+<h3 id="see-also_5">See Also<a class="headerlink" href="#see-also_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../collection/#drop">MongoDB\Collection::drop()</a></li>
+<li><a href="http://docs.mongodb.org/manual/reference/command/drop/">MongoDB Manual: drop command</a></li>
+</ul>
+<hr />
+<h2 id="getdatabasename">getDatabaseName()<a class="headerlink" href="#getdatabasename" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function getDatabaseName(): string
+</code></pre>
 
-/* listCollections() returns an iterator of MongoDB\Model\CollectionInfo objects */
+<p>Return the database name.</p>
+<hr />
+<h2 id="listcollections">listCollections()<a class="headerlink" href="#listcollections" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function listCollections(array $options = []): MongoDB\Model\CollectionInfoIterator
+</code></pre>
+
+<p>Returns information for all collections in this database. Elements in the
+returned iterator will be MongoDB\Model\CollectionInfo objects.</p>
+<h3 id="supported-options_5">Supported Options<a class="headerlink" href="#supported-options_5" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>filter (document)</dt>
+<dd>Query by which to filter collections.</dd>
+<dt>maxTimeMS (integer)</dt>
+<dd>The maximum amount of time to allow the query to run.</dd>
+</dl>
+<h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
+<p>The following example lists all collections in the &ldquo;demo&rdquo; database:</p>
+<pre><code>&lt;?php
+
+$db = (new MongoDB\Client)-&gt;demo;
+
 foreach ($db-&gt;listCollections() as $collectionInfo) {
     var_dump($collectionInfo);
 }
@@ -362,6 +500,87 @@ object(MongoDB\Model\CollectionInfo)#13 (2) {
   }
 }
 </code></pre>
+
+<h3 id="see-also_6">See Also<a class="headerlink" href="#see-also_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="http://docs.mongodb.org/manual/reference/command/listCollections/">MongoDB Manual: listCollections command</a></li>
+<li><a href="https://github.com/mongodb/specifications/blob/master/source/enumerate-collections.rst">MongoDB Specification: Enumerating Collections</a></li>
+</ul>
+<hr />
+<h2 id="selectcollection">selectCollection()<a class="headerlink" href="#selectcollection" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function selectCollection($collectionName, array $options = []): MongoDB\Collection
+</code></pre>
+
+<p>Select a collection within this database.</p>
+<p>The Collection will inherit options (e.g. read preference, type map) from the
+Database object unless otherwise specified.</p>
+<h3 id="supported-options_6">Supported Options<a class="headerlink" href="#supported-options_6" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>readConcern (MongoDB\Driver\ReadConcern)</dt>
+<dd>The default read concern to use for collection operations. Defaults to the
+Database&rsquo;s read concern.</dd>
+<dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
+<dd>The default read preference to use for collection operations. Defaults to
+the Database&rsquo;s read preference.</dd>
+<dt>typeMap (array)</dt>
+<dd>Default type map for cursors and BSON documents. Defaults to the Database&rsquo;s
+type map.</dd>
+<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
+<dd>The default write concern to use for collection operations. Defaults to the
+Database&rsquo;s write concern.</dd>
+</dl>
+<h3 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h3>
+<p>The following example selects the &ldquo;demo.users&rdquo; collection:</p>
+<pre><code>&lt;?php
+
+$db = (new MongoDB\Client)-&gt;demo;
+
+$collection = $db-&gt;selectCollection('users');
+</code></pre>
+
+<p>The following examples selects the &ldquo;demo.users&rdquo; collection with a custom read
+preference:</p>
+<pre><code>&lt;?php
+
+$db = (new MongoDB\Client)-&gt;demo;
+
+$collection = $db-&gt;selectCollection(
+    'users',
+    [
+        'readPreference' =&gt; new MongoDB\Driver\ReadPreference(MongoDB\Driver\ReadPreference::RP_SECONDARY),
+    ]
+);
+</code></pre>
+
+<h3 id="see-also_7">See Also<a class="headerlink" href="#see-also_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="../collection/#__construct">MongoDB\Collection::__construct()</a></li>
+<li><a href="#__get">MongoDB\Database::__get()</a></li>
+</ul>
+<hr />
+<h2 id="withoptions">withOptions()<a class="headerlink" href="#withoptions" title="Permanent link">&para;</a></h2>
+<pre><code class="php">function withOptions(array $options = []): MongoDB\Database
+</code></pre>
+
+<p>Returns a clone of this database with different options.</p>
+<h3 id="supported-options_7">Supported Options<a class="headerlink" href="#supported-options_7" title="Permanent link">&para;</a></h3>
+<dl>
+<dt>readConcern (MongoDB\Driver\ReadConcern)</dt>
+<dd>The default read concern to use for database operations and selected
+collections. Defaults to the Manager&rsquo;s read concern.</dd>
+<dt>readPreference (MongoDB\Driver\ReadPreference)</dt>
+<dd>The default read preference to use for database operations and selected
+collections. Defaults to the Manager&rsquo;s read preference.</dd>
+<dt>typeMap (array)</dt>
+<dd>Default type map for cursors and BSON documents.</dd>
+<dt>writeConcern (MongoDB\Driver\WriteConcern)</dt>
+<dd>The default write concern to use for database operations and selected
+collections. Defaults to the Manager&rsquo;s write concern.</dd>
+</dl>
+<h3 id="see-also_8">See Also<a class="headerlink" href="#see-also_8" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#__construct">MongoDB\Database::__construct()</a></li>
+</ul>
               
             </div>
           </div>

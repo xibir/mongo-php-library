@@ -78,7 +78,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../crud/">CRUD</a>
+        <a class="" href="../crud/">CRUD Operations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../commands/">Database Commands</a>
         
     </li>
 
@@ -185,10 +192,9 @@ implements MongoDB&rsquo;s cross-driver <a href="https://github.com/mongodb/spec
 to create, list, and drop indexes using the library. General information on how
 indexes work in MongoDB may be found in the <a href="https://docs.mongodb.org/manual/indexes/">MongoDB manual</a>.</p>
 <h2 id="creating-indexes">Creating Indexes<a class="headerlink" href="#creating-indexes" title="Permanent link">&para;</a></h2>
-<p>Indexes may be created via the
-<a href="../../classes/collection/#createindex">createIndex()</a> and
-<a href="../../classes/collection/#createindexes">createIndexes()</a> methods. The following
-example creates a single-field index on the &ldquo;state&rdquo; field:</p>
+<p>Indexes may be created via the <a href="../../classes/collection/#createindex">createIndex()</a> and
+<a href="../../classes/collection/#createindexes">createIndexes()</a> methods. The following example creates an
+ascending index on the &ldquo;state&rdquo; field:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -206,9 +212,9 @@ something similar to:</p>
 
 <h3 id="enumerating-indexes">Enumerating Indexes<a class="headerlink" href="#enumerating-indexes" title="Permanent link">&para;</a></h3>
 <p>Information about indexes in a collection may be obtained via the
-<a href="../../classes/collection/#listindexes">listIndexes()</a> method, which returns an
-iterator of MongoDB\Model\IndexInfo objects. The following examples queries a
-collection for its indexes:</p>
+<a href="../../classes/collection/#listindexes">listIndexes()</a> method, which returns an iterator of
+MongoDB\Model\IndexInfo objects. The following example lists all indexes in the
+&ldquo;demo.zips&rdquo; collection:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -248,10 +254,9 @@ object(MongoDB\Model\IndexInfo)#13 (4) {
 </code></pre>
 
 <h3 id="dropping-indexes">Dropping Indexes<a class="headerlink" href="#dropping-indexes" title="Permanent link">&para;</a></h3>
-<p>Indexes may be dropped via the
-<a href="../../classes/collection/#dropindex">dropIndex()</a> and
-<a href="../../classes/collection/#dropindexes">dropIndexes()</a> methods. The following
-example drops a single index by its name:</p>
+<p>Indexes may be dropped via the <a href="../../classes/collection/#dropindex">dropIndex()</a> and
+<a href="../../classes/collection/#dropindexes">dropIndexes()</a> methods. The following example drops a single index
+by its name:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -282,7 +287,7 @@ var_dump($result);
         <a href="../example-data/" class="btn btn-neutral float-right" title="Example Data"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../crud/" class="btn btn-neutral" title="CRUD"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../commands/" class="btn btn-neutral" title="Database Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -310,7 +315,7 @@ var_dump($result);
           <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../crud/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../commands/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../example-data/" style="color: #fcfcfc">Next &raquo;</a></span>
