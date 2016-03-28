@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   
   <title>CRUD Operations - MongoDB PHP library</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "CRUD Operations";
+    var mkdocs_page_input_path = "tutorial/crud.md";
+    var mkdocs_page_url = "/tutorial/crud/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -77,6 +82,13 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../bson/">BSON Conversion</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">CRUD Operations</a>
         
@@ -84,7 +96,13 @@
             
                 <li class="toctree-l3"><a href="#crud-operations">CRUD Operations</a></li>
                 
-                    <li><a class="toctree-l4" href="#querying">Querying</a></li>
+                    <li><a class="toctree-l4" href="#finding-one-document">Finding One Document</a></li>
+                
+                    <li><a class="toctree-l4" href="#finding-many-documents">Finding Many Documents</a></li>
+                
+                    <li><a class="toctree-l4" href="#query-projection">Query Projection</a></li>
+                
+                    <li><a class="toctree-l4" href="#limit-sort-and-skip-options">Limit, Sort, and Skip Options</a></li>
                 
             
             </ul>
@@ -192,14 +210,9 @@ MongoDB&rsquo;s cross-driver <a href="https://github.com/mongodb/specifications/
 demonstrate how to insert, query, update, and delete documents using the
 library. A general introduction to CRUD operations in MongoDB may be found in
 the <a href="https://docs.mongodb.org/manual/crud/">MongoDB Manual</a>.</p>
-<h2 id="querying">Querying<a class="headerlink" href="#querying" title="Permanent link">&para;</a></h2>
-<h3 id="finding-one-document">Finding One Document<a class="headerlink" href="#finding-one-document" title="Permanent link">&para;</a></h3>
+<h2 id="finding-one-document">Finding One Document<a class="headerlink" href="#finding-one-document" title="Permanent link">&para;</a></h2>
 <p>The <a href="../../classes/collection/#findone">findOne()</a> method returns the first matched document, or null if
-no document was matched. By default, the library returns BSON documents and
-arrays as MongoDB\Model\BSONDocument and MongoDB\Model\BSONArray objects,
-respectively. Both of those classes extend PHP&rsquo;s <a href="http://php.net/arrayobject">ArrayObject</a>
-class and implement the driver&rsquo;s <a href="http://php.net/mongodb-bson-serializable">MongoDB\BSON\Serializable</a> and
-<a href="http://php.net/mongodb-bson-unserializable">MongoDB\BSON\Unserializable</a> interfaces.</p>
+no document was matched.</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -235,44 +248,10 @@ var_dump($document);
 }
 </code></pre>
 
-<p>Most methods that read data from MongoDB support a &ldquo;typeMap&rdquo; option, which
-allows control over how BSON is converted to PHP. If desired, this option can be
-used to return everything as a PHP array, as was done in the legacy<a href="http://php.net/mongo">mongo extension</a>:</p>
-<pre><code>&lt;?php
-
-$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
-
-$document = $collection-&gt;findOne(
-    ['_id' =&gt; '94301'],
-    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array', 'array' =&gt; 'array']]
-);
-
-var_dump($document);
-</code></pre>
-
-<p>The above example would output something similar to:</p>
-<pre><code>array(5) {
-  [&quot;_id&quot;]=&gt;
-  string(5) &quot;94301&quot;
-  [&quot;city&quot;]=&gt;
-  string(9) &quot;PALO ALTO&quot;
-  [&quot;loc&quot;]=&gt;
-  array(2) {
-    [0]=&gt;
-    float(-122.149685)
-    [1]=&gt;
-    float(37.444324)
-  }
-  [&quot;pop&quot;]=&gt;
-  int(15965)
-  [&quot;state&quot;]=&gt;
-  string(2) &quot;CA&quot;
-}
-</code></pre>
-
-<h3 id="finding-many-documents">Finding Many Documents<a class="headerlink" href="#finding-many-documents" title="Permanent link">&para;</a></h3>
+<h2 id="finding-many-documents">Finding Many Documents<a class="headerlink" href="#finding-many-documents" title="Permanent link">&para;</a></h2>
 <p>The <a href="../../classes/collection/#find">find()</a> method returns a <a href="http://php.net/mongodb-driver-cursor">MongoDB\Driver\Cursor</a> object,
-which may be iterated upon to access all matched documents.</p>
+which may be iterated upon to access all matched documents. The following
+example queries for all zip codes in a given city:</p>
 <pre><code>&lt;?php
 
 $collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
@@ -292,6 +271,64 @@ foreach ($cursor as $document) {
 07307
 07310
 </code></pre>
+
+<h2 id="query-projection">Query Projection<a class="headerlink" href="#query-projection" title="Permanent link">&para;</a></h2>
+<p>Queries may include a <a href="https://docs.mongodb.org/manual/tutorial/project-fields-from-query-results/">projection</a> to include or exclude specific
+fields in the returned documents. The following example selects only the
+population field for the zip code:</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+
+$document = $collection-&gt;findOne(
+    ['_id' =&gt; '10011'],
+    ['projection' =&gt; ['pop =&gt; 1']]
+);
+
+var_dump($document);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(MongoDB\Model\BSONDocument)#12 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(2) {
+    [&quot;_id&quot;]=&gt;
+    string(5) &quot;10011&quot;
+    [&quot;pop&quot;]=&gt;
+    int(46560)
+  }
+}
+</code></pre>
+
+<p><strong>Note:</strong> the &ldquo;_id&rdquo; field is included by default unless explicitly excluded.</p>
+<h2 id="limit-sort-and-skip-options">Limit, Sort, and Skip Options<a class="headerlink" href="#limit-sort-and-skip-options" title="Permanent link">&para;</a></h2>
+<p>In addition to criteria, queries may take options to limit, sort, and skip
+returned documents. The following example queries for the five most populous
+zip codes in the United States:</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+
+$cursor = $collection-&gt;find(
+    [],
+    [
+        'limit' =&gt; 5,
+        'sort' =&gt; ['pop' =&gt; -1],
+    ]
+);
+
+foreach ($cursor as $document) {
+    echo $document['_id'], &quot;\n&quot;;
+}
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>60623: CHICAGO, IL
+11226: BROOKLYN, NY
+10021: NEW YORK, NY
+10025: NEW YORK, NY
+90201: BELL GARDENS, CA
+</code></pre>
               
             </div>
           </div>
@@ -299,10 +336,10 @@ foreach ($cursor as $document) {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../commands/" class="btn btn-neutral float-right" title="Database Commands"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../commands/" class="btn btn-neutral float-right" title="Database Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../upgrade-guide/" class="btn btn-neutral" title="Upgrade Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../bson/" class="btn btn-neutral" title="BSON Conversion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -327,10 +364,10 @@ foreach ($cursor as $document) {
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../upgrade-guide/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../bson/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../commands/" style="color: #fcfcfc">Next &raquo;</a></span>

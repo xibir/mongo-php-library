@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>BSON Conversion - MongoDB PHP library</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "BSON Conversion";
+    var mkdocs_page_input_path = "tutorial/bson.md";
+    var mkdocs_page_url = "/tutorial/bson/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="../../pretty.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> MongoDB PHP library</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../getting-started/">Getting Started</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../../upgrade-guide/">Upgrade Guide</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">BSON Conversion</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#bson-conversion">BSON Conversion</a></li>
+                
+                    <li><a class="toctree-l4" href="#deserialization">Deserialization</a></li>
+                
+                    <li><a class="toctree-l4" href="#type-maps">Type Maps</a></li>
+                
+                    <li><a class="toctree-l4" href="#persistable-classes">Persistable Classes</a></li>
+                
+                    <li><a class="toctree-l4" href="#emulating-the-legacy-driver">Emulating the Legacy Driver</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../crud/">CRUD Operations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../commands/">Database Commands</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../indexes/">Indexes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../example-data/">Example Data</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Classes</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../classes/client/">Client</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../classes/database/">Database</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../classes/collection/">Collection</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">MongoDB PHP library</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Tutorial &raquo;</li>
+        
+      
+    
+    <li>BSON Conversion</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="bson-conversion">BSON Conversion<a class="headerlink" href="#bson-conversion" title="Permanent link">&para;</a></h1>
+<h2 id="deserialization">Deserialization<a class="headerlink" href="#deserialization" title="Permanent link">&para;</a></h2>
+<p>By default, the library returns BSON documents and arrays as
+MongoDB\Model\BSONDocument and MongoDB\Model\BSONArray objects, respectively.
+Both of those classes extend PHP&rsquo;s <a href="http://php.net/arrayobject">ArrayObject</a> class and
+implement the driver&rsquo;s <a href="http://php.net/mongodb-bson-serializable">MongoDB\BSON\Serializable</a> and
+<a href="http://php.net/mongodb-bson-unserializable">MongoDB\BSON\Unserializable</a> interfaces.</p>
+<h2 id="type-maps">Type Maps<a class="headerlink" href="#type-maps" title="Permanent link">&para;</a></h2>
+<p>Most methods that read data from MongoDB support a &ldquo;typeMap&rdquo; option, which
+allows control over how BSON is converted to PHP. Additionally, the
+<a href="../../classes/client/">MongoDB\Client</a>, <a href="../../classes/database/">MongoDB\Database</a>, and
+<a href="../../classes/collection/">MongoDB\Collection</a> classes accept a &ldquo;typeMap&rdquo; option, which will
+apply to any supporting methods and selected classes by default.</p>
+<p>The <a href="../../classes/client/">MongoDB\Client</a>, <a href="../../classes/database/">MongoDB\Database</a>, and
+<a href="../../classes/collection/">MongoDB\Collection</a> classes use the following type map by default:</p>
+<pre><code class="php">[
+    'array' =&gt; 'MongoDB\Model\BSONArray',
+    'document' =&gt; 'MongoDB\Model\BSONDocument',
+    'root' =&gt; 'MongoDB\Model\BSONDocument',
+]
+</code></pre>
+
+<h2 id="persistable-classes">Persistable Classes<a class="headerlink" href="#persistable-classes" title="Permanent link">&para;</a></h2>
+<p>Classes implementing <a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will be serialized
+and deserialized according to the <a href="http://php.net/manual/en/mongodb.persistence.php">Persistence</a> specification. This
+behavior occurs by default in the <a href="https://php.net/mongodb">driver</a> and does not require use
+of the &ldquo;typeMap&rdquo; option.</p>
+<p>Given the following class definition:</p>
+<pre><code>&lt;?php
+
+class Person implements MongoDB\BSON\Persistable
+{
+    private $id;
+    private $name;
+
+    public function __construct($name)
+    {
+        $this-&gt;id = new MongoDB\BSON\ObjectID;
+        $this-&gt;name = (string) $name;
+    }
+
+    function bsonSerialize()
+    {
+        return ['_id' =&gt; $this-&gt;id, 'name' =&gt; $this-&gt;name];
+    }
+
+    function bsonUnserialize(array $data)
+    {
+        $this-&gt;id = $data['_id'];
+        $this-&gt;name = $data['name'];
+    }
+}
+</code></pre>
+
+<p>The following example constructs a Person object, inserts it into the database,
+and reads it back as an object of the same type (without the use of the
+&ldquo;typeMap&rdquo; option):</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;persons;
+
+$result = $collection-&gt;insertOne(new Person('Bob'));
+
+printf(&quot;Inserted %d person\n&quot;, $result-&gt;getInsertedCount());
+
+$person = $collection-&gt;findOne(['_id' =&gt; $result-&gt;getInsertedId()]);
+
+var_dump($person);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>object(Person)#17 (2) {
+  [&quot;id&quot;:&quot;Person&quot;:private]=&gt;
+  object(MongoDB\BSON\ObjectID)#15 (1) {
+    [&quot;oid&quot;]=&gt;
+    string(24) &quot;56f99035da14d82bb3642a51&quot;
+  }
+  [&quot;name&quot;:&quot;Person&quot;:private]=&gt;
+  string(3) &quot;Bob&quot;
+}
+</code></pre>
+
+<p><strong>Note:</strong> <a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> may only be used for root and
+embedded BSON documents; BSON arrays are not supported.</p>
+<h2 id="emulating-the-legacy-driver">Emulating the Legacy Driver<a class="headerlink" href="#emulating-the-legacy-driver" title="Permanent link">&para;</a></h2>
+<p>The legacy <a href="http://php.net/mongo">mongo extension</a> returned both BSON documents and
+arrays as PHP arrays. While PHP arrays are convenient to work with, this
+behavior was problematic for several reasons:</p>
+<ul>
+<li>
+<p>Different BSON types could deserialize to the same PHP value (e.g.
+   <code>{"0": "foo"}</code> and <code>["foo"]</code>), which made it impossible to infer the
+   original BSON type.</p>
+</li>
+<li>
+<p>Numerically indexed PHP arrays would be serialized as BSON documents if there
+   was a gap in their key sequence. Such gaps were easily (and inadvertently)
+   caused by unsetting a key to remove an element and forgetting to reindex the
+   array.</p>
+</li>
+</ul>
+<p>The libary&rsquo;s MongoDB\Model\BSONDocument and MongoDB\Model\BSONArray classes
+address these concerns by preserving the BSON type information during
+serialization and deserialization; however, some users may still prefer the
+legacy behavior. If desired, the following &ldquo;typeMap&rdquo; option can be used to have
+the library return everything as a PHP array:</p>
+<pre><code>&lt;?php
+
+$client = new MongoDB\Client(
+    null,
+    [],
+    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array', 'array' =&gt; 'array']]
+);
+
+$document = $client-&gt;demo-&gt;zips-&gt;findOne(
+    ['_id' =&gt; '94301'],
+    ['typeMap' =&gt; ['root' =&gt; 'array', 'document' =&gt; 'array', 'array' =&gt; 'array']]
+);
+
+var_dump($document);
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>array(5) {
+  [&quot;_id&quot;]=&gt;
+  string(5) &quot;94301&quot;
+  [&quot;city&quot;]=&gt;
+  string(9) &quot;PALO ALTO&quot;
+  [&quot;loc&quot;]=&gt;
+  array(2) {
+    [0]=&gt;
+    float(-122.149685)
+    [1]=&gt;
+    float(37.444324)
+  }
+  [&quot;pop&quot;]=&gt;
+  int(15965)
+  [&quot;state&quot;]=&gt;
+  string(2) &quot;CA&quot;
+}
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../crud/" class="btn btn-neutral float-right" title="CRUD Operations">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../upgrade-guide/" class="btn btn-neutral" title="Upgrade Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../upgrade-guide/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../crud/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
