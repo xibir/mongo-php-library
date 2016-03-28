@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://mongodb.github.io/mongo-php-library/api/sitemap.xml
