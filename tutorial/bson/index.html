@@ -231,22 +231,32 @@ class Person implements MongoDB\BSON\Persistable
 {
     private $id;
     private $name;
+    private $createdAt;
 
     public function __construct($name)
     {
         $this-&gt;id = new MongoDB\BSON\ObjectID;
         $this-&gt;name = (string) $name;
+
+        // Get current time in milliseconds since the epoch
+        $msec = floor(microtime(true) * 1000);
+        $this-&gt;createdAt = new MongoDB\BSON\UTCDateTime($msec);
     }
 
     function bsonSerialize()
     {
-        return ['_id' =&gt; $this-&gt;id, 'name' =&gt; $this-&gt;name];
+        return [
+            '_id' =&gt; $this-&gt;id,
+            'name' =&gt; $this-&gt;name,
+            'createdAt' =&gt; $this-&gt;createdAt,
+        ];
     }
 
     function bsonUnserialize(array $data)
     {
         $this-&gt;id = $data['_id'];
         $this-&gt;name = $data['name'];
+        $this-&gt;createdAt = $data['createdAt'];
     }
 }
 </code></pre>
@@ -260,22 +270,35 @@ $collection = (new MongoDB\Client)-&gt;demo-&gt;persons;
 
 $result = $collection-&gt;insertOne(new Person('Bob'));
 
-printf(&quot;Inserted %d person\n&quot;, $result-&gt;getInsertedCount());
-
 $person = $collection-&gt;findOne(['_id' =&gt; $result-&gt;getInsertedId()]);
 
 var_dump($person);
 </code></pre>
 
 <p>The above example would output something similar to:</p>
-<pre><code>object(Person)#17 (2) {
+<pre><code>object(Person)#18 (3) {
   [&quot;id&quot;:&quot;Person&quot;:private]=&gt;
   object(MongoDB\BSON\ObjectID)#15 (1) {
     [&quot;oid&quot;]=&gt;
-    string(24) &quot;56f99035da14d82bb3642a51&quot;
+    string(24) &quot;56fad2c36118fd2e9820cfc1&quot;
   }
   [&quot;name&quot;:&quot;Person&quot;:private]=&gt;
   string(3) &quot;Bob&quot;
+  [&quot;createdAt&quot;:&quot;Person&quot;:private]=&gt;
+  object(MongoDB\BSON\UTCDateTime)#17 (1) {
+    [&quot;milliseconds&quot;]=&gt;
+    int(1459278531218)
+  }
+}
+</code></pre>
+
+<p>The same document in the MongoDB shell might display as:</p>
+<pre><code>&gt; db.persons.findOne()
+{
+  &quot;_id&quot; : ObjectId(&quot;56fad2c36118fd2e9820cfc1&quot;),
+  &quot;__pclass&quot; : BinData(128,&quot;UGVyc29u&quot;),
+  &quot;name&quot; : &quot;Bob&quot;,
+  &quot;createdAt&quot; : ISODate(&quot;2016-03-29T19:08:51.218Z&quot;)
 }
 </code></pre>
 
