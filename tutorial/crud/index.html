@@ -3,10 +3,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
   
   <title>CRUD Operations - MongoDB PHP library</title>
   
@@ -24,8 +21,6 @@
   <script>
     // Current page data
     var mkdocs_page_name = "CRUD Operations";
-    var mkdocs_page_input_path = "tutorial/crud.md";
-    var mkdocs_page_url = "/tutorial/crud/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -103,6 +98,8 @@
                     <li><a class="toctree-l4" href="#query-projection">Query Projection</a></li>
                 
                     <li><a class="toctree-l4" href="#limit-sort-and-skip-options">Limit, Sort, and Skip Options</a></li>
+                
+                    <li><a class="toctree-l4" href="#aggregation">Aggregation</a></li>
                 
             
             </ul>
@@ -329,6 +326,39 @@ foreach ($cursor as $document) {
 10025: NEW YORK, NY
 90201: BELL GARDENS, CA
 </code></pre>
+
+<h2 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h2>
+<p>The <a href="https://docs.mongodb.org/manual/core/aggregation-pipeline/">Aggregation Framework</a> may be used to issue complex queries
+that filter, transform, and group collection data. The <a href="../../classes/collection/#aggregate">aggregate()</a>
+method returns a <a href="http://php.net/traversable">Traversable</a> object, which may be iterated
+upon to access the results of an aggregation pipeline.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;zips;
+
+$cursor = $collection-&gt;aggregate([
+    ['$group' =&gt; ['_id' =&gt; '$state', 'count' =&gt; ['$sum' =&gt; 1]]],
+    ['$sort' =&gt; ['count' =&gt; -1]],
+    ['$limit' =&gt; 5],
+]);
+
+foreach ($cursor as $state) {
+    printf(&quot;%s has %d zip codes\n&quot;, $state['_id'], $state['count']);
+}
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>TX has 1671 zip codes
+NY has 1595 zip codes
+CA has 1516 zip codes
+PA has 1458 zip codes
+IL has 1237 zip codes
+</code></pre>
+
+<p><strong>Note:</strong> <a href="../../classes/collection/#aggregate">aggregate()</a> is documented as returning a
+<a href="http://php.net/traversable">Traversable</a> object because the <a href="../(http://docs.mongodb.org/manual/reference/command/aggregate/)">aggregate</a> command
+may return its results inline (i.e. a single result document&rsquo;s array field,
+which the library will package as a PHP iterator) or via a command cursor (i.e.<a href="http://php.net/mongodb-driver-cursor">MongoDB\Driver\Cursor</a>).</p>
               
             </div>
           </div>
@@ -336,7 +366,7 @@ foreach ($cursor as $document) {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../commands/" class="btn btn-neutral float-right" title="Database Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../commands/" class="btn btn-neutral float-right" title="Database Commands"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../bson/" class="btn btn-neutral" title="BSON Conversion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -364,7 +394,7 @@ foreach ($cursor as $document) {
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../bson/" style="color: #fcfcfc;">&laquo; Previous</a></span>

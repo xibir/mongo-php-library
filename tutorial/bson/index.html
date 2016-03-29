@@ -3,10 +3,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
   
   <title>BSON Conversion - MongoDB PHP library</title>
   
@@ -24,8 +21,6 @@
   <script>
     // Current page data
     var mkdocs_page_name = "BSON Conversion";
-    var mkdocs_page_input_path = "tutorial/bson.md";
-    var mkdocs_page_url = "/tutorial/bson/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -212,8 +207,7 @@ implement the driver&rsquo;s <a href="http://php.net/mongodb-bson-serializable">
 <a href="http://php.net/mongodb-bson-unserializable">MongoDB\BSON\Unserializable</a> interfaces.</p>
 <h2 id="type-maps">Type Maps<a class="headerlink" href="#type-maps" title="Permanent link">&para;</a></h2>
 <p>Most methods that read data from MongoDB support a &ldquo;typeMap&rdquo; option, which
-allows control over how BSON is converted to PHP. Additionally, the
-<a href="../../classes/client/">MongoDB\Client</a>, <a href="../../classes/database/">MongoDB\Database</a>, and
+allows control over how BSON is converted to PHP. Additionally, the<a href="../../classes/client/">MongoDB\Client</a>, <a href="../../classes/database/">MongoDB\Database</a>, and
 <a href="../../classes/collection/">MongoDB\Collection</a> classes accept a &ldquo;typeMap&rdquo; option, which will
 apply to any supporting methods and selected classes by default.</p>
 <p>The <a href="../../classes/client/">MongoDB\Client</a>, <a href="../../classes/database/">MongoDB\Database</a>, and
@@ -351,7 +345,7 @@ var_dump($document);
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../crud/" class="btn btn-neutral float-right" title="CRUD Operations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../crud/" class="btn btn-neutral float-right" title="CRUD Operations"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../../upgrade-guide/" class="btn btn-neutral" title="Upgrade Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -379,7 +373,7 @@ var_dump($document);
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../../upgrade-guide/" style="color: #fcfcfc;">&laquo; Previous</a></span>

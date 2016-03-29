@@ -3,10 +3,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
   
   <title>Database Commands - MongoDB PHP library</title>
   
@@ -24,8 +21,6 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Database Commands";
-    var mkdocs_page_input_path = "tutorial/commands.md";
-    var mkdocs_page_url = "/tutorial/commands/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -232,37 +227,32 @@ var_dump($cursor-&gt;toArray()[0]);
 </code></pre>
 
 <h2 id="iterable-results-as-a-command-cursor">Iterable Results as a Command Cursor<a class="headerlink" href="#iterable-results-as-a-command-cursor" title="Permanent link">&para;</a></h2>
-<p>Some commands, such as <a href="http://docs.mongodb.org/manual/reference/command/aggregate/">aggregate</a> with the &ldquo;cursor&rdquo; option, may
-return their results via an iterable command cursor. In this case, the returned
+<p>Some commands, such as <a href="http://docs.mongodb.org/manual/reference/command/listCollections/">listCollections</a>, return their results
+via an iterable command cursor. In this case, the returned
 <a href="http://php.net/mongodb-driver-cursor">MongoDB\Driver\Cursor</a> may be iterated in the same manner as one might
 do with a <a href="../../classes/collection/#find">Collection::find()</a> query, like so:</p>
 <pre><code>&lt;?php
 
 $database = (new MongoDB\Client)-&gt;demo;
 
-$cursor = $database-&gt;command([
-    'aggregate' =&gt; 'zips',
-    'pipeline' =&gt; [
-        ['$group' =&gt; ['_id' =&gt; '$state', 'count' =&gt; ['$sum' =&gt; 1]]],
-        ['$sort' =&gt; ['count' =&gt; -1]],
-        ['$limit' =&gt; 5],
-    ],
-    'cursor' =&gt; new \stdClass,
-]);
+$cursor = $database-&gt;command(['listCollections' =&gt; 1]);
 
-foreach ($cursor as $state) {
-    printf(&quot;%s has %d zip codes\n&quot;, $state['_id'], $state['count']);
+foreach ($cursor as $collection) {
+    echo $collection['name'], &quot;\n&quot;;
 }
 </code></pre>
 
 <p>The above example would output something similar to:</p>
-<pre><code>TX has 1671 zip codes
-NY has 1595 zip codes
-CA has 1516 zip codes
-PA has 1458 zip codes
-IL has 1237 zip codes
+<pre><code>persons
+posts
+zips
 </code></pre>
 
+<p><strong>Note:</strong> at the protocol level, commands that support a cursor actually return
+a single result document with the essential ingredients for constructing the
+command cursor (i.e. the cursor&rsquo;s ID, namespace, and first batch of results);
+however, the driver&rsquo;s <a href="http://php.net/manual/en/mongodb-driver-manager.executecommand.php">executeCommand()</a> method already detects
+such a result and constructs the iterable command cursor for us.</p>
 <h2 id="specifying-a-read-preference">Specifying a Read Preference<a class="headerlink" href="#specifying-a-read-preference" title="Permanent link">&para;</a></h2>
 <p>Some commands, such as <a href="https://docs.mongodb.org/manual/reference/command/createUser/">createUser</a>, can only be executed on a
 primary server. Command helpers in the library, such as
@@ -305,7 +295,7 @@ var_dump($cursor-&gt;toArray()[0]);
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../indexes/" class="btn btn-neutral float-right" title="Indexes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../indexes/" class="btn btn-neutral float-right" title="Indexes"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../crud/" class="btn btn-neutral" title="CRUD Operations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -333,7 +323,7 @@ var_dump($cursor-&gt;toArray()[0]);
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../crud/" style="color: #fcfcfc;">&laquo; Previous</a></span>
