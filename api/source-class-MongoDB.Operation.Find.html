@@ -312,11 +312,11 @@
 </span><span id="218" class="l"><a href="#218">218 </a>        <span class="php-var">$modifiers</span> = <span class="php-keyword1">empty</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'modifiers'</span>]) ? [] : (<span class="php-keyword1">array</span>) <span class="php-var">$this</span>-&gt;options[<span class="php-quote">'modifiers'</span>];
 </span><span id="219" class="l"><a href="#219">219 </a>
 </span><span id="220" class="l"><a href="#220">220 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'comment'</span>])) {
-</span><span id="221" class="l"><a href="#221">221 </a>            <span class="php-var">$modifiers</span>[<span class="php-quote">'$comment'</span>] = <span class="php-var">$options</span>[<span class="php-quote">'comment'</span>];
+</span><span id="221" class="l"><a href="#221">221 </a>            <span class="php-var">$modifiers</span>[<span class="php-quote">'$comment'</span>] = <span class="php-var">$this</span>-&gt;options[<span class="php-quote">'comment'</span>];
 </span><span id="222" class="l"><a href="#222">222 </a>        }
 </span><span id="223" class="l"><a href="#223">223 </a>
 </span><span id="224" class="l"><a href="#224">224 </a>        <span class="php-keyword1">if</span> (<span class="php-keyword1">isset</span>(<span class="php-var">$this</span>-&gt;options[<span class="php-quote">'maxTimeMS'</span>])) {
-</span><span id="225" class="l"><a href="#225">225 </a>            <span class="php-var">$modifiers</span>[<span class="php-quote">'$maxTimeMS'</span>] = <span class="php-var">$options</span>[<span class="php-quote">'maxTimeMS'</span>];
+</span><span id="225" class="l"><a href="#225">225 </a>            <span class="php-var">$modifiers</span>[<span class="php-quote">'$maxTimeMS'</span>] = <span class="php-var">$this</span>-&gt;options[<span class="php-quote">'maxTimeMS'</span>];
 </span><span id="226" class="l"><a href="#226">226 </a>        }
 </span><span id="227" class="l"><a href="#227">227 </a>
 </span><span id="228" class="l"><a href="#228">228 </a>        <span class="php-keyword1">if</span> ( ! <span class="php-keyword1">empty</span>(<span class="php-var">$modifiers</span>)) {

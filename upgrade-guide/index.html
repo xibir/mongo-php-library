@@ -3,7 +3,10 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
   
   <title>Upgrade Guide - MongoDB PHP library</title>
   
@@ -21,6 +24,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Upgrade Guide";
+    var mkdocs_page_input_path = "upgrade-guide.md";
+    var mkdocs_page_url = "/upgrade-guide/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -386,8 +391,8 @@ with <a href="https://docs.mongodb.org/manual/reference/database-references/#dbr
 <h3 id="mongocollectionsave-removed">MongoCollection::save() Removed<a class="headerlink" href="#mongocollectionsave-removed" title="Permanent link">&para;</a></h3>
 <p><a href="http://php.net/manual/en/mongocollection.save.php">MongoCollection::save()</a>, which was syntactic sugar for an insert or
 upsert operation, has been removed in favor of explicitly using
-<a href="../classes/collection/#insertone">insertOne()</a> or
-<a href="../classes/collection/#replaceone">replaceOne()</a> (with the &ldquo;upsert&rdquo; option).</p>
+<a href="../classes/collection/#insertone">insertOne()</a> or <a href="../classes/collection/#replaceone">replaceOne()</a> (with the &ldquo;upsert&rdquo;
+option).</p>
 <p><img alt="save() flowchart" src="../img/save-flowchart.png" /></p>
 <p>While the <a href="http://php.net/manual/en/mongocollection.save.php">save()</a> method does have its uses for interactive environments,
 such as the mongo shell, it was intentionally excluded from the
@@ -396,11 +401,27 @@ code should know if the document has an identifier and be able to explicitly
 insert or replace the document and handle the returned InsertResult or
 UpdateResult, respectively. This also helps avoid inadvertent and potentially
 dangerous <a href="https://docs.mongodb.org/manual/tutorial/modify-documents/#replace-the-document">full-document replacements</a>.</p>
+<h3 id="accessing-ids-of-inserted-documents">Accessing IDs of Inserted Documents<a class="headerlink" href="#accessing-ids-of-inserted-documents" title="Permanent link">&para;</a></h3>
+<p>In the legacy driver, <a href="http://php.net/manual/en/mongocollection.insert.php">MongoCollection::insert()</a>,
+<a href="http://php.net/manual/en/mongocollection.batchinsert.php">MongoCollection::batchInsert()</a>, and
+<a href="http://php.net/manual/en/mongocollection.save.php">MongoCollection::save()</a> (when inserting) would modify their input
+argument by injecting an &ldquo;_id&rdquo; key containing the generated ObjectId (i.e.
+<a href="http://php.net/manual/en/class.mongoid.php">MongoId</a> object). This behavior was a bit of a hack, as it did not
+rely on the argument being <a href="http://php.net/manual/en/language.references.pass.php">passed by reference</a>; it directly modified
+memory through the extension API and could not be implemented in PHP userland.
+As such, it is no longer done in the new driver and library.</p>
+<p>IDs of inserted documents (whether generated or not) may be accessed through the
+result objects returned by the write methods:</p>
+<ul>
+<li>MongoDB\InsertOneResult::getInsertedId() for <a href="../classes/collection/#insertone">insertOne()</a></li>
+<li>MongoDB\InsertManyResult::getInsertedIds() for <a href="../classes/collection/#insertmany">insertMany()</a></li>
+<li>MongoDB\BulkWriteResult::getInsertedIds() for <a href="../classes/collection/#bulkwrite">bulkWrite()</a></li>
+</ul>
 <h3 id="mongowritebatch">MongoWriteBatch<a class="headerlink" href="#mongowritebatch" title="Permanent link">&para;</a></h3>
 <p>The legacy driver&rsquo;s <a href="http://php.net/manual/en/class.mongowritebatch.php">MongoWriteBatch</a> classes have been replaced with a
-general-purpose <a href="../classes/collection/#bulkwrite">bulkWrite()</a> method. Whereas
-the legacy driver only allowed bulk operations of the same time, the new method
-allows operations to be mixed (e.g. inserts, updates, and deletes).</p>
+general-purpose <a href="../classes/collection/#bulkwrite">bulkWrite()</a> method. Whereas the legacy driver only
+allowed bulk operations of the same time, the new method allows operations to be
+mixed (e.g. inserts, updates, and deletes).</p>
               
             </div>
           </div>
@@ -408,7 +429,7 @@ allows operations to be mixed (e.g. inserts, updates, and deletes).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../tutorial/bson/" class="btn btn-neutral float-right" title="BSON Conversion"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../tutorial/bson/" class="btn btn-neutral float-right" title="BSON Conversion">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../getting-started/" class="btn btn-neutral" title="Getting Started"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -436,7 +457,7 @@ allows operations to be mixed (e.g. inserts, updates, and deletes).</p>
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../getting-started/" style="color: #fcfcfc;">&laquo; Previous</a></span>
