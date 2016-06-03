@@ -3,10 +3,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
   
   <title>Collection - MongoDB PHP library</title>
   
@@ -24,8 +21,6 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Collection";
-    var mkdocs_page_input_path = "classes/collection.md";
-    var mkdocs_page_url = "/classes/collection/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -719,8 +714,7 @@ in the modifiers document, this option will take precedence.</dd>
 <p>Finds a single document and deletes it, returning the original. The document to
 return may be null if no document matched the filter.</p>
 <p><strong>Note:</strong> BSON deserialization of the returned document does not yet support a
-&ldquo;typeMap&rdquo; option; however, classes implementing
-<a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will still be deserialized according to
+&ldquo;typeMap&rdquo; option; however, classes implementing<a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will still be deserialized according to
 the <a href="http://php.net/manual/en/mongodb.persistence.deserialization.php">Persistence</a> specification.</p>
 <h3 id="supported-options_13">Supported Options<a class="headerlink" href="#supported-options_13" title="Permanent link">&para;</a></h3>
 <dl>
@@ -752,8 +746,7 @@ default, the original document is returned. Specify
 <code>MongoDB\Operation\FindOneAndReplace::RETURN_DOCUMENT_AFTER</code> for the
 &ldquo;returnDocument&rdquo; option to return the updated document.</p>
 <p><strong>Note:</strong> BSON deserialization of the returned document does not yet support a
-&ldquo;typeMap&rdquo; option; however, classes implementing
-<a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will still be deserialized according to
+&ldquo;typeMap&rdquo; option; however, classes implementing<a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will still be deserialized according to
 the <a href="http://php.net/manual/en/mongodb.persistence.deserialization.php">Persistence</a> specification.</p>
 <h3 id="supported-options_14">Supported Options<a class="headerlink" href="#supported-options_14" title="Permanent link">&para;</a></h3>
 <dl>
@@ -795,8 +788,7 @@ default, the original document is returned. Specify
 <code>MongoDB\Operation\FindOneAndUpdate::RETURN_DOCUMENT_AFTER</code> for the
 &ldquo;returnDocument&rdquo; option to return the updated document.</p>
 <p><strong>Note:</strong> BSON deserialization of the returned document does not yet support a
-&ldquo;typeMap&rdquo; option; however, classes implementing
-<a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will still be deserialized according to
+&ldquo;typeMap&rdquo; option; however, classes implementing<a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a> will still be deserialized according to
 the <a href="http://php.net/manual/en/mongodb.persistence.deserialization.php">Persistence</a> specification.</p>
 <h3 id="supported-options_15">Supported Options<a class="headerlink" href="#supported-options_15" title="Permanent link">&para;</a></h3>
 <dl>
@@ -1040,7 +1032,7 @@ Manager&rsquo;s write concern.</dd>
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../database/" style="color: #fcfcfc;">&laquo; Previous</a></span>

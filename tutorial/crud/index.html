@@ -3,10 +3,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
   
   <title>CRUD Operations - MongoDB PHP library</title>
   
@@ -24,8 +21,6 @@
   <script>
     // Current page data
     var mkdocs_page_name = "CRUD Operations";
-    var mkdocs_page_input_path = "tutorial/crud.md";
-    var mkdocs_page_url = "/tutorial/crud/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -104,7 +99,23 @@
                 
                     <li><a class="toctree-l4" href="#limit-sort-and-skip-options">Limit, Sort, and Skip Options</a></li>
                 
-                    <li><a class="toctree-l4" href="#aggregation">Aggregation</a></li>
+                    <li><a class="toctree-l4" href="#inserting-one-document">Inserting One Document</a></li>
+                
+                    <li><a class="toctree-l4" href="#inserting-many-documents">Inserting Many Documents</a></li>
+                
+                    <li><a class="toctree-l4" href="#updating-one-document">Updating One Document</a></li>
+                
+                    <li><a class="toctree-l4" href="#updating-many-documents">Updating Many Documents</a></li>
+                
+                    <li><a class="toctree-l4" href="#replacing-a-document">Replacing a Document</a></li>
+                
+                    <li><a class="toctree-l4" href="#upserting-a-document">Upserting a Document</a></li>
+                
+                    <li><a class="toctree-l4" href="#deleting-one-document">Deleting One Document</a></li>
+                
+                    <li><a class="toctree-l4" href="#deleting-many-documents">Deleting Many Documents</a></li>
+                
+                    <li><a class="toctree-l4" href="#aggregating-documents">Aggregating Documents</a></li>
                 
             
             </ul>
@@ -212,6 +223,31 @@ MongoDB&rsquo;s cross-driver <a href="https://github.com/mongodb/specifications/
 demonstrate how to insert, query, update, and delete documents using the
 library. A general introduction to CRUD operations in MongoDB may be found in
 the <a href="https://docs.mongodb.org/manual/crud/">MongoDB Manual</a>.</p>
+<p>This page covers the following common use cases:</p>
+<ul>
+<li>Querying for <a href="#finding-one-document">one</a> or <a href="#finding-many-documents">many</a>
+   documents at a time</li>
+<li><a href="#query-projection">Projecting</a> fields in a query</li>
+<li>Applying <a href="#limit-sort-and-skip-options">limit, sort, and skip options</a> to a
+   query</li>
+<li>Inserting <a href="#inserting-one-document">one</a> or <a href="#inserting-many-documents">many</a>
+   documents at a time</li>
+<li>Updating <a href="#updating-one-document">one</a> or <a href="#updating-many-documents">many</a>
+   documents at a time</li>
+<li><a href="#replacing-a-document">Replacing</a> a document</li>
+<li><a href="#upserting-a-document">Upserting</a> a document</li>
+<li>Deleting <a href="#deleting-one-document">one</a> or <a href="#deleting-many-documents">many</a>
+   documents at a time</li>
+<li><a href="#aggregating-documents">Aggregating</a> documents</li>
+</ul>
+<p>Note that the use of arrays to express documents in the following examples was
+done for simplicity. The driver will also accept instances of stdClass or
+<a href="http://php.net/mongodb-bson-serializable">MongoDB\BSON\Serializable</a>) for these arguments (e.g. query
+filters, inserted documents, update documents).</p>
+<p>Documents destined for database storage (e.g. insert documents, replacement
+documents, embedded documents included in an update operation) may also be
+instances of <a href="http://php.net/mongodb-bson-persistable">MongoDB\BSON\Persistable</a>. See
+<a href="../bson/#persistable-classes">Persistable Classes</a> for more information.</p>
 <h2 id="finding-one-document">Finding One Document<a class="headerlink" href="#finding-one-document" title="Permanent link">&para;</a></h2>
 <p>The <a href="../../classes/collection/#findone">findOne()</a> method returns the first matched document, or null if
 no document was matched.</p>
@@ -332,7 +368,319 @@ foreach ($cursor as $document) {
 90201: BELL GARDENS, CA
 </code></pre>
 
-<h2 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h2>
+<h2 id="inserting-one-document">Inserting One Document<a class="headerlink" href="#inserting-one-document" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#insertone">insertOne()</a> method may be used to insert a single document.
+This method returns an instance of <code>MongoDB\InsertOneResult</code>, which may be used
+to access the ID of the inserted document. Note that if a document does not
+contain an <code>_id</code> field at the time of insertion, the driver will generate a
+<code>MongoDB\BSON\ObjectID</code> to use as its ID.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$insertOneResult = $collection-&gt;insertOne(['name' =&gt; 'Bob']);
+
+printf(&quot;Inserted %d document(s)\n&quot;, $insertOneResult-&gt;getInsertedCount());
+var_dump($insertOneResult-&gt;getInsertedId());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Inserted 1 document(s)
+object(MongoDB\BSON\ObjectID)#10 (1) {
+  [&quot;oid&quot;]=&gt;
+  string(24) &quot;5750905b6118fd170565aa81&quot;
+}
+</code></pre>
+
+<p>The following example inserts a document with an ID. Note that if an ID is not
+unique for the collection, the insert will fail due to a duplicate key error.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$insertOneResult = $collection-&gt;insertOne(['_id' =&gt; 1, 'name' =&gt; 'Alice']);
+
+printf(&quot;Inserted %d document(s)\n&quot;, $insertOneResult-&gt;getInsertedCount());
+var_dump($insertOneResult-&gt;getInsertedId());
+</code></pre>
+
+<p>The above example would output:</p>
+<pre><code>Inserted 1 document(s)
+int(1)
+</code></pre>
+
+<h2 id="inserting-many-documents">Inserting Many Documents<a class="headerlink" href="#inserting-many-documents" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#insertmany">insertMany()</a> method may be used to insert multiple documents
+at a time. This method returns an instance of <code>MongoDB\InsertManyResult</code>, which
+may be used to access the IDs of the inserted documents.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$insertManyResult = $collection-&gt;insertMany([
+    ['name' =&gt; 'Bob'],
+    ['_id' =&gt; 1, 'name' =&gt; 'Alice'],
+]);
+
+printf(&quot;Inserted %d document(s)\n&quot;, $insertManyResult-&gt;getInsertedCount());
+var_dump($insertManyResult-&gt;getInsertedIds());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Inserted 2 document(s)
+array(2) {
+  [0]=&gt;
+  object(MongoDB\BSON\ObjectID)#10 (1) {
+    [&quot;oid&quot;]=&gt;
+    string(24) &quot;5750927b6118fd1ed64eb141&quot;
+  }
+  [1]=&gt;
+  int(1)
+}
+</code></pre>
+
+<h2 id="updating-one-document">Updating One Document<a class="headerlink" href="#updating-one-document" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#updateone">updateOne()</a> method may be used to update a single document
+matching a filter. This method returns an instance of <code>MongoDB\UpdateResult</code>,
+which may be used to access statistics about the update operation.</p>
+<p>This method has two required parameters: a query filter and an update document.
+The query filter is similar to what might be provided to <a href="../../classes/collection/#find">find()</a>. The
+update document consists of one or more <a href="https://docs.mongodb.com/manual/reference/operator/update/">update operators</a>.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$collection-&gt;insertOne(['name' =&gt; 'Bob', 'state' =&gt; 'ny']);
+$collection-&gt;insertOne(['name' =&gt; 'Alice', 'state' =&gt; 'ny']);
+$updateResult = $collection-&gt;updateOne(
+    ['state' =&gt; 'ny'],
+    ['$set' =&gt; ['country' =&gt; 'us']]
+);
+
+printf(&quot;Matched %d document(s)\n&quot;, $updateResult-&gt;getMatchedCount());
+printf(&quot;Modified %d document(s)\n&quot;, $updateResult-&gt;getModifiedCount());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Matched 1 document(s)
+Modified 1 document(s)
+</code></pre>
+
+<p>Note that it is possible for a document to match the filter but not be modified
+by an update:</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$collection-&gt;insertOne(['name' =&gt; 'Bob', 'state' =&gt; 'ny']);
+$updateResult = $collection-&gt;updateOne(
+    ['name' =&gt; 'Bob'],
+    ['$set' =&gt; ['state' =&gt; 'ny']]
+);
+
+printf(&quot;Matched %d document(s)\n&quot;, $updateResult-&gt;getMatchedCount());
+printf(&quot;Modified %d document(s)\n&quot;, $updateResult-&gt;getModifiedCount());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Matched 1 document(s)
+Modified 0 document(s)
+</code></pre>
+
+<h2 id="updating-many-documents">Updating Many Documents<a class="headerlink" href="#updating-many-documents" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#updatemany">updateMany()</a> method may be used to update multiple documents
+at a time. This method returns an instance of <code>MongoDB\UpdateResult</code>, which may
+be used to access statistics about the update operation.</p>
+<p>This method has two required parameters: a query filter and an update document.
+The query filter is similar to what might be provided to <a href="../../classes/collection/#find">find()</a>. The
+update document consists of one or more <a href="https://docs.mongodb.com/manual/reference/operator/update/">update operators</a>.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$collection-&gt;insertOne(['name' =&gt; 'Bob', 'state' =&gt; 'ny', 'country' =&gt; 'us']);
+$collection-&gt;insertOne(['name' =&gt; 'Alice', 'state' =&gt; 'ny']);
+$collection-&gt;insertOne(['name' =&gt; 'Sam', 'state' =&gt; 'ny']);
+$updateResult = $collection-&gt;updateMany(
+    ['state' =&gt; 'ny'],
+    ['$set' =&gt; ['country' =&gt; 'us']]
+);
+
+printf(&quot;Matched %d document(s)\n&quot;, $updateResult-&gt;getMatchedCount());
+printf(&quot;Modified %d document(s)\n&quot;, $updateResult-&gt;getModifiedCount());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Matched 3 document(s)
+Modified 2 document(s)
+</code></pre>
+
+<h2 id="replacing-a-document">Replacing a Document<a class="headerlink" href="#replacing-a-document" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#replaceone">replaceOne()</a> method may be used to replace a single document
+matching a filter. This method returns an instance of <code>MongoDB\UpdateResult</code>,
+which may be used to access statistics about the replacement operation.</p>
+<p>This method has two required parameters: a query filter and a replacement
+document. The query filter is similar to what might be provided to
+<a href="../../classes/collection/#find">find()</a>. The replacement document will be used to overwrite the matched
+document (excluding its ID, which is immutable) and must not contain
+<a href="https://docs.mongodb.com/manual/reference/operator/update/">update operators</a>.</p>
+<p>Note that the very nature of a replacement operation makes it easy to
+inadvertently overwrite or delete fields in a document. When possible, users
+should consider updating individual fields with <a href="../../classes/collection/#updateone">updateOne()</a> or
+<a href="../../classes/collection/#updatemany">updateMany()</a>.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$collection-&gt;insertOne(['name' =&gt; 'Bob', 'state' =&gt; 'ny']);
+$updateResult = $collection-&gt;replaceOne(
+    ['name' =&gt; 'Bob'],
+    ['name' =&gt; 'Robert', 'state' =&gt; 'ca']
+);
+
+printf(&quot;Matched %d document(s)\n&quot;, $updateResult-&gt;getMatchedCount());
+printf(&quot;Modified %d document(s)\n&quot;, $updateResult-&gt;getModifiedCount());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Matched 1 document(s)
+Modified 1 document(s)
+</code></pre>
+
+<p>Note that it is possible for a document to match the filter but not be modified
+by a replacement (i.e. the matched document and replacement may be the same).</p>
+<h2 id="upserting-a-document">Upserting a Document<a class="headerlink" href="#upserting-a-document" title="Permanent link">&para;</a></h2>
+<p>An upsert is a variation of an update or replace operation, whereby a new
+document is inserted if the query filter does not match an existing document.
+An upsert may be specified via the <code>upsert</code> option for <a href="../../classes/collection/#updateone">updateOne()</a>,
+<a href="../../classes/collection/#updatemany">updateMany()</a>, or <a href="../../classes/collection/#replaceone">replaceOne()</a>. The logic by which
+the inserted document is created is discussed in the <a href="https://docs.mongodb.com/manual/reference/method/db.collection.update/#upsert-parameter">MongoDB manual</a>.</p>
+<p>If a document has been upserted, its ID will be accessible via
+<code>MongoDB\UpdateResult::getUpsertedId()</code>.</p>
+<p>The following example demonstrates an upsert via <a href="../../classes/collection/#updateone">updateOne()</a>:</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$updateResult = $collection-&gt;updateOne(
+    ['name' =&gt; 'Bob'],
+    ['$set' =&gt; ['state' =&gt; 'ny']],
+    ['upsert' =&gt; true]
+);
+
+printf(&quot;Matched %d document(s)\n&quot;, $updateResult-&gt;getMatchedCount());
+printf(&quot;Modified %d document(s)\n&quot;, $updateResult-&gt;getModifiedCount());
+var_dump($collection-&gt;findOne(['_id' =&gt; $updateResult-&gt;getUpsertedId()]));
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Matched 0 document(s)
+Modified 0 document(s)
+object(MongoDB\Model\BSONDocument)#16 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(3) {
+    [&quot;_id&quot;]=&gt;
+    object(MongoDB\BSON\ObjectID)#15 (1) {
+      [&quot;oid&quot;]=&gt;
+      string(24) &quot;57509c4406d7241dad86e7c3&quot;
+    }
+    [&quot;name&quot;]=&gt;
+    string(3) &quot;Bob&quot;
+    [&quot;state&quot;]=&gt;
+    string(2) &quot;ny&quot;
+  }
+}
+</code></pre>
+
+<p>The following example demonstrates an upsert via <a href="../../classes/collection/#replaceone">replaceOne()</a>:</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$updateResult = $collection-&gt;replaceOne(
+    ['name' =&gt; 'Bob'],
+    ['name' =&gt; 'Alice', 'state' =&gt; 'ny'],
+    ['upsert' =&gt; true]
+);
+
+printf(&quot;Matched %d document(s)\n&quot;, $updateResult-&gt;getMatchedCount());
+printf(&quot;Modified %d document(s)\n&quot;, $updateResult-&gt;getModifiedCount());
+var_dump($collection-&gt;findOne(['_id' =&gt; $updateResult-&gt;getUpsertedId()]));
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Matched 0 document(s)
+Modified 0 document(s)
+object(MongoDB\Model\BSONDocument)#16 (1) {
+  [&quot;storage&quot;:&quot;ArrayObject&quot;:private]=&gt;
+  array(3) {
+    [&quot;_id&quot;]=&gt;
+    object(MongoDB\BSON\ObjectID)#15 (1) {
+      [&quot;oid&quot;]=&gt;
+      string(24) &quot;57509c6606d7241dad86e7c4&quot;
+    }
+    [&quot;name&quot;]=&gt;
+    string(5) &quot;Alice&quot;
+    [&quot;state&quot;]=&gt;
+    string(2) &quot;ny&quot;
+  }
+}
+</code></pre>
+
+<h2 id="deleting-one-document">Deleting One Document<a class="headerlink" href="#deleting-one-document" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#deleteone">deleteOne()</a> method may be used to delete a single document
+matching a filter. This method returns an instance of <code>MongoDB\DeleteResult</code>,
+which may be used to access statistics about the delete operation.</p>
+<p>This method has two required parameters: a query filter. The query filter is
+similar to what might be provided to <a href="../../classes/collection/#find">find()</a>.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$collection-&gt;insertOne(['name' =&gt; 'Bob', 'state' =&gt; 'ny']);
+$collection-&gt;insertOne(['name' =&gt; 'Alice', 'state' =&gt; 'ny']);
+$deleteResult = $collection-&gt;deleteOne(['state' =&gt; 'ny']);
+
+printf(&quot;Deleted %d document(s)\n&quot;, $deleteResult-&gt;getDeletedCount());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Deleted 1 document(s)
+</code></pre>
+
+<h2 id="deleting-many-documents">Deleting Many Documents<a class="headerlink" href="#deleting-many-documents" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../classes/collection/#deletemany">deleteMany()</a> method may be used to delete multiple documents
+at a time. This method returns an instance of <code>MongoDB\DeleteResult</code>, which may
+be used to access statistics about the delete operation.</p>
+<p>This method has two required parameters: a query filter. The query filter is
+similar to what might be provided to <a href="../../classes/collection/#find">find()</a>.</p>
+<pre><code>&lt;?php
+
+$collection = (new MongoDB\Client)-&gt;demo-&gt;users;
+$collection-&gt;drop();
+
+$collection-&gt;insertOne(['name' =&gt; 'Bob', 'state' =&gt; 'ny']);
+$collection-&gt;insertOne(['name' =&gt; 'Alice', 'state' =&gt; 'ny']);
+$deleteResult = $collection-&gt;deleteMany(['state' =&gt; 'ny']);
+
+printf(&quot;Deleted %d document(s)\n&quot;, $deleteResult-&gt;getDeletedCount());
+</code></pre>
+
+<p>The above example would output something similar to:</p>
+<pre><code>Deleted 2 document(s)
+</code></pre>
+
+<h2 id="aggregating-documents">Aggregating Documents<a class="headerlink" href="#aggregating-documents" title="Permanent link">&para;</a></h2>
 <p>The <a href="https://docs.mongodb.org/manual/core/aggregation-pipeline/">Aggregation Framework</a> may be used to issue complex queries
 that filter, transform, and group collection data. The <a href="../../classes/collection/#aggregate">aggregate()</a>
 method returns a <a href="http://php.net/traversable">Traversable</a> object, which may be iterated
@@ -363,8 +711,7 @@ IL has 1237 zip codes
 <p><strong>Note:</strong> <a href="../../classes/collection/#aggregate">aggregate()</a> is documented as returning a
 <a href="http://php.net/traversable">Traversable</a> object because the <a href="../(http://docs.mongodb.org/manual/reference/command/aggregate/)">aggregate</a> command
 may return its results inline (i.e. a single result document&rsquo;s array field,
-which the library will package as a PHP iterator) or via a command cursor (i.e.
-<a href="http://php.net/mongodb-driver-cursor">MongoDB\Driver\Cursor</a>).</p>
+which the library will package as a PHP iterator) or via a command cursor (i.e.<a href="http://php.net/mongodb-driver-cursor">MongoDB\Driver\Cursor</a>).</p>
               
             </div>
           </div>
@@ -372,7 +719,7 @@ which the library will package as a PHP iterator) or via a command cursor (i.e.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../commands/" class="btn btn-neutral float-right" title="Database Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../commands/" class="btn btn-neutral float-right" title="Database Commands"/>Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../bson/" class="btn btn-neutral" title="BSON Conversion"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -400,7 +747,7 @@ which the library will package as a PHP iterator) or via a command cursor (i.e.
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
-          <a href="https://github.com/mongodb/mongo-php-library" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
         <span><a href="../bson/" style="color: #fcfcfc;">&laquo; Previous</a></span>
